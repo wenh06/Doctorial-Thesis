@@ -1,0 +1,381 @@
+\chapter{超曲面上的重数估计}
+\label{chapter:main result}
+为了研究射影超曲面上的重数计数问题，我们先介绍一些关于超曲面上点的重数的一些事实。
+
+\section{超曲面截影上的重数}
+设$k$为任意的一个域，$f\in k[T_0,\cdots,T_n]$为一个次数等于$\delta$的非零齐次多项式。考虑概型
+\begin{equation}
+X = V(f) = \proj\left(k[T_0,\cdots,T_n]/(f)\right).
+\end{equation}
+事实上，概型$V(f)$是$n$维射影空间$\mathbb P^n_k$的维数纯为$n-1$的闭子概型，从而是射影空间$\mathbb{P}^n_k$内的一个超曲面，被称为为由齐次多项式$f$定义的射影超曲面。可以证明，射影超曲面$X = V(f)$的次数等于定义它的齐次多项式$f$的次数$\delta$（详见参考文献~\inlinecite{GTM52}的第一章的 Proposition 7.6）。
+
+令$\alpha\in[0,\delta]\cap \mathbb N$为一个非负整数。我们记$\mathcal{T}^{\alpha}(f)$为形如
+\begin{equation}
+\partial^{|I|}_{I} f := \dfrac{\partial^{|I|}f}{\partial T^I} = \dfrac{\partial^{i_0+\cdots+i_n}f}{\partial T_0^{i_0}\cdots\partial T_n^{i_n}}
+\end{equation}
+的齐次多项式$f$的阶数为$\alpha$的偏导数张成的$k$-线性空间，其中$I = (i_0,\cdots,i_n)\in\mathbb{N}^{n+1}$且满足$|I| = i_0+\cdots+i_n = \alpha$。线性空间$\mathcal{T}^{\alpha}(f)$中的元素都是次数等于$\delta-\alpha$的齐次多项式。
+
+下面，我们要引入一个决定超曲面上点的重数的显式的准则。
+
+\begin{proposition}[\inlinecite{Liu-multiplicity}, Corollaire 5.4] \label{taylor expansion}
+设域$k$的特征为$0$，$X\hookrightarrow\mathbb P^n_k$为由次数等于$\delta$的齐次多项式$f$定义的超曲面，$\xi\in X$为超曲面上的一个点，$\alpha$为区间$[0,\mu_{\xi}(X)-1]$内的非负正整数。那么任取线性空间$\mathcal{T}^{\alpha}(f)$中任意一个非零元素$g$（一个次数等于$\delta-\alpha$的齐次多项式），点$\xi$总是包含在由$g$定义的超曲面$X_{\alpha,g}$上。而当$\alpha = \mu_{\xi}(X)$时，情况正好相反，总存在一个非零元素$g'\in\mathcal{T}^{\mu_{\xi}(X)}(f)$，使得点$\xi$不落在由$g'$定义的超曲面上。
+\end{proposition}
+
+\begin{remark}
+特别地，如果$\mu_{\xi}(X) > 1$，也就是说点$\xi$是一个奇异点，那么对$\mathcal{T}^1(f)$的每个元素$g$来说，点$\xi$总是落在由$g$定义的超曲面上。
+\end{remark}
+
+\begin{remark}
+上述命题一个直接的结果就是，对于命题中出现的超曲面$X_{\alpha,g}$，总有
+\begin{equation}
+\mu_{\xi}(X_{\alpha,g}X') \geqslant \mu_{\xi}(X) - \alpha, \quad \forall \alpha \in [0,\mu_\xi(X)-1].
+\end{equation}
+\end{remark}
+
+\section{相交树的构造}
+\label{construction of intersection trees}
+由于有命题\ref{taylor expansion}，我们可以构造一族相交树，或者说一个森林，用来解决我们所考虑的重数计数问题。首先，我们需要把这族相交树的根都确定下来。为了达到这个目的，我们需要以下的命题
+
+\begin{proposition}[\inlinecite{Liu-multiplicity}, Lemme 5.8] \label{construction of roots}
+设$K$为一个数域，$f\in K[T_0,\cdots,T_n]$为一个次数等于$\delta$的齐次多项式。记$V(f)$为由齐次多项式$f$定义的超曲面。如果超曲面$V(f)$的奇点集维数等于$s$，那么存在$f$的一组方向导数$g_1,\cdots, g_{n-s-1}\in\mathcal{T}^1(f)$，使得
+\begin{equation}
+\dim(V(f)\cap V(g_1)\cap\cdots\cap V(g_{n-s-1}))=s.
+\end{equation}
+换而言之，$V(f)\cap V(g_1)\cap\cdots\cap V(g_{n-s-1})$是一个完全交。
+\end{proposition}
+
+设$K,f$如以上命题中所设，我们将在以后的论述中由齐次多项式$f$定义的超曲面$V(f)$记作$X$，即
+\begin{equation}
+X = \proj\left(K[T_0,\cdots,T_n]/(f)\right).
+\end{equation}
+我们将把$X$的正则点集记作$X^{\mathrm{reg}}$，把$X$的奇点集记作$X^{\mathrm{sing}}$。此外，为了符号统一便于书写，我们还把命题\ref{construction of roots}中出现的超曲面$V(g_i)$写作$X_i$，其中$i=1,\cdots,n-s-1$。由Jacobian判别准则（详见参考文献~\inlinecite{LiuQing}的 Theorem 4.2.19），有
+\begin{equation}
+X^{\mathrm{sing}} \subseteq X\cap X_1\cap\cdots\cap X_{n-s-1}.
+\end{equation}
+
+我们接下来就以集合$\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})$中的所有元素，也就是射影空间$\mathbb{P}_K^n$中的相交积$X\cdot X_{1}\intersect X_{n-s-1}$的所有不可约分支，为根节点，来构造森林$\mathscr{F}_{\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})} = \{\mathscr T_C\}_{C\in\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})}$。其中，森林中每棵（相交）树$\mathscr T_C$的下标表示它以$C\in\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})$为根节点。
+
+我们归纳地来构造相交树里深度大于等于$1$的顶点。注意到所有深度等于$0$的点，即根节点，我们都已经取好了。假设$M$是我们已经在某一个相交树$\mathscr T_C$上构造好了的一个顶点。
+
+对于$X$的一个整的子概形$M$，我们用$M^{(a)}$来表示$M$中那些在$X$中重数等于$M$在$X$中重数的点的集合，用$M^{(b)}$来表示$M$中那些在$X$中重数大于等于等于$\mu_M(X)+1$的点的集合。用数学符号来表示，就是
+\begin{gather}
+M^{(a)} = \{ \xi\in M \ |\ \mu_{\xi}(X) = \mu_{M}(X) \} ,\\
+M^{(b)} = \{ \xi\in M \ |\ \mu_{\xi}(X) \geqslant \mu_{M}(X)+1 \}.
+\end{gather}
+此外，设$L/K$为数域的扩张，我们分别记$M^{(a)}(L)$，$M^{(b)}(L)$为$M^{(a)}$，$M^{(b)}$的$L$-有理点的集合。那么有
+\begin{equation}
+M(L) = M^{(a)}(L)\bigsqcup M^{(b)}(L).
+\end{equation}
+
+由命题\ref{taylor expansion}，容易推出$M^{(a)}$在$M$中是稠密的，因为$M^\mathrm{reg}$是在$M$中稠密的，并且$M^\mathrm{reg}$中所有点在$X$中的重数都是$\mu_M(X)$。而$M^{(b)}$的维数则要小于等于$\dim (M)-1$。
+
+回到我们的构造。对于顶点$M$，我们把他视作$X$的整闭子概型。考虑集合$M(\overline K)$。如果它的子集$M^{(b)}(\overline K)=\emptyset$，那么我们令$M$为叶节点，它的标签取为空集。也就是说$M$没有子节点，$M$所在的相交树这一分支构造完毕。如果$M^{(b)}(\overline K)\neq\emptyset$，那么我们任取其中的一点$\xi \in M^{(b)}(\overline K)$。由集合$M^{(b)}$的定义，我们有$\mu_M(X) < \mu_{\xi}(X) \leqslant \delta$。根据命题\ref{taylor expansion}，对集合$M^{(a)}(\overline K)$中取定的一点$\xi'\in M^{(a)}(\overline K)$，我们可以在齐次多项式阶数为$\delta-\mu_M(X)$的偏导数张成的$K$-线性空间中找到某个元素$h \in \mathcal{T}^{\delta-\mu_M(X)}(f)$，使得由齐次多项式$h$定义的超曲面$V(h)$不包含点$\xi'$。那么同时，$V(h)$不包含$M$的广点。通过比较$M$与$V(h)$的维数可以知道，$M$与$V(h)$是正常相交的。线性空间$\mathcal{T}^{\delta-\mu_M(X)}(f)$中的非零元都是$\mu_M(X)$次齐次多项式，因此$\deg(h) = \mu_M(X) \leqslant \delta-1$。我们将超曲面$V(h)$取作顶点$M$的标签，记为$\widetilde{M}$。我们把顶点$M$的子节点取作相交积$M\cdot\widetilde{M}$的不可约分支。顶点$M$与其子节点相连的边的权重被定义作相应的相交重数。
+
+值得注意的是，在构造相交树的过程中，每个顶点的标签如果不是空集，那么就是一个超曲面，维数等于$n-1$，因此集合$\mathcal{C}_t$中所有元素，即所有深度等于$t$的顶点，都是$s-t$维的，其中$1\leqslant t\leqslant s$为一个正整数。于是，以上的构造会在有限步内终结。于是，依照上文所叙述的程序，我们就可以把这族相交树$\{\mathscr T_C\}_{C\in\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})}$都构造出来了。需要特别指出来的是，以上对于森林$\mathscr{F}_{\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})} = \{\mathscr T_C\}_{C\in\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})}$的构造并不是唯一的，因为顶点标签的选取并不唯一。
+
+\begin{remark} \label{philosophy of intersection forest}
+如此构造相交树的思路可以简述如下：
+
+为了方便，我们来考虑稍微简单一些的$K = \mathbb{Q}$时的有理点重数的计数。首先，在最简单的情况，即所有的$M \in \mathcal{C}(X\cdot X_1\intersect X_{n-s-1})$都满足$M^{(b)} = \emptyset$，那么直接有（下式中为了方便，记$X = X_0$）
+\begin{align}
+& \sum\limits_{\xi \in S(X;B)} \mu_{\xi}(X)(\mu_{\xi}(X)-1)^{n-s-1} \leqslant \sum\limits_M N(M;B) \prod\limits_i \mu_{M}(X_i) \\
+& \ll_{n} B^{s+1} \sum\limits_M \deg(M) \cdot i(M; X_0\intersect X_{n-s-1}; \mathbb{P}^n_{\mathbb{Q}}) \\
+& \ll_{n} B^{s+1} \prod\limits_i \deg(X_i) \ll_{n} \delta(\delta-1)^{n-s-1} B^{s+1} \\
+& \ll_{n,K} \delta^{n-s} \max\{B, \delta-1\}^{s+1}.
+\end{align}
+这直接是我们想要的（有理点重数计数的）结论。
+
+如果情况不是那么好，存在某些相交积的不可约分支$M \in \mathcal{C}(X\cdot X_1\intersect X_{n-s-1})$使得$M^{(b)}(K) \neq \emptyset$，即$M$里面有一些点，它们的重数不能被$M$的广点的重数所控制，那么上面的不等式便不成立了。上面不等式第一行的左边求和号下的$\xi$加上额外的限制条件：$\mu_{\xi}(X) = \mu_M(X)$，对$\xi \in M$，才能使上面的不等式成立。这样一来，我们只得到一个部分的估计，还剩下那些没有被估计到的点，则需要想别的办法对其重数进行控制。而这个办法，就是我们在前文构造相交树的时候采用的方法：找一个与$M$正常相交的超曲面，而且他们的交正好把这些重数不能被$M$的广点的重数所控制的点包住。然后对相交积的每个不可约分支，再次尝试用广点的重数对其他点的重数进行控制。如此重复进行下去，直到过程终止。而我们在相交树构造的过程中已经提到了，这个过程一定会在有限步内终止。
+\end{remark}
+
+\begin{remark} \label{simple facts on forest}
+关于上文构造的森林$\mathscr{F}_{\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})} = \{\mathscr T_C\}_{C\in\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})}$，有两个需要注意到的，以后会反复使用的性质，在这里强调并列举如下：
+\begin{itemize}
+\item 森林中顶点的每个非空的标签对应的闭子概型（实际上也是$\mathbb{P}_K^n$中的超曲面）的次数都小于等于$\delta-1$；
+\item 每棵相交树中深度等于$t$的顶点（也就是说集合$\mathcal{C}_t$中的元素）对应的闭子概型的维数都等于$s-t$。
+\end{itemize}
+\end{remark}
+
+下面我们还要给一个关于集合$\mathcal Z_*$性质的关键性的引理（集合$\mathcal Z_*$的定义见前文的定义\ref{def of Z_s}）。集合$\mathcal Z_*$的这个性质在接下来将要证明的我们的主定理\ref{main theorem}，进行相关的估计的时候，有基础性的作用。
+
+\begin{lemma}[\inlinecite{Liu-multiplicity}, Lemme 5.9] \label{control of singular locus}
+任取概型$X$的奇异点$\xi\in X^{\mathrm{sing}}(\overline{K})$，总是至少存在集合$\mathcal Z_*$中的一个顶点$Z$，使得$\xi\in Z^{(a)}(\overline K)$。
+\end{lemma}
+这是一个比较关键的引理，我们下面来证明它。
+\begin{proof}
+我们有三个观察：
+\begin{itemize}
+\item 首先，正如我们在上文已经说过，由Jacobian判别准则，有
+\begin{equation}
+X^\mathrm{sing}\subseteq X\cap X_1\cap\cdots\cap X_{n-s-1},
+\end{equation}
+因此，任取射影超曲面$X$的奇异点$\xi\in X^{\sing}(\overline{K})$，总存在$Z\in\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})$，使得$\xi \in Z(\overline{K})$。
+\item 其次，注意到集合$\mathcal{C}_t$中顶点所对应的闭子概型的维数都等于$s-t$（见注释\ref{simple facts on forest}），而且$s\leqslant n-2$，如果集合$\mathcal{C}_{n-2}$不等于空集，里面元素（相交树的顶点）所对应的闭子概型都是$0$维的，由有限个孤立点组成。这些闭点作为$X$的既约子概形，必然是正则的。也就是说在这种情况下，任取$Z \in \mathcal{C}_{n-2}$，有$Z^{(b)} = \emptyset$。
+\item 假设$t$满足$\mathcal{C}_t = \emptyset$，但$\mathcal{C}_{t-1} \neq \emptyset$，那么由定义必然有
+\begin{equation}
+\forall Z \in \mathcal{C}_{t-1}, ~~ Z^{(b)} = \emptyset.
+\end{equation}
+\end{itemize}
+于是，由以上三个观察我们能得出的结论是：对任意的奇异点$\xi\in X^{\sing}(\overline{K})$，总存在某个$w$，以及$Z\in \mathcal{C}_w$使得$\xi\in Z^{(a)}(\overline{K})$。
+
+对于一个取定的奇异点$\xi$，令$w$为满足存在$Z\in \mathcal{C}_w$使得$\xi\in Z^{(a)}(\overline{K})$的最小的整数。如果$Z$可以落在集合$\mathcal{Z}_w \subseteq \mathcal{C}_w$中，那么我们就证明完毕了。
+
+如若不然，那么对任意满足$\xi\in Z^{(a)}(\overline{K})$的$Z\in \mathcal{C}_w$，都有$Z\not\in \mathcal{Z}_w$。那么存在满足下面两个条件的极大的$w'$：
+\begin{itemize}
+\item $w' < w$；
+\item 存在$Z' \in \mathcal{C}_{w'}$，使得$Z\subsetneqq Z'$，而且作为森林$\mathscr{F}_{\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})}$中的顶点，$Z$不是$Z'$的子孙。
+\end{itemize}
+如果$\xi\in Z'^{(a)}(\overline{K})$，那么这会与$w$的极小性相矛盾。如果$\xi\in Z'^{(b)}(\overline{K})$，那么会有
+\begin{equation}
+\mu_{\eta_Z}(X) = \mu_Z(X) = \mu_{\xi}(X) > \mu_{Z'}(X) = \mu_{\eta_{Z'}}(X),
+\end{equation}
+其中$\eta_Z$与$\eta_{Z'}$分别为$Z$与$Z'$的广点。根据上文有关相交树的构造，特别是关于其构造思路的注释\ref{philosophy of intersection forest}，我们知道$Z$一定会是$Z'$的子孙，这与$w'$的取法矛盾。证明完毕。
+\end{proof}
+
+\begin{remark}
+引理\ref{control of singular locus}在刘春晖文章~\inlinecite{Liu-multiplicity}中是在有限域上证明的。事实上，这个结论在数域上仍然是成立的，因为文章~\inlinecite{Liu-multiplicity}中对这个引理的证明用到基域$k$的性质的地方，仅仅在于要求它是一个完全域。
+\end{remark}
+
+\section{重数的计数}
+\label{counting multiplicity}
+我们沿用本章的常用的记号。以下便是我们要证明的主定理的叙述
+
+\begin{theorem} \label{main theorem}
+令$K$为一个数域，$n \geqslant 2$，$\delta \geqslant 1$以及$s \geqslant 0$为整数。那么以下的不等式
+\begin{equation} \label{estimate in main theorem}
+\sum_{\xi\in S(X;D,B)} \mu_{\xi}(X)(\mu_{\xi}(X)-1)^{n-s-1} \leqslant \sum_{t=0}^s\max_{Z\in\mathcal Z_t}\left\{\frac{N(Z;D,B)}{\deg(Z)}\right\}\delta(\delta-1)^{n-s+t-1}.
+\end{equation}
+% \begin{eqnarray*}& &\sum_{\xi\in S(X;D,B)} \mu_{\xi}(X)(\mu_{\xi}(X)-1)^{n-s-1}\\
+% &\leqslant&\sum_{t=0}^s\max_{Z\in\mathcal Z_t}\left\{\frac{N(Z;D,B)}{\deg(Z)}\right\}\delta(\delta-1)^{n-s+t-1}.\end{eqnarray*}
+对于$P^n_K$中所有次数等于$\delta$，且奇点集维数等于$s$的既约的射影超曲面$X$都是成立的。上式中，符号$S(X;D,B)$与$N(X;D,B)$的定义分别在在式\eqref{S(X;D,B)}与式\eqref{N(X;D,B)}中给出，集合$\mathcal{Z}_t$的定义在定义\ref{def of Z_s}中给出。特别地，如果某个$\mathcal{Z}_t = \emptyset$，$0 \leqslant t \leqslant s$，那么我们约定$\max\limits_{Z\in\mathcal Z_t} \left\{ \frac{N(Z;D,B)}{\deg(Z)} \right\} = 0$。
+\end{theorem}
+
+\begin{proof}
+对于$P^n_K$中任意的一个次数等于$\delta$，奇点集维数等于$s$的既约的射影超曲面$X$，我们假设已经由\S \ref{construction of intersection trees}中所描述的程序构造好了森林$\mathscr{F}_{\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})} = \{\mathscr T_C\}_{C\in\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})}$，使得森林中每棵相交树的根都来自集合$\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})$。
+
+首先，对于我们想要证明的不等式的左边，由于超曲面$X$中正则点的重数都等于$1$，于是我们有
+\begin{equation} \label{first step}
+\sum\limits_{\xi\in S(X;D,B)} \mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1} = \sum\limits_{\xi\in S(X^\mathrm{sing};D,B)} \mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1}.
+\end{equation}
+
+由引理\ref{control of singular locus}，任取超曲面$X$上的一个奇异点$\xi\in X^{\mathrm{sing}}(\overline K)$，我们总能找到一个顶点，或者说一个闭子概型，$Z\in\mathcal{Z}_*$，使得$\xi\in Z^{(a)}(\overline K)$，因此我们又有
+% \begin{equation} \label{final 1}
+% \sum\limits_{\xi\in S(X^\mathrm{sing};D,B)}\mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1} \leqslant \sum_{t=0}^{s} \sum_{Z\in\mathcal Z_t} \sum_{\xi\in S(Z^{(a)};D,B)} \mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1}.
+% \end{equation}
+\begin{multline} \label{final 1}
+\sum\limits_{\xi\in S(X^\mathrm{sing};D,B)} \mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1}\\
+\leqslant \sum_{t=0}^{s} \sum_{Z\in\mathcal Z_t} \sum_{\xi\in S(Z^{(a)};D,B)} \mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1}.
+\end{multline}
+
+又由命题\ref{taylor expansion}，对于每个$Z\in\mathcal Z_*$，我们有不等式
+\begin{equation}
+\mu_Z(X)-1\leqslant\mu_Z(X_i),
+\end{equation}
+对$i=1,\cdots,n-s-1$都成立。于是我们有不等式
+\begin{equation} \label{final_1'}
+\mu_Z(X)(\mu_Z(X)-1)^{n-s-1} \leqslant \mu_Z(X)\mu_Z(X_{1})\cdots\mu_Z(X_{n-s-1}).
+\end{equation}
+
+根据命题\ref{grassmanne}以及上面的不等式\eqref{final_1'}，对于每个$t=0,\cdots,s$，我们有
+\begin{align} \label{final 2}
+& \sum_{Z\in\mathcal Z_t} \mu_Z(X)(\mu_Z(X)-1)^{n-s-1}\deg(Z) \nonumber \\
+& \leqslant \sum_{Z\in\mathcal Z_t} \mu_Z(X)\mu_Z(X_{1})\cdots\mu_Z( X_{n-s-1})\deg(Z) \\
+& \leqslant \deg(X)\prod_{i=1}^{n-s-1}\deg(X_i)\prod_{j=0}^{t-1}\max_{\widetilde{Z}\in \mathcal C'_t}\{\deg(\widetilde{Z})\} \\
+& \leqslant \delta(\delta-1)^{n-s+t-1}.
+\end{align}
+这是因为集合$\mathcal C'_*$中所有的元素（相交树上顶点的标签，也是闭子概型）的次数都是小于等于$\delta-1$的。
+
+把不等式\eqref{final 1}和不等式\eqref{final 2}结合起来看，便有
+\begin{align} \label{final step}
+& \sum_{t=0}^{s} \sum_{Z\in\mathcal{Z}_t} \sum_{\xi\in S(Z^{(a)};D,B)} \mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1} \nonumber \\
+= & \sum_{t=0}^{s} \sum_{Z\in\mathcal{Z}_t} \mu_Z(X)(\mu_Z(X)-1)^{n-s-1}N(Z^{(a)};D,B) \\
+\leqslant & \sum_{t=0}^{s} \sum_{Z\in\mathcal{Z}_t} \mu_Z(X)(\mu_Z(X)-1)^{n-s-1}N(Z;D,B) \\
+\leqslant & \sum_{t=0}^{s} \max_{Z\in\mathcal{Z}_t} \left\{\frac{N(Z;D,B)}{\deg(Z)}\right\} \left(\sum_{Z\in\mathcal{Z}_t} \mu_Z(X)(\mu_Z(X)-1)^{n-s-1}\deg(Z)\right) \\
+\leqslant & \sum_{t=0}^s \max_{Z\in\mathcal{Z}_t} \left\{\frac{N(Z;D,B)}{\deg(Z)}\right\} \delta(\delta-1)^{n-s+t-1}. 
+\end{align}
+把不等式\eqref{first step}，\eqref{final 1}以及\eqref{final step}综合起来，就得到了我们想要证明的不等式。定理证毕。
+\end{proof}
+
+\section{有理点重数的计数}
+在这一小节中，我们考虑定理\ref{main theorem}的一种相对简单一些的特殊情况，即有理点重数的计数问题。结合之前我们得到的关于一般化的 Schanuel 估计的一个一致性的结果，我们将要得到一个比原定理稍微精细一些的结果。自然，这个结果也是一个一致性的估计。
+
+\begin{corollary} \label{main corollary}
+设$n \geqslant 2$，$\delta \geqslant 1$以及$s \geqslant 0$为整数。那么以下的估计
+\begin{equation} \label{estimate in main corollary}
+\sum_{\xi\in S(X;B)} \mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1} \ll_{n} \delta^{n-s}\max\{B,\delta-1\}^{s+1}.
+\end{equation}
+对于$\mathbb{P}^n_{\mathbb{Q}}$中所有次数等于$\delta$，且奇点集维数等于$s$的既约的射影超曲面$X$都是成立的。
+\end{corollary}
+
+\begin{proof}
+% 由\S\ref{construction of intersection trees}中相交树的构造，集合$\mathcal{Z}_t, t=0,\cdots,s$，的每个元素$Z$都是一个局部完全交。再结合注释\ref{degree 1 estimate}中的论述，我们有如下的估计
+对于$\mathbb{P}^n_{\mathbb{Q}}$中任何一个次数等于$\delta$，且奇点集维数等于$s$的既约的射影超曲面$X$，假设已经由\S \ref{construction of intersection trees}中所描述的程序构造好了森林$\mathscr{F}_{\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})} = \{\mathscr T_C\}_{C\in\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})}$，使得森林中每棵相交树的根都来自集合$\mathcal C(X\cdot X_{1}\intersect X_{n-s-1})$。考虑我们在定义\ref{def of Z_s}中特别取出来的森林中的顶点的子集$\mathcal{Z}_t$，对于每一个$Z \in \mathcal{Z}_t$，$t = 0,\ldots,s$，由定理\ref{refined Schanuel estimate for rational points}我们有估计$N(Z;B) = \#S(Z;B) \ll_{n} \deg(Z) B^{\dim(Z)+1}$，亦即
+\begin{equation}
+\frac{N(Z;B)}{\deg(Z)} \ll_{n} B^{\dim(Z)+1}, \quad B \geqslant 1.
+\end{equation}
+把这个估计代入上一小节证明的主定理\ref{main theorem}中，结合集合$\mathcal{C}_t$中（因此，集合$\mathcal{Z}_t$中）的每个顶点$Z$的维数$\dim(Z) = s - t$以及$s \leqslant n-2$的事实，我们有
+\begin{eqnarray}
+& & \sum_{\xi\in S(X;B)} \mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1} \nonumber \\
+& \leqslant & \sum_{t=0}^s \max_{Z\in\mathcal Z_t}\left\{\frac{N(Z;B)}{\deg(Z)}\right\}\delta(\delta-1)^{n-s+t-1} \\
+& \ll_{n} & \sum_{t=0}^s B^{s-t+1}\delta(\delta-1)^{n-s+t-1} \\
+& \leqslant & \begin{cases}
+\delta(\delta-1)^n \sum\limits_{t=1}^{s+1} \left(\dfrac{B}{\delta-1}\right)^t & \text{若$B > \delta - 1$} \\
+\delta(\delta-1)^{n-s-1}B^{s+1} \sum\limits_{t=0}^{s} \left(\dfrac{\delta-1}{B}\right)^t & \text{若$B < \delta - 1$} \\
+\delta(\delta-1)^n(s+1) & \text{若$B = \delta - 1$}
+\end{cases} \\
+& \leqslant & \delta(\delta-1)^{n-s-1} \max\{B,\delta-1\}^{s+1} (s+1) \\
+& \leqslant & (n-1) \delta^{n-s} \max\{B,\delta-1\}^{s+1} \\
+& \ll_{n} & \delta^{n-s}\max\{B,\delta-1\}^{s+1}.
+\end{eqnarray}
+于是我们得到了想要证明的估计式\eqref{estimate in main corollary}。
+\end{proof}
+
+下面我们做一个注记，阐述关于我们为什么要选取$f(x) = x(x-1)^{n-s-1}$作为我们的计数函数。
+
+\begin{remark}
+以下的记号的意义与定理\ref{main theorem}以及推论\ref{main corollary}中保持一致。如果不考虑常数乘子的话，只有计数函数（或者说计数多项式）的次数对我们的结果有影响。事实上，设函数$f:\mathbb N^+\rightarrow \mathbb N$为任意的增的多项式函数，次数为$t+1$且满足$f(1)=0$，那么存在一个依赖于$f$的常数$C_f$使得$f(x)\leqslant C_fx(x-1)^t$。从而有
+\begin{eqnarray}
+\sum_{\xi\in S(X;D,B)} f(\mu_\xi(X)) & \leqslant & C_f \sum_{\xi\in S(X;D,B)} \mu_\xi(X)(\mu_\xi(X)-1)^t \nonumber \\
+& \ll_f & \sum_{\xi\in S(X;D,B)} \mu_\xi(X)(\mu_\xi(X)-1)^t.
+\end{eqnarray}
+
+不久我们就会通过一个例子（例\ref{cylinder}）看到，当$t\geqslant n-s-1$的时候，上式右边$\sum\limits_{\xi\in S(X;D,B)} \mu_\xi(X)(\mu_\xi(X)-1)^t$的上界估计有类似推论\ref{main corollary}中得到的估计式\eqref{estimate in main corollary}右边那样的表达式，而且各个因子的指数都是最优的。当$t<n-s-1$时，我们目前能说的只有一个平凡的估计
+\begin{equation}
+\sum\limits_{\xi\in S(X;B)}\mu_\xi(X)(\mu_\xi(X)-1)^t \leqslant \sum\limits_{\xi\in S(X;B)}\mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1},
+\end{equation}
+暂时没有别的更好的结果。
+
+因此，如果我们在上述估计中，不关心依赖于函数$f$的常数，那么选取$f(x)=x(x-1)^{n-s-1}$作为我们的计数函数对于我们来说便是足够的，正如我们在定理\ref{main theorem}中所做的那样。
+
+设$g:\mathbb N^+\rightarrow\mathbb N$是另一个计数函数，递增，但不再满足$g(1)=0$。那么有
+\begin{align}
+\sum_{\xi\in S(X;D,B)} g(\mu_\xi(X)) & = g(1)N(X^{\mathrm{reg}};D,B) + \sum_{\xi\in S(X;D,B)} \left(g(\mu_\xi(X))-g(1)\right) \nonumber \\
+& \leqslant g(1)N(X;D,B) + \sum_{\xi\in S(X;D,B)} \left(g(\mu_\xi(X))-g(1)\right).
+\end{align}
+考虑上式中的求和项$\sum\limits_{\xi\in S(X;D,B)} \left(g(\mu_\xi(X))-g(1)\right)$，它便等价于用一个满足$f(1)=0$的计数函数来对重数进行计数的问题，这是我们之前已经讨论过的。而上式中的另一项$g(1)N(X;D,B)$，如果不考虑常数$g(1)$的话，便直接是概型上代数点、有理点计数的估计这一经典的问题。关于这一问题，我们之前也已经有过了介绍以及讨论。由$X^\mathrm{reg}$与$X$是双有理等价的这一事实，我们用定理\ref{main theorem}中所选的计数函数所做出的估计是合适的。
+\end{remark}
+
+\section{一些例子}
+
+接下来，我们给一些例子，来具体说明我们所做出过的一些论断。
+
+\begin{example} \label{cylinder}
+令$X'\hookrightarrow\mathbb P^2_{\mathbb{Q}}$一个次数等于$\delta$的既约射影平面曲线，可以由$\delta$次齐次多项式$f(T_0,T_1,T_2)$定义。我们假设$X'$有一个重数等于$\delta$的${\mathbb{Q}}$-有理点。$\delta$次齐次多项式$f(T_0,T_1,T_2)$同时也可以视作是多项式环${\mathbb{Q}}[T_0,\cdots,T_n]$中的一个$\delta$次齐次多项式。我们把$n$维射影空间$\mathbb P^n_{\mathbb{Q}}$中由$f$定义的超曲面记作$X$。不妨设平面射影曲线$X'$的奇异点射影坐标为$[1:0:0]$，那么有
+\begin{align}
+X^{\mathrm{sing}}(\mathbb{Q}) = & \{[x_0:\cdots:x_n] \in \mathbb{P}^n_{\mathbb{Q}}(\mathbb{Q}) \ |\ x_0:x_1:x_2 = 1:0:0 \} \cup \nonumber\\
+& \{[x_0:\cdots:x_n] \in \mathbb{P}^n_{{\mathbb{Q}}}({\mathbb{Q}}) \ |\ x_0=x_1=x_2=0\},
+\end{align}
+并且$X^{\mathrm{sing}}(\mathbb{Q})$中所有（有理奇异）点的重数都等于$\delta$。由渐进估计式\eqref{Schanuel over Q}，我们有
+\begin{equation}
+N(X^{\mathrm{sing}};B) = N(\mathbb{P}^{n-2}_{\mathbb{Q}};B) = \frac{2^{n-2}}{\zeta(n-1)} B^{n-1} + o(B^{n-1}), \quad B \rightarrow +\infty,
+\end{equation}
+从而有下列关于重数计数的渐进估计
+\begin{equation*}
+\sum\limits_{\xi \in S(X;B)} \mu_\xi(X)(\mu_\xi(X)-1) = \delta(\delta-1) N(X^{\mathrm{sing}};B) = O_{n} \left( \delta^2 B^{n-1} \right).
+\end{equation*}
+% 那么有
+% \begin{equation}
+% \sum\limits_{\xi \in S(X;B)} \mu_\xi(X)(\mu_\xi(X)-1) \sim_{n} \delta^2B^{n-1}.
+% \end{equation}
+
+结合这个例子我们便可以看出，当$\dim(X^\mathrm{sing}) = n-2$且$n \geqslant 3$时，推论\ref{main corollary}中估计式右边的$\delta$的阶数是最优的。更一般地，如果$X^\mathrm{sing}$包含了一个重数等于$\delta$的线性集，那么在推论\ref{main corollary}中，当$B \geqslant \delta-1$，重数的计数$\sum\limits_{\xi\in S(X;B)} \mu_\xi(X)(\mu_\xi(X)-1)$能达到$\delta$和$B$的阶数能取到（推论\ref{main corollary}估计式右边）的最大值。
+\end{example}
+
+% 当射影超曲面$X$的奇点集$X^{\mathrm{sing}}$的所有不可约分支的次数都严格大于$1$的时候，我们可以利用本文\S\ref{HB conjecture}中提到的一些结果，来得到对$\max\limits_{Z\in\mathcal Z_t}\left\{\frac{N(Z;B)}{\deg(Z)}\right\}$的比推论\ref{main corollary}中更佳的估计，从而对
+% \begin{equation}
+% \sum_{\xi\in S(X;B)}\mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1}
+% \end{equation}
+% 给出更优的估计。
+
+设$K$为一个一般的数域，$X \hookrightarrow \mathbb{P}^n_K$为任意一个次数等于$\delta$的超曲面。想要利用定理\ref{main theorem}来解决这种更加一般的重数计数问题，关键在于给出定理估计式\eqref{estimate in main theorem}中的项
+\begin{equation}
+\max_{Z \in \mathcal{Z}_t} \left\{ \frac{N(Z;D,B)}{\deg(Z)} \right\}
+\end{equation}
+的一致的估计，其中$Z \in \mathcal{Z}_t$，$t = 1,\ldots,s$，$\mathcal{Z}_t$仍是由$X$出发构造的相交树的特定的顶点之集，具体定义可以回顾定义\ref{def of Z_s}。
+
+在定理\ref{refined Schanuel estimate for rational points}中，我们已经仔细考察了$K = \mathbb{Q}$的情形，并且由此定理证明了推论\ref{main corollary}中的结论。如果$X$的奇点集$X^{\mathrm{sing}}$的所有不可约分支的次数都是严格大于$1$的，那么我们就可以利用我们在\S\ref{HB conjecture}中介绍的一些结果来得到关于
+\begin{equation}
+\sum_{\xi \in S(X;B)} \mu_\xi(X)(\mu_\xi(X)-1)^{n-s-1}
+\end{equation}
+比在推论\ref{main corollary}中更加精细的一些估计。其原因在于，在这种情况下，对于
+\begin{equation}
+\max\limits_{Z\in\mathcal{Z}_t} \left\{ \frac{N(Z;B)}{\deg(Z)} \right\},
+\end{equation}
+我们有比定理\ref{refined Schanuel estimate for rational points}更优的估计。
+
+\begin{example} \label{example using HB conj}
+设$\delta \geqslant 3$以及$n \geqslant 2$为正整数，令
+\begin{equation} \label{hypersurface Z}
+\begin{tikzcd}
+Z \arrow[r, hookrightarrow] & \mathbb{P}^{n+2}_{\mathbb{Q}} = \proj\left(\mathbb{Q}[X,Y,T_0,\cdots,T_n]\right)
+\end{tikzcd}
+\end{equation}
+是一个由$\delta$次齐次多项式
+\begin{equation} \label{hypersurface Z2}
+F(X,Y,T_0,\cdots,T_n) = Y^\delta + Xf(T_0,T_1,\cdots,T_n)
+\end{equation}
+定义的超曲面，其中$f(T_0,\cdots,T_n)$是一个$\delta-1$次齐次多项式。我们假设$f$在$P^{n}$中定义了一个光滑的超曲面，我们把它记作$Z'$。那么多项式$F(X,Y,T_0,\cdots,T_n)$是不可约的。由参考文献~\inlinecite{LiuQing}的习题2.4.1可知，超曲面$Z$是整的。由参考文献~\inlinecite{Browning_Heath06II}的 Theorem 1，当$\delta \geqslant 3$且$n \geqslant 2$时，对任意的$\epsilon>0$，估计式
+\begin{equation} \label{N(Z';B)}
+N(Z';B) \ll_{K,n,\delta,\epsilon} B^{n-1+\epsilon}.
+\end{equation}
+对所有的这样的光滑超曲面$Z'$都是成立的。
+
+与此同时，由Jacobian判别准则（详见参考文献~\inlinecite{LiuQing}第4章的Theorem 2.19），超曲面$Z$的奇点集由下列方程组给出
+\begin{equation}
+\begin{cases}
+\delta Y^{\delta-1} = 0 \\
+f(T_0,\cdots,T_n) = 0 \\
+X \frac{\partial f}{\partial T_0} = 0 \\
+\phantom{hehe} \vdots \\
+X \frac{\partial f}{\partial T_n} = 0
+\end{cases}
+\end{equation}
+% $$0 = \delta Y^{\delta-1} = f(T_0,\cdots,T_n) = X\frac{\partial f}{\partial T_0} = \cdots = X\frac{\partial f}{\partial T_n}.$$
+由于超曲面$Z'$在$\mathbb{Q}$上是光滑的，因此多项式$f, \frac{\partial f}{\partial T_0}, \cdots, \frac{\partial f}{\partial T_n}$没有公共零点。所以，任取超曲面$Z$上的奇异点$\xi\in Z^{\mathrm{sing}}(\overline{\mathbb{Q}})$，其射影坐标，设为$[x:y:t_0:\cdots:t_n]$，必须满足如下条件
+\begin{equation}
+\begin{cases}
+x = y = 0 \\
+[t_0:\cdots:t_n] \in Z'(\overline{\mathbb{Q}})
+\end{cases}
+\end{equation}
+% $$X=Y=0, ~~ \text{ 且 } ~~ [T_0:\cdots:T_n] \in X'(\overline K).$$
+容易看出，这些奇异点在超曲面$Z$中的重数都是$2$。由定义，超曲面$Z$的奇点集$Z^\mathrm{sing}$在$Z$中的余维数等于$2$，也就是说它的维数等于$n-1$。
+
+我们把在定理\ref{main theorem}中考察过的问题应用到本例中来。具体来说，我们要考察和式$\sum\limits_{\xi \in S(Z;B)} \mu_{\xi}(Z)(\mu_{\xi}(Z)-1)^2$。对于本例来说，首先，对于任意的正整数$\delta \geqslant 3$和$n \geqslant 2$，以及任意的正实数$\epsilon > 0$，所用通过\eqref{hypersurface Z}，\eqref{hypersurface Z2}中的方法定义的超曲面$Z,Z'$，我们都有
+\begin{equation}
+\sum_{\xi \in S(Z;B)} \mu_{\xi}(Z)(\mu_{\xi}(Z)-1)^2 = 2N(Z';B).
+\end{equation}
+假设我们依照\S\ref{construction of intersection trees}中的程序来构造（一族）相交树的话，我们会发现，我们只能得到一颗相交树，而且这个相交树里面只有根节点，即$Z$，$V \left(\frac{\partial F}{\partial X}\right)$，$V \left(\frac{\partial F}{\partial Y}\right)$的（正常）相交积，这个根节点没有任何的子孙。这是一种退化了的情况。把定理\ref{main theorem}的结果直接套用在这个例子上，我们会有
+\begin{equation}
+\sum_{\xi \in S(Z;B)} \mu_{\xi}(Z)(\mu_{\xi}(Z)-1)^2 \leqslant \delta(\delta-1)^2 \frac{N(Z';B)}{\delta-1} = \delta(\delta-1)N(Z';B).
+\end{equation}
+这正好达到了我们在定理\ref{main theorem}中给出的估计的上界。
+
+% 而根据参考文献~\inlinecite{Browning_Heath06II}中 Theorem 1，我们
+% \begin{equation}
+% \sum_{\xi \in S(X;B)} \mu_{\xi}(X)(\mu_{\xi}(X)-1)^2 = 2N(X;B) \ll_{K,n,\delta,\epsilon} B^{n-1+\epsilon},
+% \end{equation}
+% 对任意的$\epsilon>0$成立。这个例子表明，在定理\ref{main theorem}的估计式\eqref{estimate in main theorem}中的上界是能够达到的。
+
+而根据参考文献~\inlinecite{Browning_Heath06II}的 Theorem 1给出的非奇异超曲面上有理点的估计式\eqref{N(Z';B)}，对于所用通过\eqref{hypersurface Z}，\eqref{hypersurface Z2}中的方法定义的超曲面$Z, Z'$，我们都有估计
+\begin{equation}
+\sum_{\xi \in S(Z;B)} \mu_{\xi}(Z)(\mu_{\xi}(Z)-1)^2 = 2N(Z';B) \ll_{n,\delta,\epsilon} B^{n-1+\epsilon}.
+\end{equation}
+相对于我们在推论\ref{main corollary}中给出的估计，上述估计式给出了对于$B$的阶数更优的估计。然而在这个估计中，并没有对超曲面次数$\delta$在估计式中的阶进行讨论，而且就作者目前的知识而言，通过这种方法在相关的估计中还无法对$\delta$的阶进行控制。
+
+% 并没有对超曲面次数$\delta$在估计式中的阶进行讨论，就作者目前的知识而言，本文在相关的估计中还无法对$\delta$的阶进行控制。
+\end{example}
+
+% 至于一般的代数点的重数计数问题，如果相应的次数，维数满足\S\ref{counting algebraic points in Pn}中列出来的那些条件，那么仿照证明推论\ref{main corollary}的方法，我们也能够由定理 \ref{refined Schanuel estimate for rational points}得到类似的一些估计。
+
+\section{问题的推广}
+本文所解决的问题是针对数域上射影超曲面的，我们也可以在一个一般的射影算术簇$X$上考虑上面的代数点、有理点的重数计数的问题。但是情况会复杂很多。
+
+仿照参考文献~\inlinecite{Liu-multiplicity}中提出的猜想，本文也提出类似的猜想
+
+\begin{conjecture}
+令$X$是$n$维射影空间$\mathbb P^n_K$的一个既约的纯维数的闭子概型。令$X$的维数等于$d$，次数等于$\delta$，假设$X$的奇点集$X^{\mathrm{sing}}$的维数等于$s$。那么有
+\begin{equation}
+\sum_{\xi\in S(X;B)} \mu_\xi(X)(\mu_\xi(X)-1)^{d-s} \ll_{n,K} \delta^{d-s+1}B^{s+1}.
+\end{equation}
+\end{conjecture}

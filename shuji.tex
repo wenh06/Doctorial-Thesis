@@ -1,0 +1,26 @@
+\documentclass[type=doctor,fontset=custom]{thuthesis}
+
+\ifxetex
+  \setCJKfamilyfont{zhfs}[RawFeature={vertical:}]{simfang.ttf}
+\else % for latex/pdflatex
+  \usepackage{CJKvert}
+\fi
+
+\begin{document}
+\thusetup{
+  cauthor={文豪},
+  ctitle={定义在数域上的超曲面的重数计数问题}
+}
+
+\shuji % 使用默认标题和默认作者
+
+% \shuji[使用默认作者的标题]
+
+% \shuji[同时修改标题和作者的标题][文豪]
+
+% \ifxetex
+%   \shuji[清华大学学位 \raisebox{-5pt}{\LaTeX} 论文模板 \raisebox{-5pt}{v\version} 样例]
+% \else
+%   \shuji[清华大学学位 \raisebox{8pt}{\LaTeX} 论文模板 \raisebox{8pt}{v\version} 样例]
+% \fi
+\end{document}

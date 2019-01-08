@@ -1,0 +1,1038 @@
+\chapter{算术簇上代数点的计数问题}
+\label{chapter:arithmetic}
+在本章中，我们设$K$是一个数域，即有理数域$\mathbb{Q}$的一个有限扩域。首先，为了描述射影空间$\mathbb{P}^n_K$中闭点的复杂程度，我们将详细介绍$\mathbb{P}^n_K$上有关的一些高度函数的概念以及性质。随后，我们将对 Schanuel 以及其他人关于射影概型的有理点、代数点的计数问题的经典结果做一些推广。
+
+\section{射影空间上的高度函数}
+\label{height function on projective spaces}
+
+高度函数是研究射影概型上有理点、代数点的一个很基本的工具。它衡量了射影概型上点的``大小''，或者说复杂程度。
+
+高度函数有很多很重要的应用，例如证明 Mordell-Weil 定理：定义在数域上的椭圆曲线的有理点构成的群是有限生成的。本文并不讨论 Mordell-Weil 定理，更详细的内容可以在Silverman的经典书籍~\inlinecite{silverman1}中找到。
+
+
+\subsection{数域上的绝对值}
+\label{abs values on number fields}
+我们取定数域$K$的代数闭包$\overline{K} \subseteq \mathbb{C}$，并记$M_K$为数域$K$的所有位点（或称素点）的集合。更进一步，记$M_{K,f}$为数域$K$的所有有限位点的集合，记$M_{K,\infty}$为数域$K$的所有无限位点的集合。具体来讲，记数域$K$的代数整数环为$\mathcal{O}_K$，那么$M_{K,f}$可以看成由$\mathcal{O}_K$的所有非零素理想组成的集合；而集合$M_{K,\infty}$里面的元素则是数域$K$到实数域$\mathbb{R}$或到复数域$\mathbb{C}$的域同态。其中，$K$到$\mathbb{R}$的域同态被称为实位点；满足$v(K) \nsubseteq \mathbb{R}$的域同态$v: K \hookrightarrow \mathbb{C}$被称为复位点，但是还需要将域同态$v$与复共轭的复合同态和$v$本身视为同一个复位点。集合$M_K$便是$M_{K,f}$与$M_{K,\infty}$的并：
+\begin{equation}
+M_K = M_{K,f} \bigsqcup M_{K,\infty}.
+\end{equation}
+
+当$v\in M_{K,f}$是有限位点，也就是$\mathcal{O}_K$的一个非零素理想的时候，在数域$K$上可以定义一离散赋值，被称为$v$-进赋值，如下
+\begin{equation}
+\ord_v: K^\times \to \mathbb{Z}, ~~ a \mapsto a\mathcal{O}_K \text{ 的素理想分解表达式中$v$的指数},
+\end{equation}
+并约定$\ord_v(0) = \infty$。
+
+\begin{example} \label{ord on Q}
+考虑最简单的情况$K = \mathbb{Q}$为有理数域，$v$为某个素数$p$的情况，那么对任意一个非零的有理数$a$，把它写作
+\begin{equation}
+a = p^m\dfrac{t}{s},
+\end{equation}
+其中$m,t,s\in\mathbb{Z}$，且$t,s$不被$p$整除。那么$\ord_p(a) = m$。例如
+\begin{equation}
+\ord_2\left(\dfrac{12}{5}\right) = 2, ~~ \ord_3\left(\dfrac{12}{5}\right) = 1, ~~ \ord_5\left(\dfrac{12}{5}\right) = -1, ~~ \ord_p\left(\dfrac{12}{5}\right) = 0, p>5.
+\end{equation}
+\end{example}
+
+对于每个有限位点$v\in M_{K,f}$，我们可以定义一个非阿基米德的绝对值，$v$-进绝对值：
+\begin{equation} \label{v-adic abs value}
+|\cdot|_v: K \to \mathbb{R}, ~~ a \mapsto c^{\ord_v(a)},
+\end{equation}
+满足
+\begin{itemize}
+\item $|a|_v = 0 \Leftrightarrow a = 0;$
+\item $|ab|_v = |a|_v|b|_v;$
+\item $|a+b|_v \leqslant \max\{|a|_v, |b|_v\},$
+\end{itemize}
+其中$c$是一个满足$0<c<1$的实常数。
+
+当$v\in M_{K,\infty}$是无限位点的时候，绝对值$|\cdot|_v$被定义为$\mathbb{R}$或$\mathbb{C}$上通常的绝对值：
+\begin{equation}
+|a|_v = |v(a)|, ~~ \forall a \in K.
+\end{equation}
+
+\begin{example} \label{abs values on Q}
+接着例\ref{ord on Q}来讲，对于$a = p^m\dfrac{t}{s}$，如果我们取$c = p^{-1}$，那么有
+\begin{equation}
+|a|_p = p^{-m}.
+\end{equation}
+那么
+\begin{equation}
+\left|\dfrac{12}{5}\right|_2 = \dfrac{1}{4}, ~~ \left|\dfrac{12}{5}\right|_3 = \dfrac{1}{3}, ~~ \left|\dfrac{12}{5}\right|_5 = 5, ~~ \left|\dfrac{12}{5}\right|_p = 1, p>5.
+\end{equation}
+\end{example}
+
+关于绝对值$|\cdot|_v$，我们可以对域$K$进行完备化，得到的域记作$K_v$。该绝对值唯一地延拓到完备化域$K_v$上。例如
+\begin{equation}
+\mathbb{Q}_p = \left\{ \sum\limits_{n=m}^{\infty} c_n p^n \ \middle|\ m \in \mathbb{Z}, c_n \in \{ 0, 1, \cdots, p-1 \} \right\},
+\end{equation}
+其中$p$为一个有理素数。以后，贯通全篇文章，在非阿基米德的$v$-进绝对值的定义式\eqref{v-adic abs value}中，我们取定常数$c = \#(\mathcal{O}_K / v\mathcal{O}_K)^{-\frac{1}{[K_v:\mathbb{Q}_v]}}$，即
+\begin{equation} \label{explicit v-adic abs value}
+|a|_v = \#(\mathcal{O}_K / v\mathcal{O}_K)^{-\frac{\ord_v(a)}{[K_v:\mathbb{Q}_v]}}.
+\end{equation}
+这样做有一个好处，就是这样取出来的绝对值是和域扩张相容的：设$K\subseteq E$是一个数域的扩张，$v\in M_{K,f}, w\in M_{E,f}$为两个有限位点，或者说相应整数环的两个非零素理想。如果$w|v$，或者说$v = w \cap \mathcal{O}_K$，那么域$E$上的绝对值$|\cdot|_w$自然地延拓了域$K$上的绝对值$|\cdot|_v$，也就是说
+\begin{equation}
+|a|_w = |a|_v, ~~ \forall a \in K \subseteq E.
+\end{equation}
+以后，我们记
+\begin{equation} \label{prime ideal norm}
+N(v) = \#(\mathcal{O}_K / v\mathcal{O}_K),
+\end{equation}
+称作素理想$v$的范数。
+
+\begin{remark}
+对于有限位点的集合$M_{K,f}$，也可以将它们视作所有延拓了有理数域$\mathbb{Q}$上的$p$-进绝对值$|\cdot|_p$，$p$取所有有理素数，的$K$上的绝对值之集，还可以将它们视作是数域$K$到局部域$K_v$的自然嵌入的集合。具体可见参考文献~\inlinecite{YinLinsheng}的命题6.14。如果不造成混淆，我们混用这几种意义。
+\end{remark}
+
+\begin{remark} \label{the field C_v}
+对于完备化的域$K_v$，再取它的代数闭包，记作$\overline{K}_v$。根据上文的叙述，$K_v$上的绝对值$|\cdot|_v$可以唯一延拓到$\overline{K}_v$上。但此时$\overline{K}_v$关于绝对值$|\cdot|_v$不再是完备的了。再把域$\overline{K}_v$关于绝对值$|\cdot|_v$进行完备化，记作
+\begin{equation}
+\mathbb{C}_v : = \widehat{\overline{K}}_v.
+\end{equation}
+可以证明，$\mathbb{C}_v$仍然是代数闭的。更确切地说，有（依赖于选择公理的）同构
+\begin{equation}
+\mathbb{C}_v \cong \mathbb{C},
+\end{equation}
+其中$\mathbb{C}$就是通常的复数域。
+\end{remark}
+
+数域$K$中的元素$a$的$v$-进绝对值也可以写作
+\begin{equation}
+|a|_v = \left|N_{K_v/\mathbb{Q}_v}(a)\right|_v^{\frac{1}{[K_v:\mathbb{Q}_v]}}.
+\end{equation}
+此外，我们还定义规范化的绝对值为
+\begin{equation}
+\|a\|_v = |a|_v^{[K_v:\mathbb{Q}_v]} = \left|N_{K_v/\mathbb{Q}_v}(a)\right|_v.
+\end{equation}
+其中$N_{K_v/\mathbb{Q}_v}(\cdot)$为域扩张$K_v/\mathbb{Q}_v$的范，具体定义与性质可见文章后面有关数论的一些基础性内容的附录\ref{apdx: number theory}。
+% 这里，我们使用了一个不太严格的记号，即当$E\subseteq K$是一个数域的扩张，$v\in M_K$为数域$K$的一个位点，那么$w = v\cap E$（当$v$为有限位点）或$w = v|_{E}$（当$v$为无限位点）便是数域$E$的一个位点，为了简化符号，如果不造成混淆的话，我们仍然把$w$记作$v$。以上这两种情况我们统一记作$w|v$。
+
+对于数域上的位点，我们有如下的次数公式
+
+\begin{proposition}[次数公式]
+设$E/K$是数域的扩张，$v\in M_K$为数域$K$的一个素点，那么对于域的扩张次数，有
+\begin{equation} \label{degree formula}
+\sum\limits_{w\in M_E, w|v} [E_w:K_v] = [E:K]
+\end{equation}
+\end{proposition}
+
+对于规范化的绝对值，我们有如下的乘积公式
+\begin{proposition}[乘积公式]
+设$K$是数域，$a\in K^\times$为数域$K$中的任意一个非零元，那么
+\begin{equation} \label{product formula}
+\prod\limits_{v\in M_K} \|a\|_v = 1.
+\end{equation}
+\end{proposition}
+
+\subsection{射影空间上的经典高度}
+\label{height on projective spaces}
+\begin{definition}
+设$\xi\in\mathbb{P}^n_K(\overline{K})$为数域$K$上$n$维射影空间的闭点，并设其射影坐标为$[x_0:\cdots:x_n]$。称域
+\begin{equation} \label{field of definition}
+K(\xi) := K(x_0/x_i,x_1/x_i,\cdots,x_n/x_i)
+\end{equation}
+为$\xi$在$\mathbb{P}^n_K$中的定义域，其中$x_i$是坐标$x_0,\cdots,x_n$中任一个不等于0的坐标。
+\end{definition}
+
+很容易验证，以上的点$\xi\in\mathbb{P}^n_K(\overline K)$的定义域的定义是不依赖于定义式\eqref{field of definition}这个非零的坐标$x_i$的选取的。
+
+\begin{definition} \label{abs log height}
+取闭点$\xi\in\mathbb{P}^n_K(\overline{K})$，设其射影坐标为$[x_0:\cdots:x_n]$，记其定义域为$K'=K(\xi)$。我们定义$\xi$的绝对对数高度为
+\begin{equation} \label{eq: abs log height}
+h(\xi) = \sum_{v\in M_{K'}} \frac{1}{[K':\mathbb{Q}]} \log \left( \max_{0\leqslant i\leqslant n} \{\|x_i\|_v\} \right).
+\end{equation}
+\end{definition}
+
+\begin{remark}
+以上定义的绝对对数高度$h(\cdot)$是良定义的，即$h(\xi)$是和$\xi$的射影坐标的选取无关的。设$[ax_0:\cdots:ax_n]$为$\xi$的另一个射影坐标，$a\in K^\times$，那么由乘积公式\eqref{product formula}有
+\begin{align}
+\sum_{v\in M_{K'}} \log\left(\max_{0\leqslant i\leqslant n}\{\|ax_i\|_v\}\right) & = \sum_{v\in M_{K'}} \log\left(\|a\|_v\cdot\max_{0\leqslant i\leqslant n}\{\|x_i\|_v\}\right) \\
+& = \sum_{v\in M_{K'}} \log\left(\max_{0\leqslant i\leqslant n}\{\|x_i\|_v\}\right) + \log\left(\prod\limits_{v\in M_K} \|a\|_v\right) \\
+& = \sum_{v\in M_{K'}} \log\left(\max_{0\leqslant i\leqslant n}\{\|x_i\|_v\}\right).
+\end{align}
+
+如果我们在绝对对数高度的定义式中，把域$K'$替换为包含$\xi$在$\mathbb{P}^n_K$中的定义域$K'$的任何一个域$K''$，得到的定义是不变的。这是因为对于满足$w|v$的$v\in M_{K'}, w\in M_{K''}$，有
+\begin{equation}
+\|\cdot\|_w = |\cdot|_w^{[K''_w:\mathbb{Q}_w]} = |\cdot|_v^{[K''_w:\mathbb{Q}_w]} = |\cdot|_v^{[K''_w:K'_v]\cdot[K'_v:\mathbb{Q}_w]} = \|\cdot\|_v^{[K''_w:K'_v]}.
+\end{equation}
+因此
+% 由次数公式\eqref{degree formula}，我们有
+\begin{align}
+& \sum_{w\in M_{K''}} \frac{1}{[K'':\mathbb{Q}]} \log\left(\max_{0\leqslant i\leqslant n}\{\|x_i\|_w\}\right) \nonumber \\
+= & \sum_{v\in M_{K'}} \sum_{w\in M_{K''}, w|v} \frac{1}{[K'':\mathbb{Q}]} \log\left(\max_{0\leqslant i\leqslant n}\{\|x_i\|_v^{[K''_w:K'_v]}\}\right) \\
+= & \sum_{v\in M_{K'}} \sum_{w\in M_{K''}, w|v} \frac{[K''_w:K'_v]}{[K'':\mathbb{Q}]} \log\left(\max_{0\leqslant i\leqslant n}\{\|x_i\|_v\}\right) \\
+= & \sum_{v\in M_{K'}} \frac{[K'':K']}{[K'':\mathbb{Q}]} \log\left(\max_{0\leqslant i\leqslant n}\{\|x_i\|_v\}\right) \\
+= & \sum_{v\in M_{K'}} \frac{1}{[K':\mathbb{Q}]} \log\left(\max_{0\leqslant i\leqslant n}\{\|x_i\|_v\}\right).
+\end{align}
+上式的第三个等号利用了次数公式\eqref{degree formula}。
+\end{remark}
+
+\begin{example}
+考虑最简单的情况，定义在有理数域上的射影直线$\mathbb{P}_{\mathbb{Q}}^1$。$\mathbb{P}_{\mathbb{Q}}^1$上每个$\mathbb{Q}$-有理点$\xi$的射影坐标都可以写作$[x_1:x_2]$，其中$x_1:x_2\in\mathbb{Z}$为互素非零整数，或者其中一个等于$0$，另一个等于$1$。前一种情况，对于有理数域$\mathbb{Q}$的任一有限位点$v\in M_{\mathbb{Q},f}$，$\ord_v(x_1)$与$\ord_v(x_2)$至少有一个等于0，另一个大于等于$0$，因此$\max\{|x_1|_v,|x_2|_v\}$恒等于$1$。所以
+\begin{align}
+h(\xi) & = \sum\limits_{v\in M_{\mathbb{Q}}}\log\left(\max\{|x_1|_v,|x_2|_v\}\right) \\
+& = \sum\limits_{v\in M_{\mathbb{Q},f}} \log\left(\max\{|x_1|_v,|x_2|_v\}\right) + \log\left(\max\{|x_1|,|x_2|\}\right) \\
+& = \log\left(\max\{|x_1|,|x_2|\}\right).
+\end{align}
+例如设$\xi_1 = [1:\dfrac{1}{2}], \xi_2 = [1:\frac{1001}{2001}] = [1:\frac{7\cdot11\cdot13}{3\cdot23\cdot29}]$，那么
+\begin{equation}
+h(\xi_1) = \log(2), ~~ h(\xi_2) = \log(2001).
+\end{equation}
+
+一般地，对于$n$维射影空间$\mathbb{P}_{\mathbb{Q}}^n$，把其上的$\mathbb{Q}$-有理点的射影坐标写作$\xi = [x_0:x_1:\cdots:x_n]$，其中$x_0,x_1,\cdots,x_n\in \mathbb{Z}$且互素，那么有
+\begin{equation} \label{log height on Q}
+h(\xi) = \log\left( \max\left\{|x_0|, |x_1|, \cdots, |x_n|\right\} \right).
+\end{equation}
+\end{example}
+
+% 可以证明，如果我们取域$K'$包含$\xi$在$\mathbb P^n_K$中的定义域，那么$\xi$的绝对对数高度的定义和域$K'$的选取是无关的。详见~\inlinecite{Hindry} Lemma B.2.1。
+特别地，若$\xi$是$\mathbb P^n_K$的一个$K$-有理点，我们定义点$\xi$的相对（数域$K$）乘性高度为
+\begin{equation} \label{relative multiplicative height}
+H_K(\xi) = \exp\left([K:\mathbb{Q}]h(\xi)\right).
+\end{equation}
+特别地，对$\mathbb{P}_{\mathbb{Q}}^n$上的有理点$\xi$有
+\begin{equation} \label{multiplicative height on Q}
+H_{\mathbb{Q}}(\xi) = \max\left\{|x_0|, |x_1|, \cdots, |x_n|\right\}.
+\end{equation}
+其中$\xi = [x_0:x_1:\cdots:x_n]$，每个坐标$x_0,x_1,\cdots,x_n\in \mathbb{Z}$且互素，
+
+（绝对对数）高度函数$h(\ast)$有非常好的性质。首先，它在Galois作用下不变。具体来讲，有
+
+\begin{proposition}[\inlinecite{silverman1}, VIII.5, Theorem 5.10]
+设$\xi\in \mathbb{P}_K^n$，并设$\sigma\in \gal(\overline{K}/K)$，那么
+\begin{equation}
+h(\xi^{\sigma}) = h(\xi).
+\end{equation}
+\end{proposition}
+
+高度函数$h(\ast)$还满足如下的变换性质
+
+\begin{theorem}[\inlinecite{silverman1}, VIII.5, Theorem 5.6] \label{height transformation property}
+设
+\begin{equation}
+\phi: \mathbb{P}_K^n \longrightarrow \mathbb{P}_K^m, ~~ \xi \mapsto [f_0(\xi):\cdots:f_m(\xi)],
+\end{equation}
+次数等于$\delta$的态射，也就是说$f_0, \cdots, f_m \in K[T_0,\cdots,T_n]$都是$\delta$次齐次多项式。那么存在依赖于$\phi$的常数$C_{1,\phi},C_{2,\phi}$，使得对任意的点$\xi\in\mathbb{P}^n_K(\overline{K})$有如下不等式成立
+\begin{equation}
+\delta h(\xi) + C_{1,\phi} \leqslant h(\phi(\xi)) \leqslant \delta h(\xi) + C_{2,\phi}.
+\end{equation}
+\end{theorem}
+或者条件更弱一点的
+\begin{theorem}[\inlinecite{Hindry}, Theorem B.2.5] \label{height weak transformation property}
+设$\phi: \mathbb{P}_K^n \to \mathbb{P}_K^m$为次数等于$\delta$的有理映射，由$\delta$次齐次多项式$f_0,\cdots,f_m$给出。设$Z\subseteq \mathbb{P}_K^n$为$f_0,\cdots,f_m$的公共零点集，即$\phi$定义在$\mathbb{P}_K^n\setminus Z$上。那么存在常数$C_{\phi}$，使得任意的点$\xi\in\mathbb{P}^n_K(\overline{K}) \setminus Z$有
+\begin{equation}
+h(\phi(\xi)) \leqslant \delta h(\xi) + C_{\phi}.
+\end{equation}
+对于$\mathbb{P}^n_K$的任意的满足$X\cap Z = \emptyset$的闭子概型$X$，存在常数$C'_{\phi}$，使得任意的点$\xi\in X(\overline{K}) \setminus Z$有
+\begin{equation}
+h(\phi(\xi)) \geqslant \delta h(\xi) + C'_{\phi}.
+\end{equation}
+\end{theorem}
+
+\subsection{射影概型上的高度}
+\label{height on projective schemes}
+当我们考虑一个射影概型$\phi:X\hookrightarrow\mathbb P^n_K$的闭点的时候，我们定义点$\xi\in\mathbb{P}^n_K(\overline K)$（相对于态射$\phi$）的（绝对对数）高度为
+\begin{equation}
+h_{\phi}(\xi) := h(\phi(\xi)).
+\end{equation}
+如果浸入$\phi$不会造成混淆的话，$h_{\phi}(\cdot)$可以被简记作$h(\cdot)$，我们在本文中将一直采用这个记号。但是，需要注意的是，数域$K$上射影概型$X$上点的高度是和$X$到射影空间的嵌入态射有关系的。尽管如此，但依据定理\ref{height weak transformation property}，情况也不算太坏。
+
+态射$\phi: X \hookrightarrow \mathbb{P}^n_K$是由概型$X$上的（相对$\mathbb{P}^n_K$）极丰沛的可逆层$\mathscr{L} = \phi^{\ast}\mathcal{O}(1)$以及$\mathscr{L}$的一族生成$\mathscr{L}$的整体截影所决定，其中$\mathcal{O}(1) = \mathcal{O}_{\mathbb P^n_K}(1)$为Serre扭层。而在我们这种情况下（概型$X$是射影的），每一个可逆层$\mathscr{L}$总是有一个$X$上的Cartier除子$D$与之对应，此时我们可以记$\mathscr{L} = \mathscr{L}(D)$。关于以上更加详细更严格也更加一般化的内容，可以参考文章后面的附录\ref{apdx: adelic height}，关于以上以及后文需要用到的一些基础的代数几何的知识，可以参考文章后面的附录\ref{apdx: algebraic geometry}。
+
+于是我们对于高度函数有了``更几何''的阐述：对于$X$上的每一个极丰沛的Cartier除子$D$，如果选取一个嵌入（通过选取$\mathscr{L}(D)$的一族生成$\mathscr{L}(D)$的整体截影）$\phi_D:X\hookrightarrow\mathbb P^n_K$，
+我们可以得到一个高度函数
+\begin{equation}
+h_{X,D}(\cdot) := h(\phi_D(\cdot)).
+\end{equation}
+高度$h_{X,D}(\ast)$关于极丰沛 Cartier 除子$D$有很好的性质：
+\begin{proposition} \label{height by divisor} \ 
+\begin{enumerate}
+\item 假设我们选取极丰沛可逆层$\mathscr{L}(D)$的另一组生成$\mathscr{L}(D)$的整体截影，从而定义另一个嵌入$\phi_D':X\hookrightarrow\mathbb P^n_K$，那么
+\begin{equation}
+h(\phi_D(\cdot)) = h(\phi_D'(\cdot)) + O(1).
+\end{equation}
+\item 设$D$和$D'$是线性等价的极丰沛 Cartier 除子，那么
+\begin{equation}
+h_{X,D}(\cdot) = h_{X,D'}(\cdot) + O(1),
+\end{equation}
+以及
+\begin{equation}
+h_{X,D+D'}(\cdot) = h_{X,D}(\cdot) + h_{X,D'}(\cdot) + O(1).
+\end{equation}
+\end{enumerate}
+\end{proposition}
+上述式子中的$O(1)$指的是不依赖于函数自变量的常数（但依赖于$X$，$D$，$D'$等）。于是我们有如下的被称作`` Weil 高度机器''的群同态
+
+\begin{theorem}[\inlinecite{Hindry}, Theorem B.3.2] \label{Weil height machine}
+设$X$为数域$K$上的射影概型，那么有唯一的群同态
+\begin{displaymath}
+h_X: \operatorname{CaCl}(X) \cong \Pic(X) \to \dfrac{\{\text{函数 } X(\overline{K}) \to \mathbb{R}\}}{\{\text{有界函数 } X(\overline{K}) \to \mathbb{R}\}},
+\end{displaymath}
+其中$\operatorname{CaCl}(X)$为$X$的 Cartier 除子类群，$\Pic(X)$为$X$的 Picard 群，满足
+\begin{enumerate}
+\item 正规性：对于极丰沛 Cartier 除子$D$有
+\begin{equation}
+h_{X,D}(\cdot) = h_X(\phi_D(\cdot)) + O(1).
+\end{equation}
+\item 函子性：如果$f: X \to Y$为射影概型的态射，那么
+$$h_{X,f^*D}(\cdot) = h_{Y,D}(f(\cdot)) + O(1).$$
+\item 正性：记$\operatorname{Bl}(D)$为$D$的基点集，那么在$\operatorname{Bl}(D)$之外恒有
+\begin{equation}
+h_{X,D} \geqslant O(1).
+\end{equation}
+\end{enumerate}
+以上$O(1)$的意义与命题\ref{height by divisor}中的类似。
+\end{theorem}
+
+% \subsection{Arakelov 高度}
+% \label{arakelov height}
+% 设$K$为数域，记其整数环为$\mathcal{O}_K$。
+
+% \begin{definition} \label{arakelov height definition}
+% 设$\pi: \mathscr{X} \to \spec \mathcal{O}_K$为一个平坦射影概型。设$\overline{\mathscr{L}}$为$\mathscr{X}$上的 Hermitian 线丛（详细定义见附录\ref{apdx: Hermitian vector bundle over projective scheme}），$x\in \mathscr{X}(K)$。那么$x$（相对于$\overline{\mathscr{L}}$）的 Arakelov 高度被定义为
+% \begin{equation} \label{eq: arakelov height}
+% h_{\overline{\mathscr{L}}}(x) = \widehat{\deg}_n(\mathcal{P}_x^* \overline{\mathscr{L}}),
+% \end{equation}
+% 其中$\widehat{\deg}_n(\cdot)$为$\spec \mathcal{O}_K$上 Hermitian 向量丛的规范化的 Arakelov 度数。它与$\mathcal{P}_x^* \overline{\mathscr{L}}$的具体定义分别见附录\ref{apdx: arakelov degree}与附录\ref{apdx: Hermitian vector bundle over projective scheme}。
+% \end{definition}
+
+% \begin{remark} \ 
+% \begin{enumerate}
+% \item $h_{\overline{\mathscr{L}}}(\cdot)$与域$K$的选取无关，这可以直接从$\widehat{\deg}_n(\cdot)$与域的选取无关的事实（命题\ref{invariance of normalized arakelov height}）推出。
+% \item 设$\overline{\mathscr{L}}_1, \overline{\mathscr{L}}_2$为$\mathscr{X}$上两个 Hermitian 线丛，那么
+% \begin{equation}
+% h_{\overline{\mathscr{L}}_1\otimes \overline{\mathscr{L}}_2}(\cdot) = h_{\overline{\mathscr{L}}_1}(\cdot) + h_{\overline{\mathscr{L}}_2}(\cdot)
+% \end{equation}
+% \end{enumerate}
+% \end{remark}
+
+% 设$X$为$K$上整的射影概型，$L$为$X$上的一个线丛，$(\mathscr{X}, \overline{\mathscr{L}})$为$(X, L)$的一个$\mathcal{O}_K$-模型。也就是说，
+% \begin{itemize}
+% \item $\mathscr{X} \to \spec \mathcal{O}_K$是一个射影算术簇，其广点上的纤维同构于$X$。
+% \item $\overline{\mathscr{L}} = (\mathscr{L}, (\|\cdot\|_{v})_{v\in M_{K,\infty}})$为$\mathscr{X}$上的一个 Hermitian 线丛，使得存在$\mathscr{X}$上另一个 Hermitian 线丛$\overline{\mathscr{M}}$以及一个正整数$m$，满足$\mathscr{M}$的广点纤维同构于$mL$，而且$\overline{\mathscr{L}} = \frac{1}{m} \overline{\mathscr{L}}$。
+% \end{itemize}
+% 任取$x\in X(\overline{K})$，它相对于模型$(\mathscr{X}, \overline{\mathscr{L}})$的 Arakelov 高度可以被定义作
+% \begin{equation} \label{eq: refined arakelov height}
+% h_{(\mathscr{X}, \overline{\mathscr{L}})}(x) = \widehat{\deg}_n(\mathcal{P}_x^* \overline{\mathscr{L}}),
+% \end{equation}
+
+% \begin{proposition} [\inlinecite{Moriwaki-book}, Proposition 9.7]
+% 设$(\mathscr{X}', \overline{\mathscr{L}}')$为$(X, L)$的另一个模型。那么存在正的常数$C$，使得对所有的$x\in X(\overline{K})$有
+% \begin{equation}
+% |h_{(\mathscr{X}', \overline{\mathscr{L}}')}(x) - h_{(\mathscr{X}, \overline{\mathscr{L}})}(x)| \leqslant C.
+% \end{equation}
+% \end{proposition}
+
+% 于是，在不计一个常数的意义下，$(X, L)$上的 Arakelov 高度是和模型的选取无关的。
+
+% \begin{proposition} \label{height relation}
+% 设$\pi: \mathscr{X} \to \spec \mathcal{O}_K$为一个平坦射影概型。设$\overline{\mathscr{L}} = (\mathscr{L}, (\|\cdot\|_{v})_{v\in M_{K,\infty}})$为$\mathscr{X}$上的 Hermitian 线丛，并假定$\mathscr{L}$是$\mathscr{X}$上的丰沛层。那么
+% \begin{equation}
+% h_{\overline{\mathscr{L}}}(x) \leqslant h(x) + O(1),
+% \end{equation}
+% 其中$O(1)$为与自变量$x\in \mathscr{X}(K)$无关的常数，$h(\cdot)$是绝对对数高度（见定义\ref{abs log height}）。
+% \end{proposition}
+
+% \begin{example}
+% % 我们来举一个标准的例子。一般地，设$E$为环$A$上的秩为$r$的局部自由模（或者说投射模）。考虑函子
+% % $$
+% % \begin{tikzcd}[row sep = tiny]
+% % \mathbb{P}(E): (Sch/\spec A)\cong (A-algebras) \arrow[r] & (Sets) \\
+% % \phantom{hehehehehehehehehe} M \arrow[r, mapsto] & \{\text{$E\otimes_A M$秩为$1$的投射商模}\}
+% % \end{tikzcd}
+% % $$
+% % % $$\mathbb{P}(E): (A-algebras) \rightarrow (Sets), ~~ M \mapsto \{E\otimes_A M\},$$
+% % 其中$(Sch/\spec A)$表示$\spec A$上概型的范畴，$(A-algebras)$表示$A$-代数的范畴，$(Sets)$表示所有集合组成的范畴。这是一个可表函子，由泛对象$(\mathbb{P}(E), \mathcal{O}_E(1))$给出，其中$\mathbb{P}(E)$是$\spec A$上的一个射影概型，$\mathcal{O}_E(1)$被称为$\mathbb{P}(E)$上的泛线丛。
+% 我们来举一个标准的例子。这个例子源自参考文献~\inlinecite{FGA}第二章的 EXAMPLE 2.7。一般地，设$\overline{\mathscr{E}} = (\mathscr{E}, (\|\cdot\|_v)_{v\in M_{K,\infty}})$为$\spec \mathcal{O}_K$上的一个 Hermitian 向量丛，考虑函子
+% \begin{equation}
+% \begin{tikzcd}[row sep = tiny]
+% Q_{\mathscr{E}}: (Sch/\spec \mathcal{O}_K)^{op} \arrow[r] & (Sets) \\
+% \phantom{hehehe} (\phi: S \to \spec \mathcal{O}_K) \arrow[r, mapsto] & \{\text{$\phi^*\mathscr{E}$的可逆商丛}\}
+% \end{tikzcd}
+% \end{equation}
+% 其中$(Sch/\spec \mathcal{O}_K)^{op}$表示由$\spec \mathcal{O}_K$上所有概型组成的范畴的反范畴，$(Sets)$表示所有集合组成的范畴。$Q_{\mathscr{E}}$是一个可表函子，由泛对象$(\mathbb{P}(\mathscr{E}), \mathcal{O}_{\mathbb{P}(\mathscr{E})}(1))$表示，其中
+% \begin{equation}
+% \mathbb{P}(\mathscr{E}) = \PROJ(\sym\mathscr{E}) \overset{\pi}{\longrightarrow} \spec \mathcal{O}_K
+% \end{equation}
+% 是$\spec \mathcal{O}_K$上的一个射影概型，被称为与向量丛$\mathscr{E}$相伴的射影空间丛。$\mathcal{O}_{\mathbb{P}(\mathscr{E})}(1)$被称作是$\mathbb{P}(\mathscr{E})$上的泛线丛。要注意的是，泛线丛在这里就是 Serre 扭层$\mathcal{O}_{\mathbb{P}(\mathscr{E})}(1)$，而不是它的对偶。如果$\mathcal{P}: \spec \mathcal{O}_K \to \mathbb{P}(\mathscr{E})$是$\pi$的一个截影，即有交换图
+% \begin{equation}
+% \begin{tikzcd}
+% % \spec \mathcal{O}_K \arrow[r, "\mathcal{P}"] \arrow[rr, bend left = 30, equal] & \mathbb{P}(\mathscr{E}) \arrow[r, "\pi"] & \spec \mathcal{O}_K
+% \spec \mathcal{O}_K \arrow[r, equal] \arrow[d, "\mathcal{P}"] & \spec \mathcal{O}_K \arrow[d, equal] \\
+% \mathbb{P}(\mathscr{E}) \arrow[r, "\pi"] & \spec \mathcal{O}_K
+% \end{tikzcd}
+% \end{equation}
+% 上图同时也是范畴$(Sch/\spec \mathcal{O}_K)^{op}$中对象间的态射，也记作$\mathcal{P}$，在函子$Q_{\mathscr{E}}$作用下，有集合的映射
+% \begin{equation}
+% Q_{\mathscr{E}}(\pi) = \{\text{$\pi^*\mathscr{E}$的可逆商丛}\} \overset{\mathcal{P}^*}{\longrightarrow} \{\text{$\mathscr{E}$的可逆商丛}\} = Q_{\mathscr{E}}(\identity_{\spec \mathcal{O}_K})
+% \end{equation}
+% 那么$\mathcal{P}^*\mathcal{O}_{\mathbb{P}(\mathscr{E})}(1)$便是在这个映射下的像，$\mathscr{E}$的一个可逆商丛。
+
+% 设$v: K \hookrightarrow \mathbb{C}$是$M_{K,\infty}$中的一个元素。类似附录\ref{apdx: arakelov theory}，特别是其中的注释\ref{pullback of hermitian line bundle}中所做的那样，考虑复化的空间$\mathbb{P}(\mathscr{E})_v^{an}(\mathbb{C}) := (\mathbb{P}(\mathscr{E})\times_{\spec \mathcal{O}_K, v} \spec \mathbb{C})^{\gaga}$，以及一个复点$x: \spec \mathbb{C} \to \mathbb{P}(\mathscr{E})\times_{\spec \mathcal{O}_K, v} \spec \mathbb{C}$。即有
+% \begin{equation}
+% \begin{tikzcd}
+% \spec \mathbb{C} \arrow[r, "x"] \arrow[dr, equal] & \mathbb{P}(\mathscr{E})\times_{\spec \mathcal{O}_K, v} \spec \mathbb{C} \arrow[r, "\pr_1"] \arrow[d, "\pr_2"] & \mathbb{P}(\mathscr{E}) \arrow[r, "\pi"] & \spec \mathcal{O}_K \\
+% & \spec \mathbb{C} \arrow[r, "v"] & \spec K \arrow[ur]
+% \end{tikzcd}
+% \end{equation}
+% 那么$x^*\pr_1^*\mathcal{O}_{\mathbb{P}(\mathscr{E})}(1)$就是$\mathscr{E}\otimes_{\mathcal{O}_K,v} \mathbb{C}$的一个$1$维的商空间。这里我们混用了符号，把$\mathcal{O}_{\spec \mathcal{O}_K}$与$\mathcal{O}_K$视为同一，把$\mathcal{O}_{\spec \mathbb{C}}$与$\mathbb{C}$视为同一。$\overline{\mathscr{E}}$的赋范结构$(\|\cdot\|_v)_{v\in M_{K,\infty}}$给出了$\mathscr{E}\otimes_{\mathcal{O}_K,v} \mathbb{C}$上的范数，仍记作$\|\cdot\|_v$，而它诱导的$x^*\pr_1^*\mathcal{O}_{\mathbb{P}(\mathscr{E})}(1)$上的商范数用$\|\cdot\|_{v, FS}$表示，称作 Fubini-Study 范数。
+
+% 特别地，考虑$\spec\mathcal{O}_K$上的 Hermitian 向量丛$\overline{\mathcal{O}}_K^{n+1}=(\mathcal{O}_K^{n+1}, (\|\cdot\|_v)_{v\in M_{K,\infty}})$, 其中每个$\|\cdot\|_v$都是通常的$\ell^2$-范数。那么有射影概型$\mathbb P^n_K = \mathbb P(\mathcal{O}_K^{\oplus{n+1}})$，以及它上面的泛丛$\overline{\mathcal{O}_{\mathbb{P}_K^n}(1)} = (\mathcal{O}_{\mathbb{P}_K^n}(1),(\|\cdot\|_{v, FS})_{v\in M_{K,\infty}})$。
+
+% 假设$\xi\in \mathbb P^n_K(\overline K)$为一个闭点，$L=K(\xi)$为这个点的定义域。令$\mathcal P_\xi$为$\mathbb P^n_{\mathcal{O}_K}$上面的对应于闭点$\xi$的$\mathcal{O}_L$-点（详见附录\ref{apdx: arakelov theory}的注释\ref{pullback of hermitian line bundle}）。点$\xi$的（相对于 Hermitian 线丛$\overline{\mathcal{O}_{\mathbb{P}_K^n}(1)}$的） Arakelov 高度就是
+% \begin{equation}
+% h_{\overline{\mathcal{O}_{\mathbb{P}_K^n}(1)}}(\xi)=\adeg_n(\mathcal P_\xi^*\overline{\mathcal{O}_{\mathbb{P}_K^n}(1)}).
+% \end{equation}
+% 特别地，如果闭点$\xi$的射影坐标为$[x_0:\cdots:x_n]$，那么
+% % \begin{equation*}
+% % h_{\overline{\mathcal{O}(1)}}(\xi) = \sum_{v\in M_{L,f}} \frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]} \log\max_{0\leqslant i\leqslant n}\{|x_i|_v\} + \sum_{v\in M_{L,\infty}} \frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]} \log\sqrt{|x_0|_v^2+\cdots+|x_n|^2_v}.
+% % \end{equation*}
+% \begin{eqnarray}
+% h_{\overline{\mathcal{O}_{\mathbb{P}_K^n}(1)}}(\xi) & = & \sum_{v\in M_{L,f}} \frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]} \log\max_{0\leqslant i\leqslant n} \{|x_i|_v\} \nonumber \\
+% & & + \sum_{v\in M_{L,\infty}} \frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]} \log\sqrt{|x_0|_v^2+\cdots+|x_n|^2_v}.
+% \end{eqnarray}
+% 因此有
+% \begin{equation}
+% h_{\overline{\mathcal{O}(1)}}(\xi) \leqslant h(\xi) + \dfrac{1}{2}\log(n+1).
+% \end{equation}
+% 这也验证了之前的命题\ref{height relation}。
+% \end{example}
+
+\subsection{Northcott 性质}
+
+设$B \geqslant 1$为实数, $D\in\mathbb{N}^+$为正整数, $X\hookrightarrow\mathbb P^n_K$为射影概型。我们考虑集合
+\begin{equation} \label{S(X;D,B)}
+S(X;D,B) = \{\xi \in X(\overline{K}) \ |\ [K(\xi):K]=D, H_{K(\xi)}(\xi) \leqslant B\}.
+\end{equation}
+特别地，当$D=1$时，我们把相应记号简化为
+\begin{equation}\label{S(X;B)}
+S(X;B) = S(X;1,B) = \{\xi\in X(K) \ |\ H_K(\xi)\leqslant B\}.
+\end{equation}
+对于以上相应集合的势，我们采用记号
+\begin{equation} \label{N(X;D,B)}
+N(X;D,B) = \#S(X;D,B)
+\end{equation}
+以及
+\begin{equation} \label{N(X;B)}
+N(X;B) = \#S(X;B).
+\end{equation}
+由 Northcott 性质（详见~\inlinecite{Hindry} Theorem B.2.3 或者~\inlinecite{silverman1}的 VIII.5 或者~\inlinecite{heights}的 Theorem 1.6.8），对每个固定的$D \in \mathbb{N}^+$以及$B \geqslant 1$，集合势$N(X;D,B)$总是有限的。
+
+% \begin{remark}
+% 由命题\ref{height relation}可以知道，如果将$S(X;D,B)$的定义式\eqref{S(X;D,B)}以及$S(X;B)$的定义式\eqref{S(X;B)}中的经典高度函数换成 Arakelov 高度，这两个集合同样满足上文所说的 Northcott 性质，从而可以考虑相应的代数点、有理点计数问题。
+% \end{remark}
+
+对于有理点或者代数点的计数问题，最重要的把$N(X;B)$以及$N(X;D,B)$作为以$B$和$D$为变量的方程进行考察。关于这个课题，结论非常丰富。接下来，我们将介绍一部分，用于我们所考虑的重数计数问题。
+
+\section{射影空间上点的计数}
+我们还保持原有的记号不变，设$B \geqslant 1$为实数，$D \in \mathbb{N}^+$为正整数，$X \hookrightarrow \mathbb{P}^n_K$为射影概型。很自然地，我们想要通过$N(X;B)$以及$N(X;D,B)$的一些性质，来考察射影概型$X$上代数点的密度。首先，我们考虑最简单的情况，$X = \mathbb{P}^n_K$。
+
+\subsection{射影空间上有理点的密度}
+对于$N(\mathbb{P}^n_K;B)$，Schanuel在他的文章~\inlinecite{Schanuel} （Theorem 1）中证明了，如下的渐进估计：
+\begin{equation} \label{Schanuel estimate}
+N(\mathbb{P}^n_K;B) = \alpha(n,K)B^{n+1} + o(B^{n+1}), \quad \text{当 } B \to \infty,
+\end{equation}
+对任意的$n$都成立，其中的常数$\alpha(K,n)$可以具体写出来，如下：
+\begin{equation} \label{schanuel's constant}
+\alpha(n,K) = \dfrac{h_KR_K}{\omega_K\zeta_K(n+1)} \left(\dfrac{2^{r_1}(2\pi)^{r_2}}{\sqrt{|D_K|}}\right)(n+1)^{r_1+r_2-1},
+\end{equation}
+其中$h_K$为数域$K$的类数，$R_K$为$K$调控子，$\omega_K$为$K$中单位的数量，$\zeta_K(\cdot)$为$K$的 zeta 函数，$r_1$和$r_2$分别为$K$的实位点数目与复位点的数目，$D_K$为域扩张$K/\mathbb{Q}$的判别式。相关的概念及其性质可以见附录\ref{apdx: number theory}。特别地，当$K = \mathbb{Q}$时，渐进估计式
+\begin{equation} \label{Schanuel over Q}
+N(\mathbb{P}^n_{\mathbb{Q}};B) = \frac{2^n}{\zeta(n+1)}B^{n+1} + o(B^{n+1}), \quad B \rightarrow +\infty
+\end{equation}
+对于所有的$n\in \mathbb{N}^+$都成立。上式中的$\zeta(n)$就是 Riemann zeta 函数。
+
+我们可以把这个估计写成一致估计的形式
+\begin{equation}
+N(\mathbb{P}^n_K;B) \ll_{n,K} B^{n+1},
+\end{equation}
+% 其中的依赖于$n$和$K$的常数同样可以显式地写下来。当然这个常数显然要比估计式\eqref{Schanuel estimate}中的常数$\alpha(n,K)$大一些。接下来，我们就要给出这个常数。
+特别地当$K = \mathbb{Q}$的时候，我们可以很容易地把它的具体形式写出来。
+
+\begin{proposition}
+下列不等式
+\begin{equation} \label{uniform estimate}
+N(\mathbb{P}^n_{\mathbb{Q}};B) \leqslant 3^{n+1}B^{n+1}
+\end{equation}
+对于所有的$B \geqslant 1$以及所有的$n \in \mathbb{N}^+$都成立。
+\end{proposition}
+
+\begin{proof}
+考虑集合
+\begin{equation}
+R(\mathbb{A}_{\mathbb{Z}}^{n+1};B) = \left\{ \xi =(\xi_0,\ldots,\xi_n) \in \mathbb{A}_{\mathbb{Z}}^{n+1} (\mathbb{Z}) \ \middle|\ \max_{0 \leqslant i \leqslant n} \{|\xi|\} \leqslant B \right\}.
+\end{equation}
+由于至多存在$2B+1$个绝对值小于等于$B$的整数，因此有
+\begin{equation}
+\#R(\mathbb{A}_{\mathbb{Z}}^{n+1};B) \leqslant (2B+1)^{n+1} \leqslant 3^{n+1}B^{n+1}.
+\end{equation}
+此外，又有$N(\mathbb{P}^n_{\mathbb{Q}};B) \leqslant \#R(\mathbb{A}_{\mathbb{Z}}^{n+1};B)$。于是命题得证
+\end{proof}
+
+\begin{remark}
+对于一般的射影空间$\mathbb{P}_K^n$，如果基域$K$的单位群是有限群，例如虚二次域，那么我们也有类似于上述命题的结论，证明的方法相同。
+\end{remark}
+
+% 考虑射影空间$\mathbb P^n$的仿射锥$\mathbb A^{n+1}$。考虑集合
+% \begin{equation} \label{intermediate_set}
+% A(n,B) = \left\{\xi=(x_0,\cdots,x_n)\in\mathbb A^{n+1}(\mathcal{O}_K) \middle| \;\max_{0\leqslant i\leqslant n}\{|N_{K/\mathbb{Q}}(x_i)|\}\leqslant B\right\}.
+% \end{equation}
+% $\mathcal{O}_K$的单位群$\mathcal{O}_K^\times$通过如下的方式作用在集合$A(n,B)$上：对任意的$x'\in\mathcal{O}_K^\times$以及任意的$\xi=(x_0,\cdots,x_n)\in A(n,B)$，定义$x'\xi=(x'x_0,\cdots,x'x_n)$。由于对任意的$x'\in \mathcal{O}^\times_K$和任意的$x\in\mathcal{O}_K$，总有$|N_{K/\mathbb{Q}}(x'x)| = |N_{K/\mathbb{Q}}(x)|$，故而$x'\xi\in A(n,B)$，因此这个作用是良定义的。
+
+% \begin{lemma} \label{finiteness of A(n,B)}
+% 把集合$A(n,B)$模掉以上定义的$\mathcal{O}^\times_K$的作用，得到的集合
+% \begin{equation}
+% \widetilde{A}(n,B) = A(n,B) / \mathcal{O}_K^{\times}
+% \end{equation}
+% 是一个有限集。更进一步，有
+% \begin{equation}
+% N(\mathbb P^n_K;B) \leqslant \#\widetilde{A}(n,B).
+% \end{equation}
+% \end{lemma}
+
+% \begin{proof}
+% 对于数域$k$的整数环$\mathcal{O}_K$的一个非零理想$\mathfrak{a}$，扩展定义\eqref{prime ideal norm}，我们定义其范数为
+% \begin{equation} \label{ideal norm}
+% N\mathfrak a = \#(\mathcal{O}_K/\mathfrak a).
+% \end{equation}
+% $N\mathfrak a$总是有限的。令$x\in \mathcal{O}_K$，我们把$x$生成$\mathcal{O}_K$的主理想记为$\mathfrak{a}_x$。那么有$|N_{K/\mathbb{Q}}(x)| = N\mathfrak{a}_x$ (详见参考文献~\inlinecite{LangANT}的 I, \S 7, Proposition 22)。由于对于任意一个正整数$n$，集合势
+% \begin{equation}
+% a_n = \#\{ \mathfrak{a} \subseteq \mathcal{O}_K \text{ 非零理想} \ |\ N\mathfrak{a} = n \}
+% \end{equation}
+% 总是有限的，因此集合$\{ \mathfrak{a} \subseteq \mathcal{O}_K \text{ 理想 } \ |\ N\mathfrak{a} \leqslant B \}$总是有限集。集合势$a_n$有限这个结论很容易从以下事实导出：对于每个范数为$n$的理想$\mathfrak{a}$，主理想$\mathfrak{a}_n = n\cdot\mathcal{O}_K$总是被$\mathfrak{a}$整除的，因此范数为$n$的理想只有有限多个，亦即$a_n$是个有限数。定义
+% \begin{equation} \label{n(K,B)_definition}
+% n(K,B)=\#\{ \mathfrak{a} \subseteq \mathcal{O}_K \text{ 理想 } \ |\ N\mathfrak{a} \leqslant B \}.
+% \end{equation}
+% 由参考文献~\inlinecite{LvIdealCounting}的\S 1知$n(K,B)$渐进地等于$\res(\zeta_K, 1)\cdot B$。这里$\zeta_K$是数域$K$的 Dedekind zeta 函数，被定义为
+% \begin{equation}
+% \zeta_K(s) = \sum\limits_{\mathfrak{a}} \dfrac{1}{N\mathfrak{a}^s} = \sum\limits_{n \geqslant 1} \dfrac{a_n}{n^s},
+% \end{equation}
+% 其中$\mathfrak{Re}(s)>1$，第一个求和的下标$\mathfrak{a}$跑遍$\mathcal{O}_K$的的所有非零理想。数域$K$的 Dedekind zeta 函数$\zeta_K(s)$可亚纯地延拓至整个复平面，仅在$s=1$处有一个单极点。
+
+% 对于集合$\widetilde{A}(n,B)$的势，可以做如下的估计
+% \begin{align} \label{tildeA(n,B)}
+% \# \widetilde{A}(n,B) & \leqslant \left(\#\left( \{ x\in\mathcal{O}_K \ |\ |N_{K/\mathbb{Q}}(x)| \leqslant B \} / \mathcal{O}_K^{\times} \right)\right)^{n+1} \\
+% & = \left(\#\{ \mathfrak{a} \subseteq \mathcal{O}_K \text{ 非零主理想} \ |\ N\mathfrak{a} \leqslant B \} + 1 \right)^{n+1} \\
+% & \leqslant \left(\#\{ \mathfrak{a} \subseteq \mathcal{O}_K \text{ 非零理想} \ |\ N\mathfrak{a} \leqslant B \} + 1 \right)^{n+1} \\
+% & = (n(K,B) + 1 )^{n+1}.
+% \end{align}
+% 因为$n(K,B)$是有限的，所以由上式知$\widetilde{A}(n,B)$也是有限的。
+
+% 令$\xi' \in \mathbb{P}^n(K)$，取该点的射影坐标为$[x_0:\cdots:x_n]$，满足$x_0,\cdots,x_n\in\mathcal{O}_K$且不同时为$0$。记$\mathfrak{a}_{\xi'}$为由$x_0,\cdots,x_n$生成的$\mathcal{O}_K$的理想。那么有
+% \begin{align}
+% H_{K}(\xi') & = \prod\limits_{v\in M_K} \max_{0\leqslant i\leqslant n} \{\|x_i\|_v\} = (N\mathfrak{a}_{\xi'})^{-1} \prod\limits_{v\in M_{K,\infty}} \max_{0\leqslant i\leqslant n} \{\|x_i\|_v\} \\
+% & \leqslant (N\mathfrak{a}_{\xi'})^{-1} \prod\limits_{v\in M_{K,\infty}} \prod\limits_{\substack{0\leqslant i\leqslant n \\ x_i \neq 0}} \|x_i\|_v = (N\mathfrak{a}_{\xi'})^{-1} \prod\limits_{\substack{0\leqslant i\leqslant n \\ x_i \neq 0}} \prod\limits_{v\in M_{K,\infty}} \|x_i\|_v \\
+% & \leqslant \prod\limits_{\substack{0\leqslant i\leqslant n \\ x_i \neq 0}} \prod\limits_{v\in M_{K,\infty}} \|x_i\|_v = \prod\limits_{\substack{0\leqslant i\leqslant n \\ x_i \neq 0}} |N_{K/\mathbb{Q}}(x_i)|.
+% \end{align}
+% 因为集合
+% \begin{equation}
+% \left\{\xi=(x_0,\cdots,x_n)\in\mathbb A^{n+1}(\mathcal{O}_K) \middle| \; \prod\limits_{\substack{0\leqslant i\leqslant n \\ x_i \neq 0}} |N_{K/\mathbb{Q}}(x_i)| \leqslant B\right\} \bigcup \{0\},
+% \end{equation}
+% 作为集合\eqref{intermediate_set}的子集，在$\mathcal{O}_K^{\times}$的作用下是稳定的，于是我们就得到了我们想要的不等式$N(\mathbb P^n_K;B) \leqslant \#\widetilde{A}(n,B)$。
+% \end{proof}
+
+% 关于$\#\widetilde{A}(n,B)$上界的估计，利用参考文献~\inlinecite{MurtyCounting}的相关结果（Theorem 1），我们有如下的结果
+
+% \begin{lemma} \label{upper bound of A(n,B)}
+% 保持引理\ref{finiteness of A(n,B)}中的记号不变，有
+% \begin{equation}
+% \#\widetilde{A}(n,B)\leqslant C_0(n,K)B^{n+1},
+% \end{equation}
+% 其中，常数$C_0(n,K)$将会在下文的式\eqref{C_0(n,K)}中给出。这个常数只与数域$K$以及整数$n$有关。
+% \end{lemma}
+
+% \begin{proof}
+% 首先，我们将会给出式\eqref{n(K,B)_definition}定义的数$n(K,B)$的一个上界。我们先来列出一些记号。我们记数域$K$的实位点数目为$r_1$，复位点的数目为$r_2$，记 $\mathcal{O}_K^{\times}$的（自由部分的）秩为$r=r_1+r_2-1$。我们把无限位点（所有的实位点与复位点）排好序，使得前$r_1$个为实位点$v_i, 1 \leqslant i \leqslant r_1$，后$r_2$个为复位点$v_i, r_1 + 1 \leqslant i \leqslant r_1 + r_2$。令$\sigma_i: K\hookrightarrow K_{v_i}, 1 \leqslant i \leqslant r_1+r_2$，为与这些无限位点对应的域嵌入。我们还约定，$\sigma_{i+r_2}$表示复共轭映射与$\sigma_i$的复合映射，$r_1 + 1 \leqslant i \leqslant r_1 + r_2$。对数域$K$中任意元素$a$，我们记$a^{(i)}$为其在映射$\sigma_i$作用下的像。$\omega_K$依然表示$\mathcal{O}_K$中单位根的个数。取定$K$的一组基本单位$\varepsilon_1,\cdots,\varepsilon_r$，我们令$M = \max\limits_{1\leqslant i,j \leqslant r}\left\{ \left|\log\left|\varepsilon_j^{(i)}\right|\right|\right\}$。对数域$K$的理想类群$\operatorname{Cl}_K$中的每个理想类$\mathcal C$，选定理想类$\mathcal C^{-1}$中的一个理想$\mathfrak{b}$并且取定$\mathfrak{b}$的一组整基$\beta_1,\cdots,\beta_n$。定义$\gamma(\mathcal{C}) = \max\limits_{1\leqslant i,j \leqslant n}\{\gamma_{ij}\}$，其中矩阵$(\gamma_{ij})_{1\leqslant i,j \leqslant n} = (\beta_j^{(i)})^{-1}_{1\leqslant i,j \leqslant n}$。此外，依然用$D_K$表示数域$K$的判别式, 记$m = [K:\mathbb{Q}]$，以及$\mathscr{M}_K = \frac{m!}{m^m}\left(\frac{4}{\pi}\right)^{r_2}|D_K|^{1/2}$为$K$的Minkowski界(关于数域的Minkowski界的定义、性质，具体可参见参考文献~\inlinecite{MurtyCounting}或者~\inlinecite{Samuel-NT}的\S 4.3)。对于一个给定的理想类$\mathcal C\in \operatorname{Cl}_K$，定义
+% \begin{equation}
+% n(\mathcal{C},B) = \# \{ \mathfrak{a}\in \mathcal C \ |\ N\mathfrak{a} \leqslant B \}.
+% \end{equation}
+% 由参考文献~\inlinecite{MurtyCounting}的 Theorem 1，我们有
+% \begin{equation}
+% \omega_K \cdot n(\mathcal{C},B) \leqslant \left( 2m\gamma(c)e^{rM}\mathscr{M}_K^{1/m}B^{1/m} + 1 \right)^{m}.
+% \end{equation}
+% 因此有
+% \begin{equation} \label{n(K,B)_upper_bound}
+% n(K,B) = \sum\limits_{\mathcal{C} \in \operatorname{Cl}_K} n(\mathcal{C},B) \leqslant \dfrac{h_K}{\omega_K}\left(2m\gamma e^{rM}\mathscr{M}_K^{1/m} + 1\right)^m B
+% \end{equation}
+% 其中$h_K$为数域$K$的类数, $\gamma = \max\limits_{\mathcal{C} \in \operatorname{Cl}_K} \{\gamma(\mathcal{C})\}$。
+
+% 有了以上的这些记号，我们可以定义
+% \begin{equation} \label{c_K}
+% c_K=\dfrac{h_K}{\omega_K}\left(2m\gamma e^{rM}\mathscr{M}_K^{1/m} + 1\right)^m.
+% \end{equation}
+% 此常数$c_K$只与数域$K$有关。又由$\# \widetilde{A}(n,B)$与$n(K,B)$的关系\eqref{tildeA(n,B)}，有
+% \begin{align}
+% \# \widetilde{A}(n,B) & \leqslant (n(K,B) + 1 )^{n+1} \\
+% & \leqslant (n(K,B)+B)^{n+1} \\
+% & \leqslant C_0(n,K)B^{n+1},
+% \end{align}
+% 其中我们定义
+% \begin{equation} \label{C_0(n,K)}
+% C_0(n,K)=(c_K+1)^{n+1}.
+% \end{equation}
+% 由此，我们便得到了想要的$\#\widetilde{A}(n,B)$上界的估计。
+% \end{proof}
+
+% 把引理\ref{upper bound of A(n,B)}和引理\ref{finiteness of A(n,B)}结合起来看，我们便有了关于射影空间$\mathbb P^n_K$里高度不超过$B$的有理点的数目的一致的估计，如下
+% \begin{equation} \label{uniform estimate}
+% N(\mathbb P^n_K;B)\leqslant C_0(n,K)B^{n+1}\ll_{n,K}B^{n+1}.
+% \end{equation}
+
+\subsection{射影空间中代数点的密度}
+\label{counting algebraic points in Pn}
+在上一小节中，我们讨论了射影空间上有理点的估计问题$N(\mathbb{P}^n_K;B) = N(\mathbb{P}^n_K;1,B)$。对于更进一步的射影空间上代数点的估计问题，即$N(\mathbb{P}^n_K;D,B)$的估计，其中$D\in \mathbb{N}^+$是任意一个正整数，情况就很不同了，变得复杂得多了。目前已有的结果都是比较零碎的，不像式\eqref{Schanuel estimate}或式\eqref{uniform estimate}那样有比较统一的渐进估计式或一致的估计式。
+
+我们约定记号$A(K,n,D)$表示一族依赖于正整数$n,D$以及数域$K$的正的常数。
+
+首先我们来考虑最简单的$n=1$的情况。此时，$\mathbb P^n_K$是射影直线。依据参考文献~\inlinecite{MasserVaaler2007}或者更新一些的~\inlinecite{LeRudulier2014}的 Th\'eor\`eme 5.1，有如下的估计：
+\begin{theorem} [~\inlinecite{LeRudulier2014}, Th\'eor\`eme 5.1]
+设$H_{\mathcal{O}_{\mathbb{P}^1_K}(1)}$是一个定义在$\mathbb{P}^1_K$上的相对于 Adelic 线丛$\widetilde{\mathcal{O}_{\mathbb{P}^1_K}(1)} = (\mathcal{O}_{\mathbb{P}^1_K}(1), (\|\cdot\|_v)_{v \in M_K})$的高度函数（详细定义见附录\ref{apdx: adelic height}）。设$[K:\mathbb{Q}] = d$，$D$是一个正整数，$B$是一个正实数。那么集合
+\begin{equation}
+\left\{ \xi\in \mathbb{P}^1_K(\overline{K}) \ \middle|\ [K(\xi):K] = D, H_{\mathcal{O}_{\mathbb{P}^1_K}(1)}(\xi) \leqslant B \right\}
+\end{equation}
+的势有限。更进一步，以上集合的势$N_{H,D,K}(B)$满足
+\begin{equation} \label{esimate of algebraic points on P1}
+N_{H,D,K}(B) \underset{B\to\infty}{\sim} D C_{H_{\omega^{-1}}}(\mathbb{P}_K^D) B^{dD(D+1)}.
+\end{equation}
+\end{theorem}
+
+\begin{remark}
+上述定理中式\eqref{esimate of algebraic points on P1}中相关的记号解释如下：$\omega\cong \mathcal{O}(-D-1)$为$\mathbb{P}_K^D$的典则层。常数$C_{H_{\omega^{-1}}}(\mathbb{P}_K^D)$有如下的表达
+\begin{equation}
+C_{H_{\omega^{-1}}}(\mathbb{P}_K^D) = \dfrac{2^r h_KR_K}{(n+1) \omega_K \sqrt{|\Delta_K|^{n+1}}} \prod\limits_{v\in M_K} \lambda_v \boldsymbol{\omega}_{H_{\omega^{-1}},v}(\mathbb{P}_K^n(K_v)),
+\end{equation}
+其中$r = r_1 + r_2 -1, h_K, R_K, \omega_K, \Delta_K$的含义与他们在式\eqref{schanuel's constant}中的意义一致，
+\begin{equation}
+\lambda_v = \begin{cases} 1 - N(v)^{-1} & v\in M_{K,f} \\ 1 & v \in M_{K,\infty} \end{cases}
+\end{equation}
+$\boldsymbol{\omega}_{H_{\omega^{-1}},v}$是$\mathbb{P}_K^n(K_v)$上的测度，局部地，在覆盖$\mathbb{P}_K^n(K_v)$的$n+1$个同构于$\mathbb{A}_K^n(K_v) = \spec(K[t_1,\cdots,t_n])(K_v)$的标准开子集上有
+\begin{equation}
+\boldsymbol{\omega}_{H_{\omega^{-1}},v} = \left\| \dfrac{\partial}{\partial t_1} \wedge\cdots\wedge \dfrac{\partial}{\partial t_n} \right\|_v^{[K_v:\mathbb{Q}_v]} dt_{1,v}\cdots dt_{n,v},
+\end{equation}
+每个$dt_{i,v}$被正规化，使得
+\begin{itemize}
+\item 若$v\in M_{K,f}$，$\int\limits_{\mathcal{O}_{K_v}} dt_{i,v} = 1.$
+\item 若$K_v = \mathbb{R}$，$dt_{i,v}$为$\mathbb{R}$上的Lebesgue测度。
+\item 若$K_v = \mathbb{C}$，将$\mathbb{C}$上元素表示为$z = dx + \sqrt{-1}dy$，那么$dt_{i,v} = -\sqrt{-1}dzd\overline{z} = 2dxdy.$
+\end{itemize}
+\begin{equation}
+\boldsymbol{\omega}_{H_{\omega^{-1}}} := \dfrac{2^r h_KR_K}{\omega_K \sqrt{|\Delta_K|^{n+1}}} \prod\limits_{v\in M_K} \lambda_v \boldsymbol{\omega}_{H_{\omega^{-1}},v}
+\end{equation}
+实际上给出了$\mathbb{P}_K^n$的Ad\`{e}le点的集合$\mathbb{P}_K^n(\mathbb{A}_K)$上的一个所谓的玉河测度。关于这些内容的基础知识，可以参阅本文附录\ref{apdx: adele ring and idele group}。
+
+以上的结果用本文的记号表示，就是
+\begin{equation}
+N(\mathbb{P}^1_K;D,B) \sim A(K,1,D)B^{D+1},
+\end{equation}
+\end{remark}
+
+% 其中的常数$A(K,1,D)$可以具体写出，详见前面列出的参考文献。
+
+高维的情况更加复杂。事实上，当$n\geqslant3$时，参考文献~\inlinecite{Guignard2017}的Theorem 1.2.1证明了当我们考虑的代数点的定义域相对于有理数域$\mathbb{Q}$的扩张次数$D$等于$2$的时候有
+\begin{equation}
+N(\mathbb P^n_K;2,B)\sim A(K,n,2)B^{n+1}, \quad B \to +\infty.
+\end{equation}
+参考文献~\inlinecite{Guignard2017}同时也给出了常数$A(K,n,2)$的具体表达式。而参考文献~\inlinecite{Schmidt1995}则解决了$K=\mathbb{Q}$的情况。
+
+对于$D$，也就是射影概型的点的定义域$K$相对有理数域$\mathbb{Q}$的扩张次数，比较大的情况，参考文献~\inlinecite{Guignard2017}有如下结果：当$n \geqslant D+2$有渐进估计
+\begin{equation}
+N(\mathbb{P}^n_K;D,B) \sim A(K,n,D) B^{n+1}, , \quad B \to +\infty.
+\end{equation}
+当$D \geqslant n \geqslant3$时，有另外一个估计
+\begin{equation}
+N(\mathbb{P}^n_K;D,B) \ll_{K,D} B^{D+1+\frac{n-1}{D}} \log(B),
+\end{equation}
+具体可见以上参考文献的Theorem 1.2.2。特别地，$K=\mathbb{Q}$的情况，在参考文献~\inlinecite{GaoXiaThesis}中得到解决。
+
+\section{一个关于算术簇的初等的估计}
+在这个小节中，我们要考虑$\mathbb{P}^n_{\mathbb{Q}}$中的一般的射影算术簇上的有理点的计数问题。对于这个问题，我们可以得到类似于上一小节讨论过的$n$维射影空间$\mathbb{P}^n$上的估计。具体来说，有下面的结论
+% \begin{theorem} \label{refined Schanuel estimate}
+% 设闭子概型$\phi: X \hookrightarrow \mathbb P^n_K$为$n$维射影空间$\mathbb P^n_K$的局部完全交子概形。设$X$的维数等于$d$，又设$X$相对于泛丛$\mathcal{O}_{\mathbb P^n_K}(1)$的次数为$\delta$（详细定义参见\S \ref{subsection_intersection_theory}）。那么有
+% \begin{equation}
+% N(X;D,B) \ll_D \delta N(\mathbb P^d_K;D,B),
+% \end{equation}
+% % \begin{equation}
+% % N(X;D,B) \leqslant \delta \left( \sum_{M=1}^DN(\mathbb P^d_K;M,B)+1\right) \ll_D \delta N(\mathbb P^d_K;D,B),
+% % \end{equation}
+% 其中$N(X;D,B)$定义由式\eqref{N(X;D,B)}给出。
+% \end{theorem}
+
+\begin{theorem} \label{refined Schanuel estimate for rational points}
+设$n \geqslant 2$, $\delta \geqslant 1$以及$d \geqslant 1$为正整数，那么以下的估计
+\begin{equation}
+N(X;B) = \#S(X;B) \ll_{n} \delta B^{d+1}, \quad B \geqslant 1
+\end{equation}
+对于$\mathbb{P}^n_{\mathbb{Q}}$中所有的纯维数等于$d$，次数等于$\delta$的闭子概型$X$都是成立的。
+\end{theorem}
+
+为了证明上述结论，我们需要引入并证明一系列的辅助性的引理。首先，我们给出仿射概形的次数的定义。
+\begin{definition} \label{definition of degree of affine scheme}
+设$k$是任意的一个域，$X$是$k$上$n$维仿射空间$\mathbb{A}^n_k$的一个闭子概型。我们把$X$在$\mathbb{A}^n_k$中的次数定义为，$X$在$\mathbb{P}^n_k$中的射影闭包的次数，并将其记作$\deg(X)$。
+\end{definition}
+
+根据定义\ref{definition of degree of affine scheme}，我们有如下的结论。
+
+\begin{lemma} \label{degree of affine variety}
+设$k$为一个域，$X \hookrightarrow \mathbb{A}_k^n$为一个纯维数等于$d$的闭子概型，$d \geqslant 1$。令$L$为$\mathbb{A}_k^n$的一个线性子概形，与$X$正常相交。那么有
+\begin{equation}
+\deg(X) \geqslant \sum_{Z\in\mathcal{C}(X\cap L)} \deg(Z),
+\end{equation}
+其中$\mathcal{C}(X\cap L)$是$X\cap L$的所有不可约分支组成的集合，$X\cap L$被视作是$\mathbb{A}^n_k$的整闭子概型。我们还约定，如果$Z$是一个闭点，则$\deg(Z) = 1.$
+\end{lemma}
+
+\begin{proof}
+令$\overline{X}$与$\overline{L}$分别是$X$与$L$在$\mathbb{P}^n_k$中的射影闭包。这里，射影闭包指的是，通过同胚映射
+$$
+\begin{tikzcd}[row sep = tiny]
+\varphi_0: U_0 := \left\{ [x_0:\cdots:x_n] \in \mathbb{P}^n_k \ \middle|\ x_0\neq 0 \right\} \arrow[r] & \mathbb{A}^n_k \\
+\phantom{hehehehe} [x_0:\cdots:x_n] \arrow[r, mapsto] & (\frac{x_1}{x_0},\cdots,\frac{x_n}{x_0})
+\end{tikzcd}
+$$
+将$\mathbb{A}^n_k$等同于$\mathbb{P}^n_k$的开集$U_0$，再在$\mathbb{P}^n_k$中取闭包。更详细的知识可以看参考文献~\inlinecite{GTM52}第一章的习题2.9。那么由定义\ref{definition of degree of affine scheme}，自然有$\deg(X) = \deg(\overline{X})$以及$\deg(L) = \deg(\overline{L}) = 1.$ 由 B\'ezout 定理（见第\ref{chapter:geometric}章的定理\ref{bezout}），我们有
+\begin{equation}
+\deg(\overline{X}) = \deg(\overline{X}) \deg(\overline{L}) = \sum_{Z\in\mathcal{C}(\overline{X}\cdot\overline{L})} i(Z; \overline{X}\cdot\overline{L}; \mathbb{P}^n_k)\deg(Z),
+\end{equation}
+其中$\mathcal{C}(\overline{X}\cdot\overline{L})$是相交积$\overline{X}\cdot\overline{L}$的所有不可约分支构成的集合，$i(Z; \overline{X}\cdot\overline{L}; \mathbb{P}^n_k)$是$\overline{X}\cdot\overline{L}$在$Z$处的相交重数。对任意的$Z\in\mathcal{C}(\overline{X}\cdot\overline{L})$，记$a(Z)$为$Z$ 在$\mathbb{A}^n_k$上的限制。由定义\ref{definition of degree of affine scheme}，如果$a(Z)\neq\emptyset$，则有$\deg(Z) = \deg(a(Z))$。由于相交重数总是大于等于$1$的，因此
+\begin{equation}
+\sum_{Z\in\mathcal{C}(\overline{X}\cdot\overline{L})} i(Z; \overline{X}\cdot\overline{L}; \mathbb{P}_k^n) \deg(Z) \geqslant \sum_{Z\in\mathcal{C}(\overline{X}\cdot\overline{L})} \deg(a(Z)) = \sum_{Z\in\mathcal{C}(X\cap L)}\deg(Z),
+\end{equation}
+在上式中，我们还约定，若$a(Z) = \emptyset$则$\deg(a(Z)) = 0.$ 于是引理得证。
+\end{proof}
+
+接下来，我们证明一个关于拓扑空间的（Krull）维数的结论。我们来回忆一下，拓扑空间的（Krull）维数指的是该拓扑空间的不相同的（指的是链中都是真包含关系$\supsetneq$）不可约闭子集链的上确界。
+
+\begin{lemma} \label{irreudicible closed subset}
+设$k$为一个域，$X$为$n$维仿射空间$\mathbb{A}^n_k$的一个非空不可约闭子集。设$X$的维数等于$d$，满足$d \geqslant 0$。那么$X$没有维数等于$d$的非平凡闭子集。
+\end{lemma}
+\begin{proof}
+我们用反证法。假设$X$有一个维数等于$d$的非平凡闭子集$X'$。由维数的定义，存在$X'$的一个不可约闭子集链
+\begin{equation}
+X' = X_0 \supsetneq X_1 \supsetneq \cdots \supsetneq X_d.
+\end{equation}
+那么我们自然会有如下的$X$的不可约闭子集链
+\begin{equation}
+X \supsetneq X_0 \supsetneq X_1 \supsetneq \cdots \supsetneq X_d.
+\end{equation}
+由定义，$X$的维数至少是$d+1$，这样就导致了矛盾。
+\end{proof}
+
+我们需要下面这个关于仿射概形的相交的引理。
+\begin{lemma} \label{intersection with a hyperplane}
+设$k$为一个域，$X$为$n$维仿射空间$\mathbb{A}^n_{k} = \spec \left(k[T_1,\ldots,T_n]\right)$的一个不可约闭子概型。设$X$的维数等于$d$，满足$1 \leqslant d \leqslant n-1.$ 那么存在一个指标$\alpha \in \{1,\ldots,n\}$，使得对任意的$a \in k$，由方程$T_{\alpha} = a$定义的超曲面都是与$X$正常相交的。
+\end{lemma}
+\begin{proof}
+对于指标$\alpha \in \{1,\ldots,n\}$以及$a \in k$，我们记由方程$T_{\alpha} = a$给出的超平面为$H(T_{\alpha} = a)$。由参考文献~\inlinecite{SerreLocAlg}第III章的 Proposition 17，对任意的指标$\alpha \in \{1,\ldots,n\}$以及任意的$a \in k$有
+\begin{equation}
+\dim(X\cap H(T_{\alpha}=a)) \geqslant d+n-1-n = d-1.
+\end{equation}
+又由参考文献~\inlinecite{LiuQing}第2章的Proposition 5.5 (a)，我们有
+\begin{equation}
+\dim(X\cap H(T_{\alpha}=a)) \leqslant \dim(X) = d.
+\end{equation}
+假设对所有的指标$\alpha \in \{1,\ldots,n\}$我们总能找到$a \in k$，使得$X \cap H(T_\alpha=a)$不是正常相交的，那么由定义\ref{definition of degree of affine scheme}直接有$\dim(X\cap H(T_{\alpha} = a)) = d$。
+
+集合$X\cap H(T_{\alpha} = a)$是超曲面$X$以及超平面$H(T_{\alpha} = a)$的闭子集。由引理\ref{irreudicible closed subset}知，由于$X$是一个维数等于$d$的不可约概型，因此$X$中不存在维数等于$d$的非平凡闭子集。于是，由$\dim(X\cap H(T_{\alpha} = a)) = d$，我们能得到$X = X\cap H(T_{\alpha} = a)$，故
+\begin{equation}
+X \subseteq H(T_{\alpha} = a).
+\end{equation}
+对于每个指标$\alpha \in \{1,\ldots,n\}$，我们都取定$k$中满足上式的一个元素，记作$a_{\alpha}$。于是，我们有
+\begin{equation}
+X \subseteq \; H(T_1=a_1) \cap \cdots \cap H(T_n=a_n)
+\end{equation}
+概型$H(T_1=a_1) \cap \cdots \cap H(T_n=a_n)$是$n$维仿射空间$\mathbb{A}^n_{k}$的一个有理点，其坐标为$(a_1,\ldots,a_n)$。所以我们有
+$$X\subseteq (a_0,\ldots,a_n).$$
+这与$d \geqslant 1$是矛盾的。因此我们之前做的假设：对所有的指标$\alpha \in \{1,\ldots,n\}$总能找到$a \in k$，使得$X \cap H(T_\alpha=a)$不是正常相交，是不成立的。引理得证。
+\end{proof}
+
+我们还需要一个关于仿射概形上整点计数的结果。为此，我们先介绍$\mathbb{Q}$上概型的整点（$\mathbb{Z}$-点）的定义。令$\phi: X \hookrightarrow \mathbb{A}^n_{\mathbb{Q}}$ 为$\mathbb{A}^n_{\mathbb{Q}}$的任意一个仿射子概形，我们有如下的交换图表:
+\begin{equation}
+\begin{tikzcd}[arrows = {-Stealth}]
+X \arrow[r, hookrightarrow, "\phi"] & \mathbb{A}^n_{\mathbb{Q}} \arrow[r, "\pi"] \arrow[d, "i"'] \arrow[dr, phantom, "\square"] & \mathbb{A}^n_{\mathbb{Z}} \arrow[d] \\
+& \spec\mathbb{Q} \arrow[r] & \spec\mathbb{Z}
+\end{tikzcd}
+\end{equation}
+% $$\xymatrix{
+% X \ar@{^{(}->}^{\phi}[r] & \mathbb{A}^n_{\mathbb{Q}} \ar[r]^{\pi} \ar[d] \ar@{}|-{\square}[dr] & \mathbb{A}^n_{\mathbb{Z}} \ar[d] \\
+% & \spec\mathbb{Q} \ar[r] & \spec\mathbb{Z}
+% }$$
+\begin{definition} \label{Z-point of a Q-scheme}
+我们记集合$X_{\phi}(\mathbb{Z})$为集合$X(\mathbb{Q})$由如下点组成的子集合：将$\xi \in X(\mathbb{Q})$视作是一个$\mathbb{Q}$-态射$\xi: \spec\mathbb{Q}\to X$（更准确的说是$i\circ\phi$的一个截影），而且$\xi$与浸入$\phi: X \hookrightarrow \mathbb{A}^n_{\mathbb{Q}}$的复合
+\begin{equation}
+\phi\circ\xi: \spec\mathbb{Q} \longrightarrow \mathbb{A}^n_{\mathbb{Q}}
+\end{equation}
+给出了$\mathbb{A}^n_{\mathbb{Z}}$的一个$\mathbb{Z}$-点。换而言之，我们定义
+\begin{equation}
+X_{\phi}(\mathbb{Z}) = X(\mathbb{Q}) \cap \pi^{-1}(\mathbb{A}^n_{\mathbb{Z}}(\mathbb{Z}))
+\end{equation}
+如果不造成混淆的话，我们将$X_{\phi}(\mathbb{Z})$简写作$X(\mathbb{Z})$。
+\end{definition}
+
+\begin{lemma} \label{affine cone lemma}
+对任意$B \geqslant 1$，以及$\mathbb{A}^{n+1}_{\mathbb{Q}}$的任一子概形$X$，令
+\begin{equation} \label{M(X;B)}
+M(X;B) = \left\{ \xi = (\xi_0,\ldots,\xi_n) \in X(\mathbb{Z}) \ \middle|\ \max_{0 \leqslant i \leqslant n} \{|\xi_i|\} \leqslant B \right\}.
+\end{equation}
+令$\delta \geqslant 1$，$d \geqslant 1$以及$n \geqslant 1$为正整数，那么如下的估计
+\begin{equation} \label{estimate of M(X;B)}
+\#M(X;B) \ll_{n} \delta B^{d}, \quad B \geqslant 1
+\end{equation}
+对$\mathbb{A}^{n+1}_{\mathbb{Q}}$中的所有维数等于$d$，次数等于$\delta$的纯维数的闭子概型$X$都成立。
+\end{lemma}
+
+\begin{proof}
+不妨设$X$是不可约的。因为如果$X$是可约的，则可以单独考虑每个不可约分支，再求和即可。
+
+我们将对$X$的维数$d$进行归纳证明。当$d=1$时，由引理\ref{intersection with a hyperplane}知，存在指标$\alpha \in \{1,\ldots,n\}$使得$X$ 与所有由方程$T_{\alpha} = a$定义的超平面正常相交，$a$取遍有理数域$\mathbb{Q}$。我们把这样的超平面记作$H_a$，那么有
+\begin{equation}
+M(X;B) = \bigcup_{\begin{subarray}{c} a \in \mathbb{Z} \\ |a| \leqslant B \end{subarray}} M(X \cap H_a;B), \quad B \geqslant 1.
+\end{equation}
+又由引理\ref{degree of affine variety}，每一个集合$M(X\cap H_a;B)$都包含至多$\delta$个闭点。再结合绝对值小于等于$B$的整数至多有$2B+1$个的事实，我们有不等式
+\begin{equation}
+M(X;B) \leqslant \delta(2B+1), \quad B \geqslant 1.
+\end{equation}
+于是，$d=1$的情况得到了证明。
+
+令$d \geqslant 2$，假设对于$d-1$的情况，命题的结论正确。与$d=1$的情况一样，由引理\ref{intersection with a hyperplane}可知，我们能找到下标$\alpha \in \{0,\ldots,n\}$使得$X$与所有的超平面$T_{\alpha} = a$正常相交，$a$取遍有理数域$\mathbb{Q}$。我们把这样的超平面记作$H_a$，那么我们同样地会有
+\begin{equation} \label{intersected by hyperplane}
+M(X;B) = \bigcup_{\begin{subarray}{c} a \in \mathbb{Z} \\ |a| \leqslant B \end{subarray}} M(X\cap H_a;B), \quad B \geqslant 1.
+\end{equation}
+
+对于每一个整数$a \in \mathbb{Z}$，概型$X \cap H_a$的维数至多等于$d-1$。由引理\ref{degree of affine variety}，我们有下列不等式
+\begin{equation}
+\delta = \deg(X) \geqslant \sum_{Z\in \mathcal{C}(X \cap H_a)} \deg(Z),
+\end{equation}
+其中$\mathcal{C}(X \cap H_a)$是$X \cap H_a$所有不可约分支组成的集合。
+
+由归纳假设，对于所有的$Z\in \mathcal{C}(X \cap H_a)$，我们会有
+\begin{equation}
+\#M(Z;B) \ll_{n} \deg(Z) B^{d-1}, \quad B \geqslant 1.
+\end{equation}
+从而有
+\begin{equation}
+\#M(X\cap H_a;B) \ll_{n} \delta B^{d-1}, \quad B \geqslant 1.
+\end{equation}
+另一方面，由式\eqref{intersected by hyperplane}我们又有
+\begin{equation}
+\#M(X;B) \leqslant \sum_{\begin{subarray}{c} a \in \mathbb{Z} \\ |a| \leqslant B \end{subarray}} \#M(X \cap H_a;B), \quad B \geqslant 1.
+\end{equation}
+由于绝对值小于等于$B$的整数至多有$2B+1$个，由归纳假设，命题得证。
+\end{proof}
+
+接下来，我们将利用引理\ref{affine cone lemma}来证明定理\ref{refined Schanuel estimate for rational points}。证明的主要思想来源于参考文献~\inlinecite{Browning-PM277}的 Theorem 3.1 的证明。
+
+\begin{proof} [定理\ref{refined Schanuel estimate for rational points}的证明]
+令$\hat{X}$为概型$X$在$\mathbb{A}^{n+1}_{\mathbb{Q}}$中的仿射锥。那么我们会有
+\begin{equation}
+N(X;B) \leqslant \#M(\hat{X};B), \quad B \geqslant 1,
+\end{equation}
+上式中的$M(\hat{X};B)$由引理\ref{affine cone lemma}中的式\label{M(X;B)}同样地定义。由参考文献~\inlinecite{GTM52}第I章的习题 2.10知，概型$\hat{X}$是维数纯的，其维数等于$d+1$。
+
+令$\overline{X}$为$\hat{X}$在$\mathbb{P}^{n+1}_{\mathbb{Q}}$中的射影闭包。假设$X = \proj \left( \mathbb{Q}[T_0,\ldots,T_n]/\mathfrak{a}_X \right)$，$\overline{X} = \proj \left( \mathbb{Q}[T_0,\ldots,T_{n+1}]/\mathfrak{a}_{\overline{X}} \right)$。由参考文献~\inlinecite{EGAII}的(8.3.1.1)以及(8.3.1.2)，我们有$\mathbb{Q}$-线性空间的同构
+\begin{equation}
+\mathbb{Q}[T_0,\ldots,T_{n+1}]/\mathfrak{a}_{\overline{X}} \cong \left( \mathbb{Q}[T_0,\ldots,T_n]/\mathfrak{a}_X \right) \otimes_{\mathbb{Q}} \mathbb{Q}[T_{n+1}].
+\end{equation}
+
+有参考文献~\inlinecite{Joins}的 Corollary 1.1.13可知，$\overline{X}$的 Hilbert 函数是$X$的 Hilbert 函数与$\proj \left( \mathbb{Q}[T_{n+1}] \right)$的 Hilbert 函数的卷积。由~\inlinecite{Joins}的 Lemma 1.1.12，再结合定义\ref{definition of degree of affine scheme}，我们有
+\begin{equation}
+\deg(\hat{X})=\deg(\overline{X}) = \deg(X) = \delta
+\end{equation}
+由引理\ref{affine cone lemma}的结论，式\eqref{estimate of M(X;B)}，我们有
+\begin{equation}
+N(X;B) \leqslant \#M(\hat{X};B) \ll_{n} \delta B^{d+1}.
+\end{equation}
+于是定理得证。
+\end{proof}
+
+% 在这个小节中，我们要考虑一个一般的射影算术簇上的代数点的计数问题。对于这个问题，我们可以得到类似于上一小节讨论过的$n$维射影空间$\mathbb{P}^n$上的估计。具体来说，有下面的结论
+% \begin{theorem} \label{refined Schanuel estimate}
+% 设闭子概型$\phi: X \hookrightarrow \mathbb P^n_K$为$n$维射影空间$\mathbb P^n_K$的局部完全交子概形。设$X$的维数等于$d$，又设$X$相对于泛丛$\mathcal{O}_{\mathbb P^n_K}(1)$的次数为$\delta$（详细定义参见\S \ref{subsection_intersection_theory}）。那么有
+% \begin{equation}
+% N(X;D,B) \ll_D \delta N(\mathbb P^d_K;D,B),
+% \end{equation}
+% % \begin{equation}
+% % N(X;D,B) \leqslant \delta \left( \sum_{M=1}^DN(\mathbb P^d_K;M,B)+1\right) \ll_D \delta N(\mathbb P^d_K;D,B),
+% % \end{equation}
+% 其中$N(X;D,B)$定义由式\eqref{N(X;D,B)}给出。
+% \end{theorem}
+
+% % 从范畴与函子的角度来理解，令$\underline{Schemes}$表示概型的范畴，$\underline{Sets}$表示集合的范畴，那么
+% % $$\mathbb P^n: \underline{Schemes} \rightarrow \underline{Sets}, ~~ S \mapsto \left\{ \mathcal{O}_S^{n+1} \text{ 秩1的局部自由商模} \right\}$$
+% % 是一个可表函子，由泛对象$(\mathbb P^n, \mathcal{O}_{\mathbb P^n_K}(1))$表示。详见~\inlinecite{FGA}的第二章。
+
+% 我们首先回忆一下局部完全交的概念及其性质。
+
+% \begin{definition} \label{l.c.i. subscheme}
+% 设$X$是某个域$k$上的非奇异簇$Y$的一个闭子概型。称$X$是$Y$中的一个局部完全交子概形，若$X$在$Y$中的理想层$\mathscr{I}_X$在每一点处可以局部地由$\codim(X,Y)$个元素生成，其中$\codim(X,Y)$表示$X$在$Y$中的余维数。
+% \end{definition}
+
+% 在我们考虑的问题中，$Y$便是最简单的非奇异簇——$n$维射影空间$\mathbb{P}^n$。
+
+% \begin{remark}[\inlinecite{Fulton}, B.7.6] \label{l.c.i. morphism}
+% 更一般地，称概型的态射$f: X \longrightarrow Y$为余维数等于$r$的局部完全交态射，如果$f$有分解
+% \begin{equation}
+% \begin{tikzcd}
+% X \arrow[r, hookrightarrow, "g"] & P \arrow[r, "h"] & Y
+% \end{tikzcd}
+% \end{equation}
+% 其中$g: X \hookrightarrow P$是一个余维数等于$e$的正则嵌入，$h: P \to Y$是一个相对维数等于$r+e$的光滑态射。
+% \end{remark}
+
+% \begin{remark}
+% 局部完全交的概念是概型$X$的内在性质，与它嵌入的非奇异簇是无关的。如果$X$是一个局部完全交，那么$X$是 Cohen-Macaulay 的，也就是说$X$的所有的局部环都是 Cohen-Macaulay 的。 Cohen-Macaulay 环的定义如下。
+% \end{remark}
+
+% \begin{definition}
+% 对于一个环$A$以及它上面的模$M$，$A$的元素序列$a_1,\cdots,a_r$被称为对$M$的正则序列，若
+% \begin{itemize}
+% \item $a_1$不是$M$的零因子，
+% \item $a_i$不是$M / (a_1,\cdots,a_{i-1})M$的零因子，$1\leqslant i \leqslant r.$
+% \end{itemize}
+% 若$A$为 Noether 局部环，有极大理想$\mathfrak{m}$。模$M$的正则序列$a_1,\cdots,a_r$，且所有$a_i\in \mathfrak{m}$，的最大长度被称为$M$的深度，记作$\operatorname{depth}(M)$。称 Noether 局部环$A$是 Cohen-Macaulay 的，如果$\operatorname{depth}(A) = \dim(A)$。
+% \end{definition}
+
+% 下面，我们来进行定理的证明。
+
+% \begin{proof} [定理\ref{refined Schanuel estimate}的证明]
+% 为了证明的简化，我们假设$\mathbb P^n_K$的局部完全交子概型$X$由齐次多项式$f_1(T_0,\cdots,T_n),\cdots,f_{n-d}(T_0,\cdots,T_n)$定义，这些齐次多项式次数分别为$\delta_1,\cdots,\delta_{n-d}$。
+
+% 对概型$X$的每个闭点$x=[\xi_0:\cdots:\xi_n]\in X$，我们把它的射影坐标分为两部分来考虑：令$x_1=[\xi_0:\cdots:\xi_d]$，$x_2=[\xi_{d+1}:\cdots:\xi_n]$。要注意的是$\xi_0,\cdots,\xi_d$或者$\xi_{d+1},\cdots,\xi_n$可能同时为$0$（但这两种情况不会同时发生），因此我们并不要求$x_1,x_2$都是某个射影空间中点的射影坐标。
+
+% 如果$x_1$的坐标$\xi_0,\cdots,\xi_d$全部都等于$0$，那么$x_2$的坐标$\xi_{d+1},\cdots,\xi_n$便不会同时为$0$。于是在这种情况下，我们可以把$x_2$视为$n-d-1$维射影空间中的闭点，即$x_2\in\mathbb P^{n-d-1}_K(\overline K)$。由于$X$是一个局部完全交，我们可以对变量$T_0,\cdots,T_n$进行重排，使得齐次多项式方程组
+% \begin{equation}
+% \begin{cases}
+% f_1(0,\cdots,0,T_{d+1},\cdots,T_n)=0 \\
+% \phantom{hehe} \vdots \\
+% f_{n-d}(0,\cdots,0,T_{d+1},\cdots,T_n)=0
+% \end{cases}
+% \end{equation}
+% 有至多$\delta=\delta_1\cdots\delta_{n-d}$个解。那么在这种情况下，$X$上至多有$\delta$个这样的闭点。
+
+% 如果$x_1$的坐标$\xi_0,\cdots,\xi_d$不全部等于$0$，那么$x_1=[\xi_0:\cdots:\xi_d]$就定义了$\mathbb P^d_K$中的一个闭点。在这种情况下，如果$x\in S(X;D,B)$，由定义\ref{abs log height}我们直接有高度的关系$h(x)\geqslant h(x_1)$，于是
+% \begin{equation}
+% x_1\in \bigcup\limits_{M=1}^DS(\mathbb P^d_K;M,B).
+% \end{equation}
+% 同时，由射影空间中闭点的定义域的定义式\eqref{field of definition}我们立即有$K(x_1)\subseteq K(\xi)$。由于$X$是一个局部完全交，我们同样地可以对变量$T_0,\cdots,T_n$进行重排，使得对于每个固定的$x_1\in \bigcup\limits_{M=1}^DS(\mathbb P^d_K;M,B)$，多项式（不一定齐次）方程组
+% \begin{equation}
+% \begin{cases}
+% f_1(\xi_1,\cdots,\xi_d,T_{d+1},\cdots,T_n)=0 \\
+% \phantom{hehe} \vdots \\
+% f_{n-d}(\xi_1,\cdots,\xi_d,T_{d+1},\cdots,T_n)=0
+% \end{cases}
+% \end{equation}
+% 有至多$\delta=\delta_1\cdots\delta_{n-d}$个解。于是，集合$S(X;D,B)$中至多有$\delta$个点可以作为这个固定的$x_1$的提升。命题得证。
+% \end{proof}
+
+% \begin{remark} \label{degree 1 estimate}
+% 定理\ref{refined Schanuel estimate}的证明可以参照T. D. Browning 书~\inlinecite{Browning-PM277}的 Theorem 3.1 的证明。在定理\ref{refined Schanuel estimate}中，如果我们考虑$D=1$，也就是有理点，的情况，那么由引理\ref{finiteness of A(n,B)}以及引理\ref{upper bound of A(n,B)}，有
+% \begin{equation}
+% N(X;B) \leqslant \delta\left(C_0(d,K)B^{d+1}+1\right) \ll_{n,K} \delta B^{d+1},
+% \end{equation}
+% 其中$C_0(d,K)$是在式\eqref{C_0(n,K)}中所定义的常数。事实上，当$\delta = 1$，也就是说$X$是由线性方程组定义出来的时候，$N(X;B)$的表达式中$B$的次数可以达到上式中的上界$d+1$。
+% \end{remark}
+
+% \begin{remark}
+% 设$\phi: X \hookrightarrow \mathbb P^n_K$满足定理\ref{refined Schanuel estimate}中一样的条件。设$D\in\mathbb N^+$，$B\in\mathbb R^+$。对比定义式\eqref{S(X;D,B)}以及\eqref{N(X;D,B)}，如果我们转而考虑集合
+% \begin{equation}
+% S'(X;D,B) = \left\{\xi\in X(\overline K)|\;[K(\xi):K] \leqslant D, \exp\left([K(\xi):K]h(\xi)\right)\leqslant B\right\},
+% \end{equation}
+% 并令
+% \begin{equation}
+% N'(X;D,B) = \#S'(X;D,B),
+% \end{equation}
+% 那么我们会有
+% $$S'(X;1,B)=S(X;1,B)=S(X;B),$$
+% 而且由定理\ref{refined Schanuel estimate}，我们直接有
+% \begin{equation}
+% N'(X;D,B) \ll_D \delta N'(\mathbb P^d;D,B).
+% % N'(X;D,B) \leqslant \delta\left(N'(\mathbb P^d_K;D,B)+1\right) \ll_D \delta N'(\mathbb P^d;D,B).
+% \end{equation}
+% \end{remark}
+
+% \begin{theorem}
+% \label{refined Schanuel estimate}
+% 设$\phi: X \hookrightarrow \mathbb P^n_K$为$n$维射影空间$\mathbb P^n_K$的一个既约的闭子概型，有纯的维数$d$且其相对于泛丛$\mathcal{O}_{\mathbb P^n_K}(1)$的次数为$\delta$（详细定义参见\S \ref{subsection_intersection_theory}）。那么有
+% $$N(X;D,B)\leqslant\sqrt{n+1}\delta N(\mathbb P^d_K;D,B),$$
+% 其中$N(X;D,B)$定义由式\eqref{N(X;D,B)}给出。
+% \end{theorem}
+
+% 为了证明以上的定理~\ref{refined Schanuel estimate}，我们需要用 Arakelov 理论把射影空间中点的高度的理论重新建立一遍。
+
+% 考虑$\spec\mathcal{O}_K$上的Hermitian的向量丛$\overline{\mathcal{O}}_K^{\oplus(n+1)}=(\mathcal{O}_K^{\oplus{n+1}},(\|\ndot\|_v)_{v\in M_{K,\infty}})$。在每个无限位点$v\in M_{K,\infty}$处，这个向量丛被赋予通常的$\ell^2$-范数。我们将$\mathbb P^n_K=\mathbb P(\mathcal{O}_K^{\oplus{n+1}})$视作所有秩为1的$\mathcal{O}_K^{\oplus{n+1}}$的射影子模的分类空间，这些射影子模在每个无限位点$v\in M_{K,\infty}$处还有诱导的范数。我们记$\overline{\mathcal{O}(1)}=(\mathcal{O}(1),(\|\ndot\|_v)_{v\in M_{K,\infty}})$为，在每个无限位点$v\in M_{K,\infty}$处被赋予了诱导的Fubini-Study范数的，射影空间$\mathbb P^n_K$上的泛丛。
+
+% 假设$\xi\in \mathbb P^n_K(\overline K)$为一个闭点，$L=K(\xi)$为这个点的定义域。令$\mathcal P_\xi$为$\mathbb P^n_{\mathcal{O}_K}$上面的对应于闭点$\xi$的$\mathcal{O}_L$-点。我们把点$\xi$的 Arakelov 高度用下式定义
+% $$h_{\overline{\mathcal{O}(1)}}(\xi)=\adeg_n(\mathcal P_\xi^*\overline{\mathcal{O}(1)}),$$
+% 其中的$\adeg_n(\ndot)$为赋范向量丛的归一化的 Arakelov 度数。特别地，如果闭点$\xi$的射影坐标为$[x_0:\cdots:x_n]$，那么
+% % \begin{equation*}
+% % h_{\overline{\mathcal{O}(1)}}(\xi) = \sum_{v\in M_{L,f}} \frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]} \log\max_{0\leqslant i\leqslant n}\{|x_i|_v\} + \sum_{v\in M_{L,\infty}} \frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]} \log\sqrt{|x_0|_v^2+\cdots+|x_n|^2_v}.
+% % \end{equation*}
+% \begin{eqnarray*}
+% h_{\overline{\mathcal{O}(1)}}(\xi)&=&\sum_{v\in M_{L,f}}\frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]}\log\max_{0\leqslant i\leqslant n}\{|x_i|_v\}\\
+% & &+\sum_{v\in M_{L,\infty}}\frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]}\log\sqrt{|x_0|_v^2+\cdots+|x_n|^2_v}.
+% \end{eqnarray*}
+% 更多的细节可见参考文献~\inlinecite{Moriwaki-book}的Proposition 9.10。
+
+% 由定义，我们有
+% \begin{equation} \label{compare heights}
+% h(\xi)\leqslant h_{\overline{\mathcal{O}(1)}}(\xi)\leqslant h(\xi)+\frac{1}{2}\log(n+1).
+% \end{equation}
+% 上式表明，如果我们不关心依赖于$n$的常数，那么当考虑代数点或者有理点计数的问题的时候，可以把我们要考察的集合的定义式\eqref{S(X;D,B)}中的绝对对数高度替换为 Arakelov 高度$h_{\overline{\mathcal{O}(1)}}(\ndot)$。
+
+% 设$\phi:X\hookrightarrow\mathbb P^n_K$为一个维数为$d$的算术簇。下面我们将使用参考文献~\inlinecite{Faltings91}的\S2, a)中的方法，构造一个线性的投射。设$E$为一个$K$-线性空间，$e\in E$为线性空间$E$中的一个向量，我们把$E$的对偶空间记$E^\vee$，把$E^\vee$中典范地对应于向量$e$的元素记作$e^\vee$。容易看出集合$(\mathbb P^n_K\smallsetminus X)(K)$是非空的。任取这个非空集合中的一个元素$\eta=[\eta_0:\cdots:\eta_n]\in(\mathbb P^n_K\smallsetminus X)(K)$，并令$\ell_0,\cdots,\ell_{n-1}\in\left({\overline{\mathcal{O}}}_K^{\oplus(n+1)}\right)^\vee$为$K$线性方程$\eta^\vee(x)=0$解空间的一组基。令$\pi_n:\mathbb P^n_K\rightarrow\mathbb P^{n-1}_K$为把点$\xi\in\mathbb P^n_K(\overline K)$映射到点$[\ell_0(\xi):\cdots:\ell_{n-1}(\xi)]$的双有理映射。由定义，映射$\pi_n\circ\phi$是一个从$X$映到$\mathbb P^{n-1}_K$的$K$-态射，我们把它记为$\phi_{n-1}$。易知有$\dim(\phi_{n-1}(X))=d$。因此集合$(\mathbb P^{n-1}_K\smallsetminus \phi_{n-1}(X))(K)$也是非空的，若$n-1>d$。于是我们可以对$\phi_{n-1}:X\rightarrow\mathbb P^{n-1}_K$重复我们一开始对$\phi:X\hookrightarrow\mathbb P^n_K$进行的构造，从而得到$\phi_{n-2}:X\rightarrow\mathbb P^{n-2}_K$，进而一直到我们构造完$\phi_d$。于是我们有如下的交换图
+% \begin{equation}
+% \label{linear projection}
+% \begin{tikzcd}[column sep = large, row sep = large]
+% \relax\mathbb P^n_K \arrow[r, dashrightarrow, "\pi_n"] & \mathbb P^{n-1}_K \arrow[r, dashrightarrow, "\pi_{n-1}"] & \cdots \arrow[r, dashrightarrow, "\pi_{d+1}"] & \mathbb P^d_K \\
+% X \arrow[u, hookrightarrow, "\phi"] \arrow[ur, "\phi_{n-1}"] \arrow[urrr, "\phi_{d}"'] & & &.
+% \end{tikzcd}
+% \end{equation}
+% % \begin{equation}
+% % \label{linear projection}
+% % \xymatrixcolsep{3pc}
+% % \xymatrix{
+% % \relax\mathbb P^n_K \ar@{-->}[r]^{\pi_n} & \mathbb P^{n-1}_K \ar@{-->}[r]^{\pi_{n-1}} & \cdots \ar@{-->}[r]^{\pi_{d+1}} & \mathbb P^d_K \\ X\ar@{^{(}->}[u]^{\phi}\ar[ur]^{\phi_{n-1}}\ar[urrr]_{\phi_{d}}& & &.
+% % }
+% % \end{equation}
+
+% 由以上的构造可知，我们得到的$K$-态射$\phi_d:X\rightarrow\mathbb P^d_K$是一个由$K$-线性投射$\mathbb P^n_K\dashrightarrow\mathbb P^d_K$诱导出来的度数为$\delta$的覆盖映射。更多的细节可见参考文献~\inlinecite{Faltings91}的\S2, a)。
+
+% \begin{proof}[定理\ref{refined Schanuel estimate}的证明]
+% 首先，我们可以假设概型$X$是不可约的。因为如果这种情形得到了证明的话，那么一般的情形，就可以通过把概型的不可约分支上得到的结论合起来，得出我们想要的结论。
+
+% 所以我们现在假设$X$是$n$维射影空间$\mathbb P^n_K$的一个整的（既约且不可约的）闭子概型，其闭子概型的结构由闭浸入$\phi:X \hookrightarrow \mathbb P^n_K$给出。假设$X$的维数等于$d$相对于泛丛$\mathcal{O}_{\mathbb P^n_K}(1)$的次数为$\delta$。由之前的构造（交换图表\eqref{linear projection}），我们可以由$K$-线性投射$\mathbb P^n_K\dashrightarrow\mathbb P^d_K$诱导出一个度数等于$\delta$的覆盖映射
+% $$\phi_d:X\rightarrow \mathbb P^d_K.$$
+% 由参考文献~\inlinecite{BGS94}\S 3.3.2的不等式 (3.3.7)，对于概型$X$的所有$K$-有理的闭点$\xi\in X(K)$，有
+% $$h_{\overline{\mathcal{O}(1)}}(\xi)\geqslant h_{\overline{\mathcal{O}(1)}}(\phi_d(\xi)).$$
+% 需要注意的是，上式的两个高度函数分别是在$n$维射影空间$\mathbb P^n_K$和$d$维射影空间$\mathbb P^d_K$上定义的。令
+% $$N'(X;D,B) = \#\left\{\xi\in X(K) \ \middle|\ [K(\xi):K] = D, \exp\left([K(\xi):\mathbb{Q}]h_{\overline{\mathcal{O}(1)}}(\xi)\right) \leqslant B\right\}.$$
+% 那么由不等式\eqref{compare heights}，我们有
+% $$N(X;D,B) \leqslant N'(X;D,B) \leqslant \delta N'(\mathbb P^d_K;D,B) \leqslant \sqrt{n+1} \delta N(\mathbb P^d_K;D,B).$$
+% 这样，我们便得到了想要的上界估计。
+% \end{proof}
+
+% \begin{remark}
+% \label{degree 1 estimate}
+% 在定理\ref{refined Schanuel estimate}中，如果我们考虑$D=1$的特殊情况，那么由引理ref{finiteness of A(n,B)}以及引理\ref{upper bound of A(n,B)}，有
+% $$N(X;B)\leqslant\sqrt{n+1}\delta C_0(d,K)B^{d+1}\ll_{n,K}\delta B^{d+1},$$
+% 其中的常数$C_0(d,K)$由前文的式\eqref{C_0(n,K)}给出。事实上，$N(X;B)$的估计式中B的次数
+
+% In fact, the exponent of $B$ in $N(X;B)$ above can reach the upper bound $d+1$ when $\delta=1$.
+% \end{remark}
+
+\section{次数严格大于1的算术簇}
+\label{HB conjecture}
+令$X\hookrightarrow\mathbb{P}^n_K$为数域$K$上的一个射影簇，设其维数等于$d$，次数等于$\delta$。在定理\ref{refined Schanuel estimate for rational points}中，我们给出了我们所考虑的问题当次数$\delta = 1$以及$K = \mathbb{Q}$时的最优估计。事实上，达到最优估计的时候，$X$是同构于$\mathbb{P}^d_{\mathbb{Q}}$的。
+
+对于次数$\delta$大于等于$2$的情况，D. R. Heath-Brown 在他的文章~\inlinecite{Heath-Brown}的给出了一个猜想（该文章的Conjecture 2），说的是，如果$\delta \geqslant 3$并且$n \geqslant 4$，那么对任意的$\epsilon > 0$，都有
+\begin{equation}
+\label{strong HB conjecture}
+N(X;B) \ll_{n,\epsilon,K} B^{d+\epsilon},
+\end{equation}
+或者一个更弱一些的结论
+\begin{equation}
+\label{weak HB conjecture}
+N(X;B) \ll_{n,\epsilon,K,\delta} B^{d+\epsilon}.
+\end{equation}
+Heath-Brown 证明了$\delta=2$的情况。为了完全解决这一猜想，T. Browning, D. R. Heath-Brown 和 P. Salberger 以此为主题发表了一系列的文章：~\inlinecite{Browning_Heath05, Browning_Heath06I, Browning_Heath06II, Bro_HeathB_Salb, Salberger07}。参考文献~\inlinecite{Browning-PM277}的第三章是这个问题的一个综述。为了得到这些结果，在他们之前的这些工作中，他们对都概型$X$强加了一些技术性的条件。例如在文章~\inlinecite{Salberger07}中，P. Salberger在加了概型$X$有有限多个余维数为$1$的线性集以及$X$的次数$\delta\geqslant4$的两个技术性条件的情况下，证明了 Heath-Brown 在~\inlinecite{Heath-Brown}的提出的这一猜想。
+
+当我们考虑猜想\eqref{weak HB conjecture}时，考虑估计式中概型$X$的次数$\delta$也是很重要的事情。这个估计将对我们所考虑的重数计数问题很有用处，在本文之后的章节\S\ref{counting multiplicity}会有更加详细的解释。
+

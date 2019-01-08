@@ -1,0 +1,129 @@
+\chapter{引论}
+\label{introduction}
+
+\section{问题的引入}
+\label{history}
+
+在本篇论文中，我们将考虑射影概型上代数点（或更简单一些，有理点）的重数计数的问题。具体来说，设$k$为一个域，$X$为$\spec k$上的一个射影概型，考虑以下形式和的估计
+\begin{equation}
+\sum_{\xi \in S(X(\overline{k}))} f\left(\mu_{\xi}(X)\right),
+\end{equation}
+其中$S(X(\overline{k}))$是$X(\overline{k})$的满足某些条件（具体的条件在以后的章节中会明确地给出）的子集；$f$是一个把正整数集映射到非负整数集的增函数，我们称其为计数函数；$\mu_{\xi}(X)$是点$\xi$在射影概型$X$里的重数。此重数是由射影概型$X$在点$\xi$处的局部 Hilbert-Samuel 函数给出的，其定义可以简述如下，更多更详细的内容将在随后的章节\ref{chapter:multiplicity}中给出。
+
+我们称 Noether 概型$X$是一个维数纯的概型（或称$X$有纯的维数），如果$X$所有的不可约分支有相同的维数。设$X$是一个维数纯的概型，$\xi \in X$为一个点。我们考虑局部环$\mathcal{O}_{X,\xi}$，并记它的极大理想为$\mathfrak{m}_{\xi}$，剩余类域为$\kappa(\xi)$。我们定义概型$X$在点$\xi$处的局部 Hilbert-Samuel 函数为
+\begin{equation}
+H_{\xi}(m) = \dim_{\kappa(\xi)} \left(\mathfrak{m}_{\xi}^m/\mathfrak{m}_{\xi}^{m+1}\right),
+\end{equation}
+其中$m \in \mathbb{N}^+$。设$\dim(\mathcal{O}_{X,\xi}) = t \geqslant 1$，那么存在次数等于$t-1$的多项式$P_{\xi}(T)$使得当$m$充分大时，有$H_{\xi}(m) = P_{\xi}(m)$。更进一步，多项式$P_{\xi}(m)$可以写为
+\begin{equation} \label{local Hilbert-Samuel}
+P_{\xi}(m) = \mu_{\xi}(X) \frac{m^{t-1}}{(t-1)!} + o(m^{t-1}),
+\end{equation}
+其中$\mu_\xi(X)$是一个正整数。我们定义$\mu_\xi(X)$为点$\xi$在概型$X$里的重数。若$\dim(\mathcal{O}_{X,\xi}) = 0$，那么$\mathcal{O}_{X,\xi}$是一个局部 Artin 环，此时点$\xi$在概型$X$中的重数$\mu_{\xi}(X)$被定义作这个局部 Artin 环的长度。特别地，如果点$\xi$在$X$上是正则的，即$\mathcal{O}_{X,\xi}$是一个正则局部环，那么我们有$\mu_{\xi}(X) = 1.$
+
+若我们把计数函数$f$取为取值恒为$1$的常值函数，那么我们的问题就简化为了概型$X$的代数点，或者有理点计数这个经典的问题。迄今为止，这个问题已经有许多人做过了大量的研究，成果非常丰富。目前这个领域的研究也仍然是很活跃的。本文问题的研究，也需要大量地利用到关于这个经典问题的前人的成果。
+
+如果我们要求计数函数$f$非平凡，并且还满足$f(1) = 0$，那么这个问题就变成了一个关于概型$X$的奇点集的复杂度的问题。而事实上，本文在研究数域上射影超曲面上重数计数问题所采用的计数函数就是满足这一条件的函数。
+
+
+\section{已有的一些结果}
+设$X$是一个次数为$\delta$的既约的射影平面曲线，我们有
+\begin{equation} \label{intro-fulton-multiplicity}
+\sum\limits_{\xi\in X} \mu_{\xi}(X) \left(\mu_{\xi}(X)-1\right) \leqslant \delta(\delta-1).
+\end{equation}
+关于这个结果，具体可参阅参考文献~\inlinecite{Fulton2}第115页的习题5-22。证明的方法主要运用了相交理论中的 B\'ezout 定理。更进一步，设$g(X)$是曲线$X$的亏格，如果$X$是几何整的，那么我们有
+\begin{equation}
+g(X) \leqslant \dfrac{(\delta-1)(\delta-2)}{2} - \sum_{\xi \in X} \dfrac{\mu_{\xi}(X)\left(\mu_{\xi}(X)-1\right)}{2}.
+\end{equation}
+具体可以参阅参考文献~\inlinecite{Fulton2}201页的 Corollary 1。这是平面曲线的 Riemann-Roch 定理的一个推论。
+
+更一般地，令$X \hookrightarrow \mathbb{P}^n_k$为定义在一个代数闭的特征等于$0$的域$k$上的射影超曲面，并假设它的奇点集$X^{\mathrm{sing}}$的维数等于$0$。参考文献~\inlinecite{Laumon1975}的 Corollaire 4.2.1 的一个直接推论为
+\begin{equation}
+\sum_{\xi\in X} \mu_\xi(X)(\mu_{\xi}(X)-1)^{n-1} \leqslant \delta(\delta-1)^{n-1}.
+\end{equation}
+文献~\inlinecite{Laumon1975}的作者主要使用了Lefschetz束的方法。但是，这些结论有一定的局限性，例如奇点集维数为0这个条件，对于一个一般的计数问题来说，就太严格了。而且，一般地，以上不等式左边的求和是和基域$k$的选取有关的。
+
+一个比较新的结果是，在文章~\inlinecite{Liu-multiplicity}中（Th\'eor\`eme 5.1），刘春晖得到了有限域上的此类的结论。具体来讲，令$X \hookrightarrow \mathbb{P}^n_{\mathbb{F}_q}$为一个既约的射影超曲面，其中$\mathbb{F}_q$是元素个数等于$q$的有限域，$q$为某个素数的幂。设超曲面$X$的奇点集$X^{\mathrm{sing}}$的维数等于$s$，他证明了
+\begin{equation} \label{Liu equality}
+\sum_{\xi\in X(\mathbb{F}_q)} \mu_{\xi}(X)(\mu_\xi(X)-1)^{n-s-1}\ll_n\delta^{n-s}\max\{\delta-1,q\}^{s}.
+\end{equation}
+上式中的Vinogradov符号$\ll$具体定义如下：设$\Omega$和$P$为两个集合，$\widetilde{\Omega}$为$\Omega\times P$的一个子集。假设$f(x,y)$和$g(x,y)$定义在集合$\widetilde{\Omega}$上的实值函数，其中$x\in\Omega$，$y\in P$，那么记号
+\begin{equation}
+f(x,y) \ll_{y} g(x,y)
+\end{equation}
+指的是，存在定义在集合$P$上的非负函数$C(\ndot)$，对任意的$(x,y) \in \widetilde{\Omega}$满足如下不等式
+\begin{equation}
+|f(x,y)| \leqslant C(y)|g(x,y)|.
+\end{equation}
+此外，估计式\eqref{Liu equality}中$\delta$和$\max\{\delta-1,q\}$的阶都是最优的，文章~\inlinecite{Liu-multiplicity}也给出了相关的例子。值得一提的是，为了得到这个估计，刘春晖在~\inlinecite{Liu-multiplicity}的\S 2.1中新引入了相交树的概念与技术。这也将成为本文处理几何部分的关键技术之一。
+
+\section{主要结论}
+在本文中，我们将考虑一个与\eqref{Liu equality}类似的求和的估计，不同之处在于我们考虑的对象都是定义在数域上，而非有限域上的。具体来讲，这个求和是对射影超曲面上所有满足如下条件的代数点进行的：要求这些代数点的定义域相对于基域的扩张次数是一个固定值，而且这些代数点的高度低于某一个给定的界限。由 Northcott 性质（详见参考文献~\inlinecite{Hindry}的 Theorem B.2.3）可知，这些点构成的集合是一个有限集，所以这样的求和是有限项求和，总是有意义的。本文主要的定理（更详细、准确的叙述可见定理\ref{main theorem}）陈述如下
+\begin{theorem} \label{intro-main result}
+令$K$为一个数域，$n \geqslant 2$为一个正整数，$h(\ndot)$为$\mathbb P^n_K$上的绝对对数高度函数。对$\mathbb{P}^n_K$的任意闭子概型$X$，任意正整数$D \in \mathbb{N}^+$，以及实数$B \geqslant 1$，令
+\begin{equation}
+S(X;D,B) = \left\{ \xi\in X(\overline{K}) \ \middle|\ [K(\xi):K]=D, \exp\left([K(\xi): \mathbb{Q}] h(\xi)\right) \leqslant B \right\},
+\end{equation}
+设$\delta, s$为整数，且有$\delta \geqslant 1, s \geqslant 0$。那么不等式
+\begin{equation}
+\sum_{\xi\in S(X;D,B)} \mu_{\xi}(X)(\mu_{\xi}(X)-1)^{n-s-1} \leqslant \sum_{t=0}^s \max_{Z\in\mathcal Z_t} \left\{ \frac{\#S(Z;D,B)}{\deg(Z)} \right\} \delta(\delta-1)^{n-s+t-1},
+\end{equation}
+对$\mathbb{P}^n_K$中的任意一个次数等于$\delta$，奇点集维数等于$s$的既约超曲面$X$都成立。上式中，每个$\mathcal Z_t$都是超曲面$X$的某一些维数等于$s-t$的特定的闭子概型组成的集合，具体的定义将在\S\ref{construction of intersection trees}中给出。
+% 令$K$为一个数域，$X \hookrightarrow \mathbb{P}^n_K$是一个既约的射影超曲面，设其次数为$\delta$，奇点集维数为$s$。设$\xi\in X$为一个点，$\mu_{\xi}(X)$为点$\xi$在超曲面$X$里的重数，$K(\xi)$为其定义域。设$h(\ndot)$为$\mathbb P^n_K$上的绝对对数高度函数，考虑集合
+% \begin{equation}
+% S(X;D,B) = \left\{ \xi\in X(\overline K) \ \middle|\ [K(\xi):K]=D, \exp\left([K(\xi): \mathbb Q] h(\xi)\right) \leqslant B \right\},
+% \end{equation}
+% 那么有
+% \begin{equation}
+% \sum_{\xi\in S(X;D,B)} \mu_{\xi}(X)(\mu_{\xi}(X)-1)^{n-s-1} \leqslant \sum_{t=0}^s\max_{Z\in\mathcal Z_t}\left\{\frac{\#S(Z;D,B)}{\deg(Z)}\right\} \delta(\delta-1)^{n-s+t-1},
+% \end{equation}
+% % \begin{eqnarray*}& &\sum_{\xi\in S(X;D,B)} \mu_{\xi}(X)(\mu_{\xi}(X)-1)^{n-s-1}\\
+% % &\leqslant&\sum_{t=0}^s\max_{Z\in\mathcal Z_t}\left\{\frac{\#S(Z;D,B)}{\deg(Z)}\right\}\delta(\delta-1)^{n-s+t-1},\end{eqnarray*}
+% 其中，每个$\mathcal Z_t$都是超曲面$X$的某一些维数等于$s-t$的特定的闭子概型组成的集合，具体的定义将在\S\ref{construction of intersection trees}中给出。
+\end{theorem}
+
+需要强调的是，如果我们想得到定理\ref{intro-main result}中的求和式
+\begin{equation}
+\sum\limits_{\xi\in S(X;D,B)} \mu_{\xi}(X)(\mu_{\xi}(X)-1)^{n-s-1}
+\end{equation}
+的一个上界估计，（算术部分）最关键的是要理解
+\begin{equation}
+\max\limits_{Z\in\mathcal Z_t}\left\{\frac{\#S(Z;D,B)}{\deg(Z)}\right\}.
+\end{equation}
+这些东西都归结于概型上代数点的计数这一经典的问题。这将是本文的算术部分主要探讨的问题，也是难点之所在，目前还有不少问题亟待解决。
+
+在定理\ref{intro-main result}中，如果令$D = 1$，$K = \mathbb{Q}$，我们就有了如下关于高度有限的有理点的重数计数的结果
+
+\begin{corollary}[推论 \ref{main corollary}]
+\label{intro-main corollary}
+沿用定理\ref{intro-main result}中的记号，并把$S(X;1,B)$简写作$S(X;B)$，那么
+\begin{equation}
+\sum_{\xi\in S(X;B)} \mu_{\xi}(X)(\mu_{\xi}(X)-1)^{n-s-1}\ll_{n}\delta^{n-s}\max\{B,\delta-1\}^{s+1}
+\end{equation}
+对$\mathbb{P}_{\mathbb{Q}}^n$中所有次数等于$\delta$，奇点集维数等于$s$的既约超曲面$X$都成立。
+\end{corollary}
+
+更进一步，推论\ref{intro-main corollary}中估计式右边的$\delta$以及$\max\{B,\delta-1\}$的次数当$B\geqslant \delta-1$时都是最优的。在后面的章节中，我们将给出相关的例子（例如例\ref{example using HB conj}）来验证这个结论。
+
+% 定理\ref{intro-main result}中的估计在某种程度上描述了射影超曲面$X$的奇点集$X^\mathrm{sing}$复杂程度。通过这个估计，我们可以得出的结论是，射影超曲面$X$的奇点集$X^\mathrm{sing}$的维数，次数，及其在超曲面$X$中的重数不可能同时都非常大。换句话说，奇点集$X^\mathrm{sing}$在某种程度上来说，不会很复杂。
+
+\section{主要的技术性工具}
+本文需要处理的重数计数问题分为两大块：算术部分与几何部分。
+
+对于几何部分，我们将会利用刘春晖在他的文章~\inlinecite{Liu-multiplicity}的\S 2.1中发展出来的，被称作相交树的技术，来控制射影超曲面上奇异点的重数。更具体一些来将，我们将按照需要，在$n$维射影空间$\mathbb{P}^n_K$上归纳地构造一系列的相交，把超曲面$X$（的奇点集）进行一系列的切割。每次切割，被切出的部分，都包含所有的重数不能被（所在不可约分支的）广点（在超曲面中）的重数所控制的点。而剩下的（事实上也是所有的）不可约分支（的广点）的重数，将被它在相交树中的重数所控制。相交树中的重数将在第\ref{chapter:geometric}章中详细定义。
+
+% 使得每个不可约分支在超曲面$X$里的重数都可以由它在相交树中的重数来控制，而不可约分支在超曲面$X$里的重数又可以控制它里面的奇异点的重数。
+
+本文与刘春晖在~\inlinecite{Liu-multiplicity}中在有限域上使用的技术有一些不同之处。本文是在数域上考虑问题，数域的势都是无穷的。这给我们带来了一些便利：我们可以直接在基域$K$上考虑问题，而不用像刘春晖在~\inlinecite{Liu-multiplicity}中所做的那样，取基域的一系列扩张来保证一些辅助概型的存在性，然后再把域扩张之后得到的结论下降到基域上，才能得出相关的结论。
+
+但同时，我们需要考虑高度小于某定值的代数点，或者更简单一点，有理点，的计数问题。这个问题比估计定义在有限域上的射影概型上的点的数目的问题要复杂很多。需要特别指出的是，我们在推论\ref{intro-main corollary}中得到的是一个常数只依赖于与维数相关的$n$的一致的估计，这需要我们给出$\mathbb{P}_{\mathbb{Q}}^n$上代数簇有理点计数问题的相应的一些一致性估计的结果。为了达到这一目的，我们沿用了 T. D. Browning 在~\inlinecite{Browning-PM277}中使用的思路与方法，并做了一些推广。
+% 值得一提的是，在推论\ref{intro-main result}中，本文得到的估计式是一致性的显式的估计，而且常数只依赖于与维数相关的$n$和数域$K$。这个结果来源于本文对射影算术簇的有理点计数问题的一个显式的一致性的估计。
+
+\section{文章的结构}
+
+本文的结构如下：正文部分，在第\ref{chapter:multiplicity}章中，我们将详细地给出和概型上的重数有关的一些概念和性质。在第\ref{chapter:arithmetic}章中，我们将回顾射影概型上一些高度函数的定义，以及关于射影算术簇上的代数点、有理点的计数问题的一些重要的结果，并将得到一个有关有理点计数问题的一致性的估计。这个估计是参考文献~\inlinecite{Schanuel}的 Theorem 1和参考文献~\inlinecite{Browning-PM277}的 Theorem 3.1等结果的一般化。在第\ref{chapter:geometric}章中，我们将介绍刘春晖在文章~\inlinecite{Liu-multiplicity}中引入的相交树的技术，叙述相关的概念、性质，并举一些例子，然后着重介绍相交树在重数计数问题中的应用。在第\ref{chapter:main result}章中，我们将通过构造相交树，对相关的重数进行分析、控制的方式，给出本文所考虑的重数计数问题的一个上界估计。特别地，当只考虑有理点的时候，我们将利用我们在第\ref{chapter:arithmetic}章中给出的一个一般化的Schanuel估计，得到这个问题的一个显式的一致的上界估计。在附录中，本文简要地收集了与本文相关的一些数论、代数几何、相交理论等方面的基础知识。
+
+% 我们将以一个关于相交树的函数的方式，给出本文所考虑的重数计数问题的一个上界估计。特别地，当只考虑有理点的时候，我们将利用我们在第\ref{chapter:arithmetic}章中给出的一个一般化的Schanuel估计，得到这个问题的一个一致的上界估计。附录中，本文简要地收集了与本文相关的一些数论、代数几何等方面的基础知识。
+
+本文中的一些专业术语的翻译参考了~\inlinecite{hartshorne_ch}，~\inlinecite{YinLinsheng}，~\inlinecite{LiJinghui}以及~\inlinecite{GraphTheory_ch}这几本书。
+
+在本文中约定，如果没有特殊说明的话，所有提及的环都是 Noether 交换幺环，概型都是 Noether 概型，域上的簇指的是整的（既约的且不可约的）有限型的概型。

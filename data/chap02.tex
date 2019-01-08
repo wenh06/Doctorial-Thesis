@@ -1,0 +1,351 @@
+\chapter{概型上的重数}
+\label{chapter:multiplicity}
+
+概型上的重数是本文要研究的基本的对象。在这一章中，首先我们将详细介绍有关模的重数的概念及有关的一些性质。随后，我们将引入概型上的点的重数以及概型的整闭子概型的重数的定义，性质，关系等。
+
+% 特别地，射影超曲面作为本文研究的对象，我们要着重介绍其上重数的一些结论。这些结论会直接用于相交树的构造以及主定理的证明。
+
+% 如果不加说明的话，本章提到的环都是 Noether 交换幺环。
+
+\section{模的重数}
+\label{multiplicity of modules}
+概型上的性质、计算等很多时候都归结到了相应的环、模的相关性质和计算。因此，我们首先来介绍模的重数的概念和一些性质。本节主要的参考文献是~\inlinecite{SerreLocAlg}，\inlinecite{GTM150}以及~\inlinecite{Fulton}的附录A。
+
+\begin{definition}
+环$A$的素理想$\mathfrak{p}$的高度$\operatorname{ht}(\mathfrak{p})$被定义作$A$中形如如下的以$\mathfrak{p}$结尾的素理想升链的长度$n$的上确界（可能等于无穷）：
+\begin{equation}
+\mathfrak{p}_0 \subsetneqq \mathfrak{p}_1 \subsetneqq \cdots \subsetneqq \mathfrak{p}_n = \mathfrak{p}
+\end{equation}
+环$A$的任一理想$\mathfrak{a}$的高度$\operatorname{ht}(\mathfrak{a})$被定义作
+\begin{equation}
+\operatorname{ht}(\mathfrak{a}) = \inf\limits_{\mathfrak{p} \in V(\mathfrak{a})} \operatorname{ht}(\mathfrak{p}),
+\end{equation}
+其中$V(\mathfrak{a}) = \{\mathfrak{p} \in \spec (A) \ |\ \mathfrak{a} \subseteq \mathfrak{p} \}$，$\spec (A)$是环$A$的素谱，$\spec (A)$作为集合等于$A$所有素理想之集。
+\end{definition}
+
+\begin{definition}
+环$A$的（Krull）维数$\dim(A)$指的是$A$中所有素理想的高的上确界，即
+\begin{equation}
+\dim(A) = \sup\limits_{\mathfrak{p} \in \spec(A)} \operatorname{ht}(\mathfrak{p})。
+\end{equation}
+\end{definition}
+于是，对环$A$的素理想$\mathfrak{p}$，有
+\begin{equation}
+\operatorname{ht}(\mathfrak{p}) = \dim(A_{\mathfrak{p}}).
+\end{equation}
+% 其中$A_{\mathfrak{p}}$为环$A$在素理想$\mathfrak{p}$处的局部化。具体来说，令$S = A \setminus \mathfrak{p}$为$A$的一个乘法封闭的子集，
+
+\begin{definition}
+$A$-模$M$的（Krull）维数$\dim_A(M)$被定义作
+\begin{equation}
+\dim_A(M) = \dim A/\ann_A(M),
+\end{equation}
+其中$\ann_A(M) = \{a\in A \ |\ aM = 0\}$为$M$在$A$中的零化子（零化理想）。
+\end{definition}
+
+\begin{remark}
+如果定义$A$-模$M$的支集为
+\begin{equation}
+\support(M) = \{ \mathfrak{p} \in \spec(A) \ |\ M_{\mathfrak{p}} \neq 0 \},
+\end{equation}
+那么$M$的 Krull 维数也可以被定义作
+\begin{equation}
+\dim_A(M) = \sup\limits_{\mathfrak{p}\in \support(M)} \dim(A/\mathfrak{p}).
+\end{equation}
+\end{remark}
+
+\begin{definition}
+$A$-模$M$的一个滤链指的是$M$的子模的有限序列
+\begin{equation}
+M = M_0 \supseteq M_1 \supseteq \cdots \supseteq M_n = \{0\}.
+\end{equation}
+滤链的长度指的是上述序列中严格包含关系的个数。$A$-模$M$的一个合成列指的是一个严格包含关系，而且每个因子模$M_i/M_{i+1}$都是单模的滤链：
+\begin{equation}
+M = M_0 \supsetneqq M_1 \supsetneqq \cdots \supsetneqq M_n = \{0\}.
+\end{equation}
+\end{definition}
+
+\begin{remark}
+$A$-模$M$的合成列如果存在，则相互之间都等价，即拥有相同的一组因子模。
+\end{remark}
+
+\begin{definition} \label{length of a module}
+如果$A$-模$M$存在合成列，则称$M$是有限长度的，并定义其长度$\ell_A(M)$为其合成列的长度。否则，定义$\ell_A(M) = \infty$。
+\end{definition}
+等价地，$\ell_A(M)$等于其所有滤链的长度的上确界。
+
+\begin{lemma} [\inlinecite{Fulton}, Lemma A.1.2]
+如果$A$-模$M$是有限长度的，那么
+\begin{equation}
+\ell_A(M) = \sum\limits_{\mathfrak{p}} \ell_{A_{\mathfrak{p}}}(M_{\mathfrak{p}}),
+\end{equation}
+其中$\mathfrak{p}$遍历$A$的素理想。
+\end{lemma}
+
+\begin{lemma} [\inlinecite{Fulton}, Lemma A.1.1]
+设有以下的有限长$A$-模的长正合列
+\begin{displaymath}
+\begin{tikzcd}
+0 \arrow[r] & M_t \arrow[r] & M_{t-1} \arrow[r] & \cdots \arrow[r] & M_0 \arrow[r] & 0
+\end{tikzcd}
+\end{displaymath}
+% $$0 \longrightarrow M_t \longrightarrow M_{t-1} \longrightarrow \cdots \longrightarrow M_0 \longrightarrow 0$$
+那么长正合列中模的长度的交错和等于$0$，即：
+\begin{equation}
+\sum\limits_{i=0}^t \ell_A(M_i) = 0.
+\end{equation}
+\end{lemma}
+
+设$H = \bigoplus\limits_n H_n$是一个分次环，使得$H_0$是一个 Artin 环，而且$H$是一个由$H_1$有限生成的$H_0$-代数。等价地，$H \cong H_0[T_1,\cdots,T_r] / I$，$I$为齐次理想，$\dim(H) \leqslant r$。设$M = \bigoplus\limits_n M_n$是一个有限生成的分次$H$-模，即$H_iM_j \subseteq M_{i+j}$，而且每个$M_n$都是一个有限生成$H_0$-模。定义模$M$的 Hilbert-Samuel 函数为
+\begin{equation}
+\chi_M(\cdot): \mathbb{N} \longrightarrow \mathbb{N}, ~~ n \mapsto \ell_{H_0}(M_n).
+\end{equation}
+
+\begin{theorem}[\inlinecite{SerreLocAlg}, 第II章 Theorem 2]
+\label{hilbert polyn for modules}
+存在次数$\leqslant r-1$的多项式$P_M$，使得当$n$足够大的时候，有$P_M(n) = \chi_M(n)$。多项式$P_M$被称为模$M$的 Hilbert 多项式。
+\end{theorem}
+
+需要注意的是，若模$M = \bigoplus M_n$是有限长的，那么对足够大的$n$，总有$M_n = 0$，因此$M$的 Hilbert 多项式$P_M$恒等于$0$。反过来，如果$M$的 Hilbert 多项式$P_M$恒等于$0$，那么对足够大的$n$，有$\ell_{H_0}(M_n) = \chi_M(n) = P_M(n) = 0$，也就是说$M_n = 0$，故而$M$也是有限长度的。所以
+$$P_M\equiv 0 ~~ \Longleftrightarrow ~~ \ell_{H_0}(M) < \infty.$$
+
+以下，设$M$为环$A$上的一个有限生成的模。设$\mathfrak{q}$为$A$的一个理想，使得$A/\mathfrak{q}$是一个 Artin 环，或者等价地，集合$V(\mathfrak{q}) = \{\mathfrak{p} \in \spec(A) \ |\ \mathfrak{q} \subseteq \mathfrak{p} \}$中的元素都是极大理想。那么，对任意$n$总有
+\begin{equation}
+\ell_A(M / \mathfrak{q}^n M) < \infty,
+\end{equation}
+以及
+\begin{equation}
+\ell_{A/\mathfrak{q}}(\mathfrak{q}^n M / \mathfrak{q}^{n+1} M) < \infty.
+\end{equation}
+考虑（无限）滤链
+\begin{equation}
+M \supseteq \mathfrak{q} M \supseteq \cdots \supseteq \mathfrak{q}^n M \supseteq \cdots
+\end{equation}
+并记$M_i = \mathfrak{q}^i M$。令
+\begin{align}
+\operatorname{gr}_{\mathfrak{q}}(A) & = \bigoplus\limits_{n=0}^{\infty} \mathfrak{q}^n / \mathfrak{q}^{n+1}, \\
+\operatorname{gr}_{\mathfrak{q}}(M) & = \bigoplus\limits_{n=0}^{\infty} \mathfrak{q}^n M / \mathfrak{q}^{n+1} M.
+\end{align}
+由于$M$是有限生成$A$-模，于是$\operatorname{gr}_{\mathfrak{q}}(M)$是一个有限生成$\operatorname{gr}_{\mathfrak{q}}(A)$-模。考虑定义在$\mathbb{N}$上的函数
+\begin{equation}
+H_{\mathfrak{q},M}(n) = \ell_{A/\mathfrak{q}}(\mathfrak{q}^n M / \mathfrak{q}^{n+1} M)
+\end{equation}
+由定理\ref{hilbert polyn for modules}，当正整数$n$足够大时，函数H$_{\mathfrak{q},M}$在$n$处的值$H_{\mathfrak{q},M}(n)$等于一个多项式$P_{\mathfrak{q},M}$在$n$处的值$P_{\mathfrak{q},M}(n)$。容易看出，多项式$P_{\mathfrak{q},M}$就是$\operatorname{gr}_{\mathfrak{q}}(A)$-模$\operatorname{gr}_{\mathfrak{q}}(M)$的 Hilbert 多项式，它的次数小于等于$\mathfrak{q}$的生成元个数。
+
+\begin{theorem}[\inlinecite{SerreLocAlg}, 第II章 Theorem 3]
+考虑函数
+\begin{equation}
+L_{\mathfrak{q},M}(n) = \ell_{A}(M / \mathfrak{q}^n M).
+\end{equation}
+那么存在多项式$Q_{\mathfrak{q},M}$，使得$n$足够大时，有$Q_{\mathfrak{q},M}(n) = L_{\mathfrak{q},M}(n)$。
+\end{theorem}
+
+关于多项式$Q_{\mathfrak{q},M}$，有如下的更精细的结果
+
+\begin{proposition}[\inlinecite{SerreLocAlg}, 第II章 Proposition 9]
+令$\mathfrak{a} = \ann_A(M)$，$B = A / \mathfrak{a}$，以及$\mathfrak{p} = (\mathfrak{a} + \mathfrak{q}) / \mathfrak{a}$。假设$\mathfrak{p}$由$r$个元素$t_1,\cdots,t_r$生成。那么
+\begin{enumerate}
+\item $\Delta Q_{\mathfrak{q},M}(n) = P_{\mathfrak{q},M}$。
+\item $\deg(Q_{\mathfrak{q},M}) \leqslant r$。
+\item $\Delta^r(Q_{\mathfrak{q},M}) \leqslant \ell_A(M / \mathfrak{q}M)$，等号成立当且仅当自然映射
+$$M / \mathfrak{q}M[T_1,\cdots,T_r] \longrightarrow \operatorname{gr}_{\mathfrak{q}}(M)$$
+是同构。
+\end{enumerate}
+上面式子中的$\Delta$是差分算子，定义为$\Delta f(n) = f(n+1) - f(n)$。
+\end{proposition}
+
+\begin{remark}
+多项式$P_M, P_{\mathfrak{q},M}, Q_{\mathfrak{q},M}$都是所谓的整值多项式。函数$\chi_M, H_{\mathfrak{q},M}, L_{\mathfrak{q},M}$则被称作类多项式函数，其次数被定义作相应整值多项式的次数。
+
+对一个次数等于$r$的整值多项式$P(T)$，存在一组整数$c_0, c_1, \cdots, c_r$，使得
+\begin{equation}
+P(T) = c_0\binom{T}{r} + c_1\binom{T}{r-1} + \cdots + c_r,
+\end{equation}
+其中
+\begin{equation}
+\binom{T}{r}:=\dfrac{1}{r!}T(T-1)\cdots(T-r+1),
+\end{equation}
+具体可见参考文献~\inlinecite{GTM52}第I章的Proposition 7.3。对于任意一个函数$f:\mathbb{Z}\to\mathbb{Z}$，证明它是一个类多项式函数，即存在整值多项式$P$使得对充分大的$n$有$f(n) = P(n)$的一般方法是，证明对充分大的$n$，$f$的差分函数在$n$处的值$\Delta f(n)$等于某个整值多项式$\widetilde{P}$在$n$处的值。
+
+例如，对于定理\ref{hilbert polyn for modules}，只要对$H = H_0[T_1,\cdots,T_r]$证明即可。对$r$进行归纳证明。当$r=0$的情况已经在定理\ref{hilbert polyn for modules}下面讨论过。假设对$r>0$,定理\ref{hilbert polyn for modules}对于$H_0[T_1,\cdots,T_{r-1}]$成立。考虑$H_0[T_1,\cdots,T_r]$-模的自同态
+\begin{equation}
+\phi: M \longrightarrow M, ~~ m \mapsto T_r\cdot m,
+\end{equation}
+以及$H_0$-模的正合列
+% \begin{equation}
+% \begin{tikzcd}
+% 0 \arrow[r] & (\ker\phi)_n \arrow[r] & M_n \arrow[r, "\phi_n"] & M_{n+1} \arrow[r] & (\coker\phi)_{n+1} \arrow[r] & 0,
+% \end{tikzcd}
+% \end{equation}
+\begin{equation}
+0 \longrightarrow (\ker\phi)_n \longrightarrow M_n \overset{\phi_n}{\longrightarrow} M_{n+1} \longrightarrow (\coker\phi)_{n+1} \longrightarrow 0,
+\end{equation}
+其中$\phi_n$为$\phi$在$M_n$上的限制，自然是一个$H_0$-模同态。而$\ker\phi$与$\coker\phi$有自然的分次$H_0[T_1,\cdots,T_{r-1}]$-模结构，因为有$T_r\cdot \ker\phi = 0$以及$T_r\cdot \coker\phi = 0$。由以上的正合列有
+\begin{equation}
+\Delta\chi_M(n) = \chi_M(n+1) - \chi_M(n) = \chi_{\coker\phi}(n+1) - \chi_{\ker\phi}(n).
+\end{equation}
+由归纳假设，$\chi_{\coker\phi}$与$\chi_{\ker\phi}$都是，从而$\Delta\chi_M$也是，次数小于等于$r-2$的类多项式函数。所以$\chi_M$是次数小于等于$r-1$的类多项式函数，即存在次数$\leqslant r-1$的多项式$P_M$，使得当$n$足够大的时候，有$P_M(n) = \chi_M(n)$。
+\end{remark}
+
+\begin{definition}
+令$d = \deg(Q_{\mathfrak{q},M})$。定义正整数
+\begin{equation} \label{eq: multiplicity of a module}
+e_{\mathfrak{q},M} = \Delta^d Q_{\mathfrak{q},M},
+\end{equation}
+称为$A$-模$M$对于环$A$的理想$\mathfrak{q}$的重数。
+\end{definition}
+于是，我们有
+\begin{gather}
+P_{\mathfrak{q},M}(T) = e_{\mathfrak{q},M}\dfrac{T^{d-1}}{(d-1)!} + \text{ 低阶项，} \\
+Q_{\mathfrak{q},M}(T) = e_{\mathfrak{q},M}\dfrac{T^{d}}{d!} + \text{ 低阶项}
+\end{gather}
+
+以上的多项式$P_{\mathfrak{q},M}(T)$与$P_{\mathfrak{q},M}(T)$关于短正合列几乎是有加性的，而且可以由局部决定整体：
+\begin{proposition}[\inlinecite{SerreLocAlg}, 第II章 Proposition 10]
+\label{almost additivity of hilbert polyn}
+保持关于$A$-模$M$的假设不变。设有以下的短正合列
+$$0\longrightarrow N \longrightarrow M\longrightarrow P \longrightarrow 0,$$
+那么多项式$Q_{\mathfrak{q},N}, Q_{\mathfrak{q},P}$都是良定义的，而且有
+\begin{equation}
+Q_{\mathfrak{q},M} = Q_{\mathfrak{q},N} + Q_{\mathfrak{q},P} - R,
+\end{equation}
+其中$R$为一个首项系数大于等于$0$，且满足$\deg(R) \leqslant \deg(Q_{\mathfrak{q},N}) - 1$的多项式。
+\end{proposition}
+
+\begin{proposition}[\inlinecite{SerreLocAlg}, 第II章 Proposition 12]
+\label{local multiplicity to global}
+设$V(\mathfrak{q}) = \{\mathfrak{m}_1, \cdots, \mathfrak{m}_s\}$，令$A_i = A_{\mathfrak{m}_i}, M_i = M_{\mathfrak{m}_i}, \mathfrak{q}_i = \mathfrak{q}A_i$，那么
+\begin{equation}
+Q_{\mathfrak{q},M} = \sum\limits_{i=1}^s Q_{\mathfrak{q}_i,M_i}.
+\end{equation}
+\end{proposition}
+
+所以，研究模的重数，或者说研究多项式$Q_{\mathfrak{q},M}$，只要研究$A$是局部环，$\mathfrak{q}$是$\mathfrak{m}$-准素的就行了。其中$\mathfrak{m}$为局部环$A$的唯一的极大理想。$\mathfrak{q}$是$\mathfrak{m}$-准素的指的是$\mathfrak{m} = \sqrt{\mathfrak{q}} := \{ a \in A \ |\ \text{ 存在正整数$n$使得 } a^n\in \mathfrak{q} \}$。此时$A/\mathfrak{q}$是一个 Artin 环。此外，我们还记$\kappa = A / \mathfrak{m}$为局部环$A$的剩余类域。本节剩下的内容对于所考虑的环，理想，模都采取这样的假设。
+
+\begin{definition}
+$e_M := e_{\mathfrak{m},M}$被称作$A$-模$M$的重数。$e_A := e_{\mathfrak{m},A}$被称作局部环$A$的重数。
+\end{definition}
+
+在这种情况下，多项式$Q_{\mathfrak{q},M}$的次数比较好确定。具体来说，令
+\begin{equation}
+s(M) = \inf\{n \ |\ \text{存在$x_1, \cdots, x_n\in \mathfrak{m}$使得$\ell_A(M/(x_1, \cdots, x_n)M) < \infty$ }\}.
+\end{equation}
+那么有
+\begin{theorem} [\inlinecite{Liu_these}, Th\'{e}or\`{e}me A. 1. 21]
+设$A$为局部环，有极大理想$\mathfrak{m}$。设$\mathfrak{q}$是$\mathfrak{m}$-准素的理想，$M$是有限生成的$A$-模。那么
+\begin{equation}
+\dim_A(M) = \deg(Q_{\mathfrak{q},M}) = s(M).
+\end{equation}
+特别地，多项式$Q_{\mathfrak{q},M}$的次数与$\mathfrak{q}$无关。
+\end{theorem}
+
+如果我们把模的重数的定义\eqref{eq: multiplicity of a module}做扩展
+\begin{equation}
+e_{\mathfrak{q},M}(d) := \begin{cases}
+e_{\mathfrak{q},M} & \text{ 如果$d = \dim_A(M)$;} \\
+0 & \text{ 其余情况}
+\end{cases}
+\end{equation}
+于是由命题\ref{almost additivity of hilbert polyn}，对于命题中的短正合列有
+\begin{equation}
+e_{\mathfrak{q},M}(d) = e_{\mathfrak{q},N}(d) + e_{\mathfrak{q},P}(d).
+\end{equation}
+进而有加性公式
+\begin{equation}
+e_{\mathfrak{q},M}(d) = \sum\limits_{\substack{\mathfrak{p} \in \spec A \\ \dim(A/\mathfrak{p}) \leqslant d}} \ell_{A_{\mathfrak{p}}}(M_{\mathfrak{p}}) \cdot e_{\mathfrak{q}, A/\mathfrak{p}}(d)
+\end{equation}
+
+局部环的重数在完备化下不变。更确切地说，有
+
+\begin{proposition}
+令$\widehat{A} = \varprojlim\limits_n A / \mathfrak{q}^n$为局部环关于其准素理想$\mathfrak{q}$的完备化，记$\widehat{\mathfrak{q}} = \mathfrak{q}\widehat{A}$。那么
+\begin{equation}
+e_{\widehat{\mathfrak{q}}, \widehat{A}} = e_{\mathfrak{q}, A}.
+\end{equation}
+\end{proposition}
+
+关于重数在张量积下的性状，有如下结果
+\begin{proposition}[\inlinecite{Liu_these}, Proposition A.1.29]
+\label{multiplicity of complete tensor}
+设$A'$是另一个局部环，有极大理想$\mathfrak{m}'$以及剩余类域$\kappa'$。设$\mathfrak{q}'$是$A'$的一个$\mathfrak{m}'$-准素的理想。令$k$为一个域，使得$[\kappa:k] < \infty$且$[\kappa':k] < \infty$。令
+\begin{equation}
+B = A \widehat{\otimes}_k A' = \varprojlim\limits_{(n,n')} A / \mathfrak{m}^n \otimes_k A' / \mathfrak{m}'^{n'}
+\end{equation}
+为完备化的张量积。如果$\kappa\otimes_k \kappa'$是一个域，那么$B$是一个局部环，以$\mathfrak{m}_B = B\mathfrak{m} + B\mathfrak{m}'$为极大理想，理想$B\mathfrak{q} + B\mathfrak{q}'$是一个$\mathfrak{m}_B$-准素的理想，而且有
+\begin{equation}
+\dim(B) = \dim(A) + \dim(A'),
+\end{equation}
+以及
+\begin{equation}
+e_{B\mathfrak{q} + B\mathfrak{q}', B} = e_{\mathfrak{q}, A} \cdot e_{\mathfrak{q}', A'}.
+\end{equation}
+\end{proposition}
+
+\begin{remark} \label{remarks on multiplicity of local rings} \ 
+\begin{enumerate}
+\item 设$\mathfrak{q}_1 \subseteq \mathfrak{q}_2$是局部环$A$的两个$\mathfrak{m}$-准素理想，那么对任意正整数$n$，有满射$A/\mathfrak{q}_1^n \twoheadrightarrow A/\mathfrak{q}_2^n$，于是
+\begin{equation}
+Q_{\mathfrak{q}_1, A}(n) = \ell_A(A/\mathfrak{q}_1^n) \geqslant \ell_A(A/\mathfrak{q}_2^n) = Q_{\mathfrak{q}_2, A}(n),
+\end{equation}
+所以$e_{\mathfrak{q}_1, A} \geqslant e_{\mathfrak{q}_2, A}$。
+\item 当$A$是正则局部环，即有$\dim(A) = \dim_{\kappa}(\mathfrak{m} / \mathfrak{m}^2)$时，容易证明有分次$\kappa$-代数的同构
+$$\operatorname{gr}_{\mathfrak{m}}(A) \overset{\sim}{\longrightarrow} \kappa[T_1,\cdots,T_d],$$
+从而有
+\begin{equation}
+e_A = e_{\mathfrak{m}, A} = 1.
+\end{equation}
+也就是说正则局部环的重数总是等于$1$。
+\end{enumerate}
+\end{remark}
+
+\section{概型上的重数}
+\label{section: multiplicity in schemes}
+令$X$为某个域$k$上既约的射影概型，有结构层$\mathcal{O}_X$。假设$X$是维数纯的。任取其中一个点$\xi$，考虑结构层$\mathcal{O}_X$在这点处的茎，即局部环
+\begin{equation}
+\mathcal{O}_{X,\xi} := \varinjlim\limits_{\text{开集 } U\ni \xi} \mathcal{O}_X(U),
+\end{equation}
+记它的极大理想为$\mathfrak{m}_\xi$，剩余类域为$\kappa(\xi)$。
+\begin{definition}
+概型$X$在点$\xi\in X$处的重数$\mu_{\xi}(X)$被定义作局部环$\mathcal{O}_{X,\xi}$的重数，即
+\begin{equation}
+\mu_{\xi}(X) = e_{\mathcal{O}_{X,\xi}}.
+\end{equation}
+\end{definition}
+
+\begin{remark}
+当$\xi$是既约的维数纯的概型$X$上的正则点，即$\mathcal{O}_{X,\xi}$是正则局部环，有$\dim(\mathcal{O}_{X,\xi}) = \dim_{\kappa(\xi)}(\mathfrak{m}_\xi / \mathfrak{m}_\xi^2)$的时候，由注释\ref{remarks on multiplicity of local rings}可知概型$X$在点$\xi$处的重数$\mu_{\xi}(X) = 1$。我们把概型$X$上正则点集记作$X^{\mathrm{reg}}$。其余的点被称作奇异点，概型$X$上奇点集被记作$X^{\mathrm{sing}}$。奇点集$X^{\mathrm{sing}}$中每个点$\xi \in X^{\mathrm{sing}}$有$\mu_{\xi}(X) > 1$。概型$X$的正则点集$X^{\mathrm{reg}}$在$X$中是 Zariski 开的。
+\end{remark}
+
+\begin{definition}
+设$M$是概型$X$的一个整闭子概型（既约且不可约），有广点$\eta_M$。我们把$M$在$X$中的重数$\mu_M(X)$定义为其广点$\eta_M$在$X$中的重数$\mu_{\eta_M}(X)$，即局部环$\mathcal{O}_{X,\eta_M}$的重数：
+\begin{equation}
+\mu_M(X) := \mu_{\eta_M}(X).
+\end{equation}
+\end{definition}
+
+\begin{remark}
+一个非常重要的观察是，$X$的整闭子概型$M$中任一点$\xi$，有如下的重数之间的关系：
+\begin{equation}
+\mu_{\xi}(X) \geqslant \mu_M(X),
+\end{equation}
+等号对$M$中几乎所有的点（这样的点构成稠密子集）都成立。具体可以看参考文献~\inlinecite{Samuel}第II章\S 6的第94-95页。
+% $M = \overline{\{\eta_M\}}$是单点集$\{\eta_M\}$在$X$中 Zariski 拓扑下的闭包。设$\xi\in M$，$\xi\neq \eta_M$，是$M$中异于广点的另一个点。设$U = \spec A$为点$\xi$在$X$中的一个仿射开邻域。于是$U\cap M$便是$M$的一个非空开子概形。由于$M$是不可约的，所以$U\cap M$在$M$中稠密，故包含广点$\eta_M$。所以$\mathcal{O}_{X,\eta_M} = \mathcal{O}_{U,\eta_M}, \mathcal{O}_{X,\xi} = \mathcal{O}_{U,\xi}$。
+
+% 设$\eta_M$对应于环$A$中的素理想为$\mathfrak{p}_M$，点$\xi$对应于环$A$的素理想为$\mathfrak{p}_{\xi}$。$\mathfrak{p}_M$为$A$的一个极小素理想，且这两个素理想之间有包含关系$\mathfrak{p}_M\subsetneqq \mathfrak{p}_{\xi}$。于是$\mathfrak{p}_M A_{\mathfrak{p}_{\xi}}$是局部环$A_{\mathfrak{p}_{\xi}}$的一个素理想，且有
+% \begin{equation}
+% (A_{\mathfrak{p}_{\xi}})_{\mathfrak{p}_M A_{\mathfrak{p}_{\xi}}} \cong A_{\mathfrak{p}_M}.
+% \end{equation}
+% 于是有如下的重数之间的关系：
+% \begin{equation}
+% \mu_{\xi}(X) \geqslant \mu_M(X).
+% \end{equation}
+
+% 进而有局部环的单射
+
+% 设$\xi\in M$，$\xi\neq \eta_M$，是$M$中异于广点的另一个点，那么有如下的重数之间的关系：
+% $$\mu_{\xi}(X) \geqslant \mu_M(X).$$
+\end{remark}
+
+
+% \section{射影超曲面上的重数}
+% \label{section: multiplicity in hypersurfaces}
