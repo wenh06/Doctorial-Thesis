@@ -517,7 +517,7 @@
       \noindent\heiti\xiaoer\thu@bachelor@title@pre\thu@title@sep
       \parbox[t]{12cm}{%
       \ignorespaces\yihao[1.55]%
-      \renewcommand{\CJKunderlinebasesep}{0.25cm}%
+      \newcommand{\CJKunderlinebasesep}{0.25cm}%
       \renewcommand{\ULthickness}{1.3pt}%
       \ifxetex
         \xeCJKsetup{underline/format=\color{black}}%
