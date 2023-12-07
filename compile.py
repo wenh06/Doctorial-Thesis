@@ -99,7 +99,10 @@ def main():
         sys.exit(exitcode)
     generated_pdf_file = project_dir / f"{main_tex_file.stem}.pdf"
     suffix = time.strftime("%Y%m%d-%H%M%S")
-    backup_pdf_file = build_dir / f"{main_tex_file.stem}-{suffix}.pdf"
+    if main_tex_file.stem == "main":
+        backup_pdf_file = build_dir / f"Doctorial-Thesis-{suffix}.pdf"
+    else:
+        backup_pdf_file = build_dir / f"{main_tex_file.stem}-{suffix}.pdf"
     shutil.copy(generated_pdf_file, backup_pdf_file)
 
     # clean up
@@ -111,6 +114,9 @@ def main():
     bbl_file = project_dir / f"{main_tex_file.stem}.bbl"
     if bbl_file.exists():
         bbl_file.unlink()
+    # clear files of the pattern xelatex*.fls
+    for fls_file in project_dir.glob("xelatex*.fls"):
+        fls_file.unlink()
 
 
 if __name__ == "__main__":

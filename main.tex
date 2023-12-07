@@ -2,7 +2,8 @@
 % compiler: XeLaTeX
 % TeX Live version: 2020
 
-\documentclass[type=doctor,fontset=custom,pifootnote]{thuthesis}
+% \documentclass[type=doctor,fontset=custom,pifootnote]{thuthesis}
+\documentclass[type=doctor,fontset=fandol,pifootnote]{thuthesis}
 % 选项：
 %   type=[bachelor|master|doctor|postdoctor], % 必选
 %   fontset=[fandol|custom],                  % 字体选择
@@ -48,6 +49,20 @@
 \usepackage{pst-func}
 
 \usepackage{MnSymbol}
+
+% \defaultfontfeatures{Path=fonts/, Mapping=tex-text}
+% \setCJKmainfont[AutoFakeBold=true,ItalicFont=simkai.ttf]{simsun.ttc}
+% \setCJKsansfont{simhei.ttf}
+% \setCJKmonofont{simfang.ttf}
+% \setCJKfamilyfont{zhsong}[AutoFakeBold=true]{simsun.ttc}
+% \setCJKfamilyfont{zhhei}{simhei.ttf}
+% \setCJKfamilyfont{zhfs}{simfang.ttf}
+% \setCJKfamilyfont{zhkai}{simkai.ttf}
+
+% \NewDocumentCommand\songti{}{\CJKfamily{zhsong}}
+% \NewDocumentCommand\heiti{}{\CJKfamily{zhhei}}
+% \NewDocumentCommand\fangsong{}{\CJKfamily{zhfs}}
+% \NewDocumentCommand\kaishu{}{\CJKfamily{zhkai}}
 
 \newcommand{\qcohsheaf}{^{\mbox{$\sim$}}}
 \DeclareMathOperator{\support}{Supp}
