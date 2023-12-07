@@ -114,6 +114,7 @@ jobs:
           xypic
           pstricks
           pst-func
+          dashbox
     - name: Install latexmk and extra software
       run: |
         sudo apt install latexmk -y
