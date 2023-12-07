@@ -106,6 +106,7 @@ jobs:
           courier
           pdfpages
           xpatch
+          perpage
     - name: Install latexmk and extra software
       run: |
         sudo apt install latexmk -y
