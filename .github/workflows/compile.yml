@@ -114,6 +114,10 @@ jobs:
           xypic
           pstricks
           pst-func
+          pst-plot
+          pst-text
+          makeplot
+          numericplots
           dashbox
     - name: Install latexmk and extra software
       run: |
