@@ -71,6 +71,7 @@ jobs:
           ifoddpage
           graphics
           graphics-cfg
+          graphics-def
           etoolbox
           jknapltx
           mathtools
@@ -103,6 +104,7 @@ jobs:
           footmisc
           kvoptions
           iftex
+          ltxcmds
           l3kernel
           l3packages
           courier
@@ -123,6 +125,7 @@ jobs:
           pst-node
           pst-math
           pst-3d
+          pst-arrow
           pst-calculate
           makeplot
           numericplots
@@ -146,6 +149,18 @@ jobs:
           translations
           mnsymbol
           pdflscape
+          kastrup
+          ulem
+          pdftexcmds
+          infwarerr
+          kvdefinekeys
+          pdfescape
+          gettitlestring
+          intcalc
+          bigintcalc
+          bitset
+          stringenc
+          uniquecounter
     - name: Install latexmk and extra software
       run: |
         sudo apt install latexmk -y
