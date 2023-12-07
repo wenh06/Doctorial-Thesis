@@ -70,6 +70,7 @@ jobs:
           xecjk
           ifoddpage
           graphics
+          graphics-cfg
           etoolbox
           jknapltx
           mathtools
@@ -102,6 +103,7 @@ jobs:
           footmisc
           kvoptions
           iftex
+          l3kernel
           l3packages
           courier
           pdfpages
@@ -113,12 +115,37 @@ jobs:
           pict2e
           xypic
           pstricks
+          pstricks-add
+          pst-tools
           pst-func
           pst-plot
           pst-text
+          pst-node
+          pst-math
+          pst-3d
+          pst-calculate
           makeplot
           numericplots
           dashbox
+          zhnumber
+          kvsetkeys
+          xkeyval
+          carlisle
+          oberdiek
+          eso-pic
+          trimspaces
+          hycolor
+          bigfoot
+          letltxmacro
+          refcount
+          auxhook
+          url
+          rerunfilecheck
+          multido
+          siunitx
+          translations
+          mnsymbol
+          pdflscape
     - name: Install latexmk and extra software
       run: |
         sudo apt install latexmk -y
