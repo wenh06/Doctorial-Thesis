@@ -1,5 +1,9 @@
 # Doctorial Thesis
 
+[![compile-test](https://github.com/wenh06/Doctorial-Thesis/actions/workflows/compile.yml/badge.svg)](https://github.com/wenh06/Doctorial-Thesis/actions/workflows/compile.yml)
+![GitHub Release Date - Published_At](https://img.shields.io/github/release-date/wenh06/Doctorial-Thesis)
+![GitHub commits since latest release (by SemVer including pre-releases)](https://img.shields.io/github/commits-since/wenh06/Doctorial-Thesis/latest)
+
 Doctorial thesis on the problem of counting multiplicities in a hypersurface over number fields.
 
 ## Usage
