@@ -111,6 +111,9 @@ jobs:
           natbib
           diagbox
           pict2e
+          xypic
+          pstricks
+          pst-func
     - name: Install latexmk and extra software
       run: |
         sudo apt install latexmk -y
