@@ -101,7 +101,7 @@ def main():
         sys.exit(exitcode)
     generated_pdf_file = project_dir / f"{main_tex_file.stem}.pdf"
     suffix = time.strftime("%Y%m%d-%H%M%S")
-    if handout:
+    if main_tex_file.stem == "main" and handout:
         backup_pdf_file = build_dir / f"Doctorial-Thesis-{suffix}.pdf"
     else:
         backup_pdf_file = build_dir / f"{main_tex_file.stem}.pdf"

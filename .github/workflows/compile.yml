@@ -111,7 +111,6 @@ jobs:
           courier
           pdfpages
           xpatch
-          perpage
           ntheorem
           natbib
           diagbox
