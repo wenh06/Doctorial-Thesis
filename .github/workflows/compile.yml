@@ -164,6 +164,7 @@ jobs:
           bitset
           stringenc
           uniquecounter
+          lm
     - name: Install latexmk and extra software
       run: |
         sudo apt install latexmk -y
