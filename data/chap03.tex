@@ -275,7 +275,7 @@ h_X: \operatorname{CaCl}(X) \cong \Pic(X) \to \dfrac{\{\text{函数 } X(\overlin
 h_{X,D}(\cdot) = h_X(\phi_D(\cdot)) + O(1).
 \end{equation}
 \item 函子性：如果$f: X \to Y$为射影概型的态射，那么
-$$h_{X,f^*D}(\cdot) = h_{Y,D}(f(\cdot)) + O(1).$$
+\[h_{X,f^*D}(\cdot) = h_{Y,D}(f(\cdot)) + O(1).\]
 \item 正性：记$\operatorname{Bl}(D)$为$D$的基点集，那么在$\operatorname{Bl}(D)$之外恒有
 \begin{equation}
 h_{X,D} \geqslant O(1).
@@ -335,13 +335,13 @@ h_{X,D} \geqslant O(1).
 
 % \begin{example}
 % % 我们来举一个标准的例子。一般地，设$E$为环$A$上的秩为$r$的局部自由模（或者说投射模）。考虑函子
-% % $$
+% % \[
 % % \begin{tikzcd}[row sep = tiny]
 % % \mathbb{P}(E): (Sch/\spec A)\cong (A-algebras) \arrow[r] & (Sets) \\
 % % \phantom{hehehehehehehehehe} M \arrow[r, mapsto] & \{\text{$E\otimes_A M$秩为$1$的投射商模}\}
 % % \end{tikzcd}
-% % $$
-% % % $$\mathbb{P}(E): (A-algebras) \rightarrow (Sets), ~~ M \mapsto \{E\otimes_A M\},$$
+% % \]
+% % % \[\mathbb{P}(E): (A-algebras) \rightarrow (Sets), ~~ M \mapsto \{E\otimes_A M\},\]
 % % 其中$(Sch/\spec A)$表示$\spec A$上概型的范畴，$(A-algebras)$表示$A$-代数的范畴，$(Sets)$表示所有集合组成的范畴。这是一个可表函子，由泛对象$(\mathbb{P}(E), \mathcal{O}_E(1))$给出，其中$\mathbb{P}(E)$是$\spec A$上的一个射影概型，$\mathcal{O}_E(1)$被称为$\mathbb{P}(E)$上的泛线丛。
 % 我们来举一个标准的例子。这个例子源自参考文献~\inlinecite{FGA}第二章的 EXAMPLE 2.7。一般地，设$\overline{\mathscr{E}} = (\mathscr{E}, (\|\cdot\|_v)_{v\in M_{K,\infty}})$为$\spec \mathcal{O}_K$上的一个 Hermitian 向量丛，考虑函子
 % \begin{equation}
@@ -682,12 +682,12 @@ N(X;B) = \#S(X;B) \ll_{n} \delta B^{d+1}, \quad B \geqslant 1
 
 \begin{proof}
 令$\overline{X}$与$\overline{L}$分别是$X$与$L$在$\mathbb{P}^n_k$中的射影闭包。这里，射影闭包指的是，通过同胚映射
-$$
+\[
 \begin{tikzcd}[row sep = tiny]
 \varphi_0: U_0 := \left\{ [x_0:\cdots:x_n] \in \mathbb{P}^n_k \ \middle|\ x_0\neq 0 \right\} \arrow[r] & \mathbb{A}^n_k \\
 \phantom{hehehehe} [x_0:\cdots:x_n] \arrow[r, mapsto] & (\frac{x_1}{x_0},\cdots,\frac{x_n}{x_0})
 \end{tikzcd}
-$$
+\]
 将$\mathbb{A}^n_k$等同于$\mathbb{P}^n_k$的开集$U_0$，再在$\mathbb{P}^n_k$中取闭包。更详细的知识可以看参考文献~\inlinecite{GTM52}第一章的习题2.9。那么由定义\ref{definition of degree of affine scheme}，自然有$\deg(X) = \deg(\overline{X})$以及$\deg(L) = \deg(\overline{L}) = 1.$ 由 B\'ezout 定理（见第\ref{chapter:geometric}章的定理\ref{bezout}），我们有
 \begin{equation}
 \deg(\overline{X}) = \deg(\overline{X}) \deg(\overline{L}) = \sum_{Z\in\mathcal{C}(\overline{X}\cdot\overline{L})} i(Z; \overline{X}\cdot\overline{L}; \mathbb{P}^n_k)\deg(Z),
@@ -740,7 +740,7 @@ X \subseteq H(T_{\alpha} = a).
 X \subseteq \; H(T_1=a_1) \cap \cdots \cap H(T_n=a_n)
 \end{equation}
 概型$H(T_1=a_1) \cap \cdots \cap H(T_n=a_n)$是$n$维仿射空间$\mathbb{A}^n_{k}$的一个有理点，其坐标为$(a_1,\ldots,a_n)$。所以我们有
-$$X\subseteq (a_0,\ldots,a_n).$$
+\[X\subseteq (a_0,\ldots,a_n).\]
 这与$d \geqslant 1$是矛盾的。因此我们之前做的假设：对所有的指标$\alpha \in \{1,\ldots,n\}$总能找到$a \in k$，使得$X \cap H(T_\alpha=a)$不是正常相交，是不成立的。引理得证。
 \end{proof}
 
@@ -751,10 +751,10 @@ X \arrow[r, hookrightarrow, "\phi"] & \mathbb{A}^n_{\mathbb{Q}} \arrow[r, "\pi"]
 & \spec\mathbb{Q} \arrow[r] & \spec\mathbb{Z}
 \end{tikzcd}
 \end{equation}
-% $$\xymatrix{
+% \[\xymatrix{
 % X \ar@{^{(}->}^{\phi}[r] & \mathbb{A}^n_{\mathbb{Q}} \ar[r]^{\pi} \ar[d] \ar@{}|-{\square}[dr] & \mathbb{A}^n_{\mathbb{Z}} \ar[d] \\
 % & \spec\mathbb{Q} \ar[r] & \spec\mathbb{Z}
-% }$$
+% }\]
 \begin{definition} \label{Z-point of a Q-scheme}
 我们记集合$X_{\phi}(\mathbb{Z})$为集合$X(\mathbb{Q})$由如下点组成的子集合：将$\xi \in X(\mathbb{Q})$视作是一个$\mathbb{Q}$-态射$\xi: \spec\mathbb{Q}\to X$（更准确的说是$i\circ\phi$的一个截影），而且$\xi$与浸入$\phi: X \hookrightarrow \mathbb{A}^n_{\mathbb{Q}}$的复合
 \begin{equation}
@@ -857,7 +857,7 @@ N(X;B) \leqslant \#M(\hat{X};B) \ll_{n} \delta B^{d+1}.
 % \end{theorem}
 
 % % 从范畴与函子的角度来理解，令$\underline{Schemes}$表示概型的范畴，$\underline{Sets}$表示集合的范畴，那么
-% % $$\mathbb P^n: \underline{Schemes} \rightarrow \underline{Sets}, ~~ S \mapsto \left\{ \mathcal{O}_S^{n+1} \text{ 秩1的局部自由商模} \right\}$$
+% % \[\mathbb P^n: \underline{Schemes} \rightarrow \underline{Sets}, ~~ S \mapsto \left\{ \mathcal{O}_S^{n+1} \text{ 秩1的局部自由商模} \right\}\]
 % % 是一个可表函子，由泛对象$(\mathbb P^n, \mathcal{O}_{\mathbb P^n_K}(1))$表示。详见~\inlinecite{FGA}的第二章。
 
 % 我们首先回忆一下局部完全交的概念及其性质。
@@ -941,7 +941,7 @@ N(X;B) \leqslant \#M(\hat{X};B) \ll_{n} \delta B^{d+1}.
 % N'(X;D,B) = \#S'(X;D,B),
 % \end{equation}
 % 那么我们会有
-% $$S'(X;1,B)=S(X;1,B)=S(X;B),$$
+% \[S'(X;1,B)=S(X;1,B)=S(X;B),\]
 % 而且由定理\ref{refined Schanuel estimate}，我们直接有
 % \begin{equation}
 % N'(X;D,B) \ll_D \delta N'(\mathbb P^d;D,B).
@@ -952,7 +952,7 @@ N(X;B) \leqslant \#M(\hat{X};B) \ll_{n} \delta B^{d+1}.
 % \begin{theorem}
 % \label{refined Schanuel estimate}
 % 设$\phi: X \hookrightarrow \mathbb P^n_K$为$n$维射影空间$\mathbb P^n_K$的一个既约的闭子概型，有纯的维数$d$且其相对于泛丛$\mathcal{O}_{\mathbb P^n_K}(1)$的次数为$\delta$（详细定义参见\S \ref{subsection_intersection_theory}）。那么有
-% $$N(X;D,B)\leqslant\sqrt{n+1}\delta N(\mathbb P^d_K;D,B),$$
+% \[N(X;D,B)\leqslant\sqrt{n+1}\delta N(\mathbb P^d_K;D,B),\]
 % 其中$N(X;D,B)$定义由式\eqref{N(X;D,B)}给出。
 % \end{theorem}
 
@@ -961,7 +961,7 @@ N(X;B) \leqslant \#M(\hat{X};B) \ll_{n} \delta B^{d+1}.
 % 考虑$\spec\mathcal{O}_K$上的Hermitian的向量丛$\overline{\mathcal{O}}_K^{\oplus(n+1)}=(\mathcal{O}_K^{\oplus{n+1}},(\|\ndot\|_v)_{v\in M_{K,\infty}})$。在每个无限位点$v\in M_{K,\infty}$处，这个向量丛被赋予通常的$\ell^2$-范数。我们将$\mathbb P^n_K=\mathbb P(\mathcal{O}_K^{\oplus{n+1}})$视作所有秩为1的$\mathcal{O}_K^{\oplus{n+1}}$的射影子模的分类空间，这些射影子模在每个无限位点$v\in M_{K,\infty}$处还有诱导的范数。我们记$\overline{\mathcal{O}(1)}=(\mathcal{O}(1),(\|\ndot\|_v)_{v\in M_{K,\infty}})$为，在每个无限位点$v\in M_{K,\infty}$处被赋予了诱导的Fubini-Study范数的，射影空间$\mathbb P^n_K$上的泛丛。
 
 % 假设$\xi\in \mathbb P^n_K(\overline K)$为一个闭点，$L=K(\xi)$为这个点的定义域。令$\mathcal P_\xi$为$\mathbb P^n_{\mathcal{O}_K}$上面的对应于闭点$\xi$的$\mathcal{O}_L$-点。我们把点$\xi$的 Arakelov 高度用下式定义
-% $$h_{\overline{\mathcal{O}(1)}}(\xi)=\adeg_n(\mathcal P_\xi^*\overline{\mathcal{O}(1)}),$$
+% \[h_{\overline{\mathcal{O}(1)}}(\xi)=\adeg_n(\mathcal P_\xi^*\overline{\mathcal{O}(1)}),\]
 % 其中的$\adeg_n(\ndot)$为赋范向量丛的归一化的 Arakelov 度数。特别地，如果闭点$\xi$的射影坐标为$[x_0:\cdots:x_n]$，那么
 % % \begin{equation*}
 % % h_{\overline{\mathcal{O}(1)}}(\xi) = \sum_{v\in M_{L,f}} \frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]} \log\max_{0\leqslant i\leqslant n}\{|x_i|_v\} + \sum_{v\in M_{L,\infty}} \frac{[L_v:\mathbb{Q}_v]}{[L:\mathbb{Q}]} \log\sqrt{|x_0|_v^2+\cdots+|x_n|^2_v}.
@@ -1000,20 +1000,20 @@ N(X;B) \leqslant \#M(\hat{X};B) \ll_{n} \delta B^{d+1}.
 % 首先，我们可以假设概型$X$是不可约的。因为如果这种情形得到了证明的话，那么一般的情形，就可以通过把概型的不可约分支上得到的结论合起来，得出我们想要的结论。
 
 % 所以我们现在假设$X$是$n$维射影空间$\mathbb P^n_K$的一个整的（既约且不可约的）闭子概型，其闭子概型的结构由闭浸入$\phi:X \hookrightarrow \mathbb P^n_K$给出。假设$X$的维数等于$d$相对于泛丛$\mathcal{O}_{\mathbb P^n_K}(1)$的次数为$\delta$。由之前的构造（交换图表\eqref{linear projection}），我们可以由$K$-线性投射$\mathbb P^n_K\dashrightarrow\mathbb P^d_K$诱导出一个度数等于$\delta$的覆盖映射
-% $$\phi_d:X\rightarrow \mathbb P^d_K.$$
+% \[\phi_d:X\rightarrow \mathbb P^d_K.\]
 % 由参考文献~\inlinecite{BGS94}\S 3.3.2的不等式 (3.3.7)，对于概型$X$的所有$K$-有理的闭点$\xi\in X(K)$，有
-% $$h_{\overline{\mathcal{O}(1)}}(\xi)\geqslant h_{\overline{\mathcal{O}(1)}}(\phi_d(\xi)).$$
+% \[h_{\overline{\mathcal{O}(1)}}(\xi)\geqslant h_{\overline{\mathcal{O}(1)}}(\phi_d(\xi)).\]
 % 需要注意的是，上式的两个高度函数分别是在$n$维射影空间$\mathbb P^n_K$和$d$维射影空间$\mathbb P^d_K$上定义的。令
-% $$N'(X;D,B) = \#\left\{\xi\in X(K) \ \middle|\ [K(\xi):K] = D, \exp\left([K(\xi):\mathbb{Q}]h_{\overline{\mathcal{O}(1)}}(\xi)\right) \leqslant B\right\}.$$
+% \[N'(X;D,B) = \#\left\{\xi\in X(K) \ \middle|\ [K(\xi):K] = D, \exp\left([K(\xi):\mathbb{Q}]h_{\overline{\mathcal{O}(1)}}(\xi)\right) \leqslant B\right\}.\]
 % 那么由不等式\eqref{compare heights}，我们有
-% $$N(X;D,B) \leqslant N'(X;D,B) \leqslant \delta N'(\mathbb P^d_K;D,B) \leqslant \sqrt{n+1} \delta N(\mathbb P^d_K;D,B).$$
+% \[N(X;D,B) \leqslant N'(X;D,B) \leqslant \delta N'(\mathbb P^d_K;D,B) \leqslant \sqrt{n+1} \delta N(\mathbb P^d_K;D,B).\]
 % 这样，我们便得到了想要的上界估计。
 % \end{proof}
 
 % \begin{remark}
 % \label{degree 1 estimate}
 % 在定理\ref{refined Schanuel estimate}中，如果我们考虑$D=1$的特殊情况，那么由引理ref{finiteness of A(n,B)}以及引理\ref{upper bound of A(n,B)}，有
-% $$N(X;B)\leqslant\sqrt{n+1}\delta C_0(d,K)B^{d+1}\ll_{n,K}\delta B^{d+1},$$
+% \[N(X;B)\leqslant\sqrt{n+1}\delta C_0(d,K)B^{d+1}\ll_{n,K}\delta B^{d+1},\]
 % 其中的常数$C_0(d,K)$由前文的式\eqref{C_0(n,K)}给出。事实上，$N(X;B)$的估计式中B的次数
 
 % In fact, the exponent of $B$ in $N(X;B)$ above can reach the upper bound $d+1$ when $\delta=1$.
