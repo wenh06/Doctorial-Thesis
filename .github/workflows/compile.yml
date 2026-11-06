@@ -64,6 +64,7 @@ jobs:
         # tlmgr info --list scheme-small
         packages: >-
           scheme-small
+          accsupp
           ctex
           cases
           pgf
